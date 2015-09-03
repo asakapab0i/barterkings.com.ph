@@ -41,6 +41,8 @@
 $route['default_controller'] = "index";
 $route['404_override'] = '';
 $route['item/(:num)/(:any)'] = 'item/item/$1/$2';
+$route['profile/(:any)'] = 'account/profile/$1';
+$route['profile'] = 'account/profile';
 
 
 /* End of file routes.php */

@@ -1,3 +1,5 @@
+'use strict';
+
 $(function(){
 	$(document).on('click', '.pop-modal', function(e){
 		e.preventDefault();
@@ -39,8 +41,8 @@ $(function(){
 		event.preventDefault();
 		$(this).trigger('add-comment-event', function(itemid){
 			console.log('add-comment-event has been triggered.');
-			that_comments = $('.reload-comments');
-			that_comments_count = $('.reload-comments-count');
+			var that_comments = $('.reload-comments');
+			var that_comments_count = $('.reload-comments-count');
 			that_comments.load(base_url + 'item/get_comments/' + itemid);
 			that_comments_count.load(base_url + 'item/get_comments_count/' + itemid);	
 		});
@@ -68,8 +70,8 @@ $(function(){
 		event.preventDefault();
 		$(this).trigger('add-offer-event', function(itemid){
 			console.log('add-offer-event has been triggered.');
-			that_offers = $('.reload-offers');
-			that_offers_count = $('.reload-offers-count');
+			var that_offers = $('.reload-offers');
+			var that_offers_count = $('.reload-offers-count');
 			that_offers.load(base_url + 'offer/get_offers/' + itemid);
 			that_offers_count.load(base_url + 'offer/get_offers_count/' + itemid);
 		});
@@ -94,8 +96,8 @@ $(function(){
 	$(document).on('click', '.remove-file', function(){
 		$(this).trigger('remove-images-event', function(){
 			console.log('remove-images-event has been triggered.');
-			that_images = $('.reload-images');
-			that_images_count = $('.reload-images-count');
+			var that_images = $('.reload-images');
+			var that_images_count = $('.reload-images-count');
 			that_images.load(base_url + 'item/get_images/' + that_images.data('itemid'));
 			that_images_count.load(base_url + 'item/get_images_count/' + that_images.data('itemid'));
 		});
@@ -126,8 +128,8 @@ $(function(){
 	$(document).on('change', '.userfile', function(){
 		$(this).trigger('upload-images-event', function(itemid){
 			console.log('upload-images-event has been triggered.');
-			that_images = $('.reload-images');
-			that_images_count = $('.reload-images-count');
+			var that_images = $('.reload-images');
+			var that_images_count = $('.reload-images-count');
 			that_images.load(base_url + 'item/get_images/' + itemid);
 			that_images_count.load(base_url + 'item/get_images_count/' + itemid);
 		});
@@ -152,7 +154,7 @@ $(function(){
 					$('.progress').removeClass('hide');
 					$('.progress').css('display', 'block');
 					if (event.lengthComputable) {
-						percentage = Math.round((event.loaded * 100) / event.total);
+						var percentage = Math.round((event.loaded * 100) / event.total);
 						$('.progress-bar').css('width', percentage+'%')
 						.attr('aria-valuenow', event.loaded)
 						.attr('aria-valuemax', event.total);

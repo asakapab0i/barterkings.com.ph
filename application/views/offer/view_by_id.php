@@ -20,7 +20,11 @@
 				</tr>
 				<tr>
 					<td class="item-head"><strong>Item Owner</strong></td>
-					<td class="h5"><?php echo $offer[0]['account_id']; ?></td>
+					<td class="h5">
+						<a href="<?php echo base_url("profile/" . $offer[0]['username']); ?>" title="<?php echo $offer[0]['username']; ?>">
+							<?php echo $offer[0]['username']; ?>
+						</a>
+					</td>
 				</tr>
 				<tr>
 					<td class="item-head"><strong>Item Value</strong></td>

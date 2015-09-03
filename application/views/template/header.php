@@ -48,7 +48,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                   <?php if ($this->session->userdata('account') != NULL): ?>
-                    <li><a href="<?php echo base_url('account/profile'); ?>">Profile</a></li>
+                    <li><a href="<?php echo base_url('profile'); ?>">Profile</a></li>
                     <li><a href="<?php echo base_url('account/inbox'); ?>">Inbox</a></li>
                     <li><a href="<?php echo base_url('account/logout'); ?>">Logout</a></li>
                   <?php else: ?>

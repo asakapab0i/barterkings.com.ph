@@ -55,6 +55,7 @@ class Offer_model extends CI_Model {
 		$offerdb = $this->db->select('*')
 		->from('offers')
 		->join('items', 'items.id = offers.offer_item_id', 'left')
+		->join('accounts', 'accounts.id = items.account_id', 'left')
 		->where('offer_id', $offerid)
 		->get();
 
