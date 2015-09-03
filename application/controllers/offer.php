@@ -35,6 +35,14 @@ class Offer extends MY_Controller {
 		$this->load->view('offer/view', $data);
 	}
 
+	public function view_by_id(){
+		$this->load->helper('text');
+
+		$sess_data = $this->account_model->get_session();
+		$data['offer'] = $this->offer_model->get_offer_by_id($this->input->post('id'));
+		$data['offer_owner'] = $this->offer_model->is_offer_owner_by_offer_id($sess_data[0]['id'], $this->input->post('id'));
+		$this->load->view('offer/view_by_id', $data);
+	}
 
 	public function get_offers($itemid){
 		$this->load->helper('date');

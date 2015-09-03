@@ -46,12 +46,41 @@ class Offer_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_item_offer_by_offer_id(){
-
-	}
-
 	public function save_edit_offer($offerid){
 		$this->db->update('offer', $this->input->post())
 		->where('offer_id', $offerid);
+	}
+
+	public function get_offer_by_id($offerid){
+		$offerdb = $this->db->select('*')
+		->from('offers')
+		->join('items', 'items.id = offers.offer_item_id', 'left')
+		->where('offer_id', $offerid)
+		->get();
+
+		if ($offerdb->num_rows() > 0) {
+			return $offerdb->result_array();
+		}
+
+		return FALSE;
+	}
+
+	public function is_offer_owner_by_offer_id($account_id, $offer_id){
+		$ownerdb = $this->db->select('accounts.id as aid')
+		->from('offers')
+		->join('items', 'items.id = offers.item_id', 'left')
+		->join('accounts', 'items.account_id = accounts.id', 'left')
+		->where('offer_id', $offer_id)
+		->get();
+
+		if ($ownerdb->num_rows > 0) {
+			$data = $ownerdb->result_array();
+
+			if ($data[0]['aid'] == $account_id) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

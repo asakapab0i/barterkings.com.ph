@@ -17,15 +17,16 @@ class Item extends MY_Controller {
 
 	public function item($itemid){
 		$this->load->helper('date');
+		$this->load->helper('text');
 
 		$item_info = $this->item_model->get_item($itemid);
 		$user_data = $this->account_model->get_session();
 		$item_images = $this->item_model->get_item_images($itemid);
 		$item_images_count = $this->item_model->get_items_images_count($item_images);
 		$item_offers = $this->offer_model->get_item_offers($itemid);
-		$item_offers_count = count($item_offers);
+		$item_offers_count = ($item_offers !== false ? count($item_offers) : 0);
 		$item_comments = $this->item_model->get_item_comments($itemid);
-		$item_comments_count = count($item_comments);
+		$item_comments_count = ($item_comments !== false ? count($item_comments) : 0);
 		$data['account_id'] = $user_data[0]['id'];
 		$data['editable'] = false;
 		$data['item_owner'] = false;

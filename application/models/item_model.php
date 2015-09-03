@@ -40,7 +40,7 @@ class Item_model extends CI_Model {
 	}
 
 	public function get_item($itemid){
-		$itemdb = $this->db->select('accounts.id, items.account_id, username, name, type, status, value, description, category, size, location')
+		$itemdb = $this->db->select('accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
 		->from('items')
 		->join('accounts', 'items.account_id = accounts.id', 'left')
 		->where('items.id', $itemid)
@@ -89,6 +89,7 @@ class Item_model extends CI_Model {
 		->join('items_images', 'item_id = items.id', 'left')
 		->limit($limit, $offset)
 		->group_by('items.id')
+		->order_by('items.id', 'DESC')
 		->get();
 
 		if ($itemsdb->num_rows() > 0) {
@@ -105,6 +106,7 @@ class Item_model extends CI_Model {
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->like('name', $search['item'])
+		->group_by('items.id')
 		->get();
 
 		if ($itemsdb->num_rows() > 0) {

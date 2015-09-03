@@ -6,7 +6,7 @@
 				<!--  <img src="http://lorempixel.com/40/40/people/4/"> -->
 			</a>
 			<div class="media-body">
-				<a href="#" title=""><?php echo $offer['name'] . ' - ' . $offer['value']; ?></a>
+				<a data-url="offer/view_by_id" class="pop-modal" href="#" data-itemid="<?php echo $offer['offer_id']; ?>" title=""><?php echo character_limiter($offer['name'], 50) . ' - ' . $offer['value']; ?></a>
 			</div>
 		</div>
 	<?php endforeach;?>
@@ -17,7 +17,7 @@
 				<!--  <img src="http://lorempixel.com/40/40/people/4/"> -->
 			</a>
 			<div class="media-body">
-				<a href="#" title="">No offers yet.</a>
+				<p>No offers yet.</p>
 			</div>
 		</div>
 <?php endif;?>

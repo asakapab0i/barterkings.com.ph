@@ -69,14 +69,14 @@
 				<div class="thumbnail bootsnipp-thumb">
 					<div>
 						<p class="snipp-title text-center">
-							<a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>"><?php echo $value->name?></a>
+							<a title="<?php echo $value->name; ?>" href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>"><?php echo character_limiter($value->name, 15); ?></a>
 						</p>
 					</div>
 					<a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>">
 						<img width="200" height="200" src="<?php echo base_url('asset/img/items_thumbs'); ?>/<?php echo $value->image_thumb; ?>" alt="test">
 					</a>
 					<div class="caption">
-						<p><a href="<?php echo base_url('item')?>/<?php echo $value->itemid?>" class="btn btn-primary btn-block">View</a></p>
+						<p><a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">View</a></p>
 					</div>
 				</div>
 			</div>	

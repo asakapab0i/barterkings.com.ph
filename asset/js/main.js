@@ -1,5 +1,7 @@
 $(function(){
-	$(document).on('click', '.pop-modal', function(){
+	$(document).on('click', '.pop-modal', function(e){
+		e.preventDefault();
+
 		var id = $(this).data('itemid');
 		var url = $(this).data('url');;
 		var that = $('#myModal');
@@ -15,6 +17,22 @@ $(function(){
 		}).done(function( result ) {
 			that.find('.modal-content').html(result);
 		});
+	});
+
+	$(document).on('click', '.approve-offer-btn', function(){
+
+	});
+
+	$(document).on('approve-offer-event', '.approve-offer-btn', function(){
+
+	});
+
+	$(document).on('click', '.decline-offer-btn', function(){
+
+	});
+
+	$(document).on('decline-offer-event', '.decline-offer-btn', function(){
+
 	});
 
 	$(document).on('click', '.add-comment-btn', function(event){
@@ -36,7 +54,7 @@ $(function(){
 			method: "POST",
 			url: base_url + 'item/comment',
 			data: formdata.serialize(),
-    		processData: false,
+			processData: false,
 			success: function(){
 				$('.modal-body').html('<span class="alert alert-success">Comment has been added.</span>');
 			}
@@ -64,7 +82,7 @@ $(function(){
 			method: "POST",
 			url: base_url + 'offer/add',
 			data: formdata.serialize(),
-    		processData: false,
+			processData: false,
 			success: function(){
 				$('.modal-body').html('<span class="alert alert-success">Offer has been added.</span>');
 			}
@@ -162,25 +180,35 @@ $(function(){
 					that.find('.modal-content').html(res);
 				}
 			})).done(function(){
-				reload_images(itemid.val());
+			reload_images(itemid.val());
 		});
 
-		var fileinput_root = $('.fileinput');
-		$(this).parent().parent().find('.fileinput-filename').text($(this).val());
+			var fileinput_root = $('.fileinput');
+			$(this).parent().parent().find('.fileinput-filename').text($(this).val());
 
-		if (fileinput_root.length == 1) {
-			$(this).parent().parent().find('.remove-file').attr('disabled', false);
-		}
+			if (fileinput_root.length == 1) {
+				$(this).parent().parent().find('.remove-file').attr('disabled', false);
+			}
+	});
+});
 
-		//console.log(fileinput_root.length);
+$(function(){
+	$(document).on("click", ".show-more a", function(e) {
+		e.preventDefault();
+		var $this = $(this); 
+		var $content = $this.parent().prev("div.content");
+		var linkText = $this.text().toUpperCase();    
 
-		// if (imageid == null) {
-		// 	var new_elem = fileinput_root.clone(true, true);
-		// 	new_elem.find('.fileinput-filename').empty();
-		// 	new_elem.find('.userfile').val('');
+		if(linkText === "SHOW MORE"){
+			linkText = "Show less";
+			$content.removeClass('hideContent');
+			$content.addClass('showContent');
+		} else {
+			linkText = "Show more";
+			$content.removeClass('showContent');
+			$content.addClass('hideContent');
+		};
 
-		// 	$(new_elem.first()).appendTo('#upload-form');
-		// };
-		
+		$this.text(linkText);
 	});
 });

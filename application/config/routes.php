@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "index";
 $route['404_override'] = '';
-$route['item/(:num)'] = 'item/item/$1';
+$route['item/(:num)/(:any)'] = 'item/item/$1/$2';
 
 
 /* End of file routes.php */
