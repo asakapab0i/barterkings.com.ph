@@ -7,6 +7,8 @@ class Item extends MY_Controller {
 		$this->load->model('item_model');
 		$this->load->model('account_model');
 		$this->load->model('offer_model');
+		$this->load->helper('date');
+		$this->load->helper('text');
 
 		// $this->output->enable_profiler(true);
 	}
@@ -16,9 +18,6 @@ class Item extends MY_Controller {
 	}
 
 	public function item($itemid){
-		$this->load->helper('date');
-		$this->load->helper('text');
-
 		$item_info = $this->item_model->get_item($itemid);
 		$user_data = $this->account_model->get_session();
 		$item_images = $this->item_model->get_item_images($itemid);
@@ -32,7 +31,7 @@ class Item extends MY_Controller {
 		$data['item_owner'] = false;
 		if ($item_info !== false) {
 			if ($user_data !== false) {
-				if ($user_data[0]['id'] == $item_info[0]->account_id) {
+				if ($user_data[0]['id'] == $item_info[0]['account_id']) {
 					$data['editable'] = true;
 					$data['item_owner'] = true;
 				}
@@ -53,7 +52,8 @@ class Item extends MY_Controller {
 	public function add(){
 		if ($this->input->post()) {
 			if ($id = $this->item_model->add_item($this->account_model->get_session())) {
-				redirect("item/$id");
+				$name = url_title($this->input->post('name'));
+				redirect("item/$id/$name");
 			}else{
 				$this->_load_view('item/add');
 			}

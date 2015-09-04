@@ -47,15 +47,20 @@ class Item_model extends CI_Model {
 		->get();
 
 		if ($itemdb->num_rows() == 1) {
-			return $itemdb->result();
+			return $itemdb->result_array();
 		}
 
 		return FALSE;
 	}
 
-	public function get_items_by_account_id($account_id, $itemid){
+	public function get_items_by_account_id($account_id = NULL, $itemid = NULL){
+		
+		if ($itemid !== NULL) {
+			$current_item_offers = $this->offer_model->get_item_offers($itemid);
+		}else{
+			$current_item_offers = FALSE;
+		}
 
-		$current_item_offers = $this->offer_model->get_item_offers($itemid);
 		if ($current_item_offers !== FALSE) {
 			foreach ($current_item_offers as $offer) {
 				$cio[] = $offer['offer_item_id'];
@@ -64,6 +69,8 @@ class Item_model extends CI_Model {
 			->from('items')
 			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->group_by('items.id')
 			->where('account_id', $account_id)
 			->where_not_in('offer_item_id', $cio)
 			//->where('offers.item_id', $itemid)
@@ -73,6 +80,8 @@ class Item_model extends CI_Model {
 			->from('items')
 			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->group_by('items.id')
 			->where('account_id', $account_id)
 			->get();
 		}

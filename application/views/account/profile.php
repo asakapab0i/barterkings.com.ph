@@ -37,83 +37,18 @@
                 </div>
                 <div class="col-md-6">
 
-                <h3><small class="pull-right">45 offers</small> Offers </h3><hr>
+                  <div class="page-header">
+                    <h1><small class="pull-right"><span data-itemid="" class="reload-offers-count"><?php echo '';//$offers_count; ?></span> offers</small> Offers 
+                    </h1>
+                </div> 
+                <div data-itemid = "" class="offers-list reload-offers">
+                    <?php $this->load->view('template/offers-template');?>
+                </div>
 
-                  <div class="offers-list">
-                      <div class="media">
-                         <p class="pull-right"><small>5 days ago</small></p>
-                         <a class="media-left" href="#">
-                             <!--  <img src="http://lorempixel.com/40/40/people/4/"> -->
-                         </a>
-                         <div class="media-body">
-                          <a href="#" title="">Wow! this is really great.</a>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-      <div class="row">
-        <h1><small class="pull-right">45 items</small> Items</h1><hr>
-        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-            <div class="thumbnail bootsnipp-thumb">
-                <div>
-                    <p class="snipp-title text-center">
-                        <a href="<?php echo base_url('item')?>/; ?>"></a>
-                    </p>
-                </div>
-                <a href="<?php echo base_url('item')?>/?>">
-                    <img src="http://lorempixel.com/150/150/technics/" alt="test">
-                </a>
-                <div class="caption">
-                    <p><a href="<?php echo base_url('item')?>/?>" class="btn btn-primary btn-block">View</a></p>
-                </div>
             </div>
         </div>
-        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-            <div class="thumbnail bootsnipp-thumb">
-                <div>
-                    <p class="snipp-title text-center">
-                        <a href="<?php echo base_url('item')?>/; ?>"></a>
-                    </p>
-                </div>
-                <a href="<?php echo base_url('item')?>/?>">
-                    <img src="http://lorempixel.com/150/150/technics/" alt="test">
-                </a>
-                <div class="caption">
-                    <p><a href="<?php echo base_url('item')?>/?>" class="btn btn-primary btn-block">View</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-            <div class="thumbnail bootsnipp-thumb">
-                <div>
-                    <p class="snipp-title text-center">
-                        <a href="<?php echo base_url('item')?>/; ?>"></a>
-                    </p>
-                </div>
-                <a href="<?php echo base_url('item')?>/?>">
-                    <img src="http://lorempixel.com/150/150/technics/" alt="test">
-                </a>
-                <div class="caption">
-                    <p><a href="<?php echo base_url('item')?>/?>" class="btn btn-primary btn-block">View</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-            <div class="thumbnail bootsnipp-thumb">
-                <div>
-                    <p class="snipp-title text-center">
-                        <a href="<?php echo base_url('item')?>/; ?>"></a>
-                    </p>
-                </div>
-                <a href="<?php echo base_url('item')?>/?>">
-                    <img src="http://lorempixel.com/150/150/technics/" alt="test">
-                </a>
-                <div class="caption">
-                    <p><a href="<?php echo base_url('item')?>/?>" class="btn btn-primary btn-block">View</a></p>
-                </div>
-            </div>
+        <div class="row">
+            <h1><small class="pull-right">45 items</small> Items</h1><hr>
+            <?php $this->load->view('template/profile-items-template.php'); ?>
         </div>
     </div>
-</div>

@@ -44,7 +44,8 @@ $(function(){
 			var that_comments = $('.reload-comments');
 			var that_comments_count = $('.reload-comments-count');
 			that_comments.load(base_url + 'item/get_comments/' + itemid);
-			that_comments_count.load(base_url + 'item/get_comments_count/' + itemid);	
+			that_comments_count.load(base_url + 'item/get_comments_count/' + itemid);
+			$(this).remove();	
 		});
 	});
 
@@ -58,7 +59,7 @@ $(function(){
 			data: formdata.serialize(),
 			processData: false,
 			success: function(){
-				$('.modal-body').html('<span class="alert alert-success">Comment has been added.</span>');
+				$('.modal-body').html('<div class="alert alert-success"><span>Comment has been added.</span></div>');
 			}
 		})).done(function(){
 			item_comment(itemid);
@@ -74,6 +75,7 @@ $(function(){
 			var that_offers_count = $('.reload-offers-count');
 			that_offers.load(base_url + 'offer/get_offers/' + itemid);
 			that_offers_count.load(base_url + 'offer/get_offers_count/' + itemid);
+			$(this).remove();
 		});
 	});
 
@@ -86,7 +88,7 @@ $(function(){
 			data: formdata.serialize(),
 			processData: false,
 			success: function(){
-				$('.modal-body').html('<span class="alert alert-success">Offer has been added.</span>');
+				$('.modal-body').html('<div class="alert alert-success"><span>Offer has been made.</span></div>');
 			}
 		})).done(function(){
 			add_offer(itemid);

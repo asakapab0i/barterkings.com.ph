@@ -12,7 +12,16 @@ class Offer_model extends CI_Model {
 		$this->load->helper('date');
 		$data = $this->input->post();
 		$data['offer_date_inserted'] = date('Y-m-d H:i:s');
-		$offerid = $this->db->insert('offers', $data);
+		$this->db->insert('offers', $data);
+
+		$item_id = $this->input->post('item_id');
+		$offer_item_id = $this->input->post('offer_item_id');
+
+		$data['offer_item_id'] = $this->input->post('item_id');
+		$data['offer_name'] = "Auto offered from $item_id.";
+		$data['offer_description'] = "This offer is auto reoffered from this item $item_id.";
+		$data['item_id'] = $this->input->post('offer_item_id');
+		$this->db->insert('offers', $data);
 		return true;
 	}
 
@@ -20,7 +29,9 @@ class Offer_model extends CI_Model {
 		$offerdb = $this->db->select('*')
 		->from('offers')
 		->join('items', 'offers.offer_item_id = items.id', 'left')
-		->where('item_id', $itemid)
+		->join('items_images', 'offers.offer_item_id = items_images.item_id', 'left')
+		->where('offers.item_id', $itemid)
+		->group_by('offers.offer_id')
 		->order_by('offer_date_inserted', 'DESC')
 		->get();
 
@@ -46,6 +57,24 @@ class Offer_model extends CI_Model {
 		return FALSE;
 	}
 
+	public function get_offered_items_by_account_id(){
+		$sess = $this->account_model->get_session();
+
+		$offered = $this->db->select('*')
+		->from('offers')
+		->join('items', 'items.id = item_id', 'left')
+		->join('items_images', 'items_images.item_id = items.id')
+		->where('items.account_id', $sess[0]['id'])
+		->group_by('items.id')
+		->get();
+
+		if ($offered->num_rows() > 0) {
+			return $offered->result_array();
+		}
+
+		return FALSE;
+	}
+
 	public function save_edit_offer($offerid){
 		$this->db->update('offer', $this->input->post())
 		->where('offer_id', $offerid);
@@ -56,6 +85,7 @@ class Offer_model extends CI_Model {
 		->from('offers')
 		->join('items', 'items.id = offers.offer_item_id', 'left')
 		->join('accounts', 'accounts.id = items.account_id', 'left')
+		->join('items_images', 'offers.offer_item_id = items_images.item_id', 'left')
 		->where('offer_id', $offerid)
 		->get();
 

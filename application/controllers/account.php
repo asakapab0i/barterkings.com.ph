@@ -5,6 +5,8 @@ class Account extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('account_model');
+		$this->load->model('item_model');
+		$this->load->model('offer_model');
 		$this->_session_data = $this->account_model->get_session();
 	}
 
@@ -40,12 +42,18 @@ class Account extends MY_Controller {
 		}
 	}
 
-	public function profile($username = null){
-		if($this->_session_data != false && $this->input->post()){
-			$this->account_model->profile($this->input->post());
-		}else if ($this->_session_data != false) {
-			$this->_load_view('account/profile');
+	public function profile($username = NULL){
+		if ($username != NULL) {
+			$account_id = $this->account_model->get_account_id_by_username($username);			
+		}else{
+			$account_id = $this->account_model->get_session();
 		}
+
+		$account_id = $account_id[0]['id'];
+
+		$data['data'] = $this->item_model->get_items_by_account_id($account_id);
+		$data['offers'] = $this->offer_model->get_offered_items_by_account_id($account_id);
+		$this->_load_view('account/profile', $data);
 	}
 
 	public function inbox(){

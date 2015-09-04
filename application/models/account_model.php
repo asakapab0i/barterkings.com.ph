@@ -51,4 +51,17 @@ class Account_model extends CI_Model {
 
 		return false;
 	}
+
+	public function get_account_id_by_username($username){
+		$account_id = $this->db->select('id')
+		->from('accounts')
+		->where('username', $username)
+		->get();
+
+		if ($account_id->num_rows() > 0) {
+			return $account_id->result_array();
+		}
+
+		return false;
+	}
 }

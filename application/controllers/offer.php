@@ -20,9 +20,7 @@ class Offer extends MY_Controller {
 			return $this->offer_model->add_offer();
 		}
 
-		$sess = $this->account_model->get_session();
-
-		$data['items'] = $this->item_model->get_items_by_account_id($sess[0]['id'], $this->input->post('id'));
+		$data['items'] = $this->item_model->get_items_by_account_id($this->input->post('id'));
 		$data['itemid'] = $this->input->post('id');
 		$this->load->view('offer/add', $data);
 	}
@@ -46,6 +44,7 @@ class Offer extends MY_Controller {
 
 	public function get_offers($itemid){
 		$this->load->helper('date');
+		$this->load->helper('text');
 		$data['offers'] = $this->offer_model->get_item_offers($itemid);
 		$this->load->view('template/offers-template', $data);
 	}

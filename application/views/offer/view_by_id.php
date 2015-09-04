@@ -13,9 +13,15 @@
 				<tr>
 					<td class="item-head"><strong>Item Name</strong></td>
 					<td class="h5">
-						<a href="<?php echo base_url('item').'/'.$offer[0]['offer_item_id']; ?>" title="<?php echo $offer[0]['name']; ?>">
+						<a href="<?php echo base_url('item').'/'.$offer[0]['offer_item_id'] .'/'. url_title($offer[0]['name']); ?>" title="<?php echo $offer[0]['name']; ?>">
 							<?php echo character_limiter($offer[0]['name'], 40) ?>
 						</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="item-head"><strong>Item Image</strong></td>
+					<td class="h5">
+						 <img class="img-thumbnail" height="150" width="150" src="<?php echo base_url('asset/img/items_thumbs') .'/'. $offer[0]['image_thumb']; ?>">
 					</td>
 				</tr>
 				<tr>
@@ -40,9 +46,11 @@
 					<div class="content hideContent">
 							<?php echo nl2br($offer[0]['description']); ?>
 						</div>
-						<div class="show-more">
-							<a href="#">Show more</a>
-						</div>
+						<?php if(strlen($offer[0]['description']) > 200): ?>
+							<div class="show-more">
+								<a href="#">Show more</a>
+							</div>
+						<?php endif;?>
 					</td>
 				</tr>
 			</tbody>

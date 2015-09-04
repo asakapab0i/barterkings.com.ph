@@ -8,10 +8,19 @@
       <div class="media-body">
 
         <h4 class="media-heading user_name">
-        <a href="<?php echo base_url('account/profile/') .'/'. $comment['username']; ?>" title=""><?php echo $comment['username']; ?></a> 
+        <a href="<?php echo base_url('profile/') .'/'. $comment['username']; ?>" title=""><?php echo $comment['username']; ?></a> 
           <small><i><?php echo $comment['title']; ?></i></small>
         </h4>
-        <?php echo nl2br($comment['comment']); ?>
+        <div class="content hideContent">
+              <?php echo nl2br($comment['comment']); ?>
+            </div>
+            <?php if(strlen($comment['comment']) > 200): ?>
+              <div class="show-more">
+                <a href="#">Show more</a>
+              </div>
+            <?php endif;?>
+          </td>
+        
       </div>
     </div>
   <?php endforeach;?>
