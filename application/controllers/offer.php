@@ -19,8 +19,8 @@ class Offer extends MY_Controller {
 		if($this->input->post('offer_item_id')){
 			return $this->offer_model->add_offer();
 		}
-
-		$data['items'] = $this->item_model->get_items_by_account_id($this->input->post('id'));
+		$sess = $this->account_model->get_session();
+		$data['items'] = $this->item_model->get_items_by_account_id_v2($sess[0]['id'], $this->input->post('id'));
 		$data['itemid'] = $this->input->post('id');
 		$this->load->view('offer/add', $data);
 	}

@@ -10,9 +10,9 @@ class Account extends MY_Controller {
 		$this->_session_data = $this->account_model->get_session();
 	}
 
-	public function login(){
-		if ($this->_session_data == false && $this->input->post()) {
-			if($this->account_model->login()){
+	public function login($account_id = NULL){
+		if ($this->_session_data == false && ($this->input->post() !== FALSE || $account_id != NULL) ) {
+			if($this->account_model->login($account_id)){
 				redirect('home');
 			}else{
 				$this->_load_view('account/login', array('error' => 'Wrong username or password.', 'show_or_hide' => 'open'));
@@ -33,8 +33,9 @@ class Account extends MY_Controller {
 	}
 
 	public function register(){
-		if ($this->_session_data != false && $this->input->post()) {
-			$this->account_model->register();
+		if ($this->input->post()) {
+			$account_id = $this->account_model->register();
+			$this->login($account_id);
 		}else if($this->_session_data == false){
 			$this->_load_view('account/register');
 		}else{
@@ -51,6 +52,7 @@ class Account extends MY_Controller {
 
 		$account_id = $account_id[0]['id'];
 
+		$data['user'] = $this->account_model->get_session();
 		$data['data'] = $this->item_model->get_items_by_account_id($account_id);
 		$data['offers'] = $this->offer_model->get_offered_items_by_account_id($account_id);
 		$this->_load_view('account/profile', $data);

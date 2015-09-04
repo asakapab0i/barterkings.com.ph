@@ -2,6 +2,7 @@
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title" id="myModalLabel">Offer Items</h4>
 </div>
+
 <form id="add_offer_form" action="<?php echo base_url(); ?>offer/add" method="POST" accept-charset="utf-8">
 	<div class="modal-body">
 
@@ -20,7 +21,7 @@
 				<?php if($items !== FALSE): ?>
 					<option value=""></option>
 					<?php foreach($items as $item): ?>
-						<option value="<?php echo $item['id']; ?>"><?php echo $item['name'] .' - '. $item['value']; ?></option>
+						<option value="<?php echo $item['item_id']; ?>"><?php echo $item['name'] .' - '. $item['value']; ?></option>
 					<?php endforeach;?>
 				<?php else:?>
 					<option value=""></option>

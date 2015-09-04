@@ -7,17 +7,17 @@
                         <img src="http://placehold.it/380x500" alt="" class="img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-7">
-                        <h3>Bhaumik Patel</h3><hr>
+                        <h3><?php echo $user[0]['username']; ?></h3><hr>
                         <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
-                        <p>
+                        <!-- <p>
                             <i class="glyphicon glyphicon-envelope"></i>email@example.com
                             <br />
                             <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
                             <br />
-                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p> -->
                             <!-- Split button -->
-                            <div class="btn-group">
+                            <!-- <div class="btn-group">
                                 <button type="button" class="btn btn-primary">
                                     Social</button>
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -30,7 +30,7 @@
                                         <li class="divider"></li>
                                         <li><a href="#">Github</a></li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

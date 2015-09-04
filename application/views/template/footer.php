@@ -10,10 +10,10 @@
   		<h4 class="footer-nav-title">COMPANY</h4>
 
   		<ul class="footer-nav">
-  			<li><a href="/about-us">About Us</a>
+  			<li><a href="#">About Us</a>
 
   			</li>
-  			<li><a href="/legal">Legal</a>
+  			<li><a href="#">Legal</a>
 
   			</li>
   		</ul>

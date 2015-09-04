@@ -6,8 +6,12 @@ class Message extends MY_Controller {
 		parent::__construct();
 	}
 
-	public function inbox(){
+	public function index(){
+		$this->inbox();
+	}
 
+	public function inbox(){
+		$this->_load_view('message/main');
 	}
 
 	public function draft(){

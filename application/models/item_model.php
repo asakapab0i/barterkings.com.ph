@@ -54,7 +54,6 @@ class Item_model extends CI_Model {
 	}
 
 	public function get_items_by_account_id($account_id = NULL, $itemid = NULL){
-		
 		if ($itemid !== NULL) {
 			$current_item_offers = $this->offer_model->get_item_offers($itemid);
 		}else{
@@ -91,6 +90,44 @@ class Item_model extends CI_Model {
 		}
 		return FALSE;
 	}
+
+	public function get_items_by_account_id_v2($account_id = NULL, $itemid = NULL){
+		if ($itemid !== NULL) {
+			$current_item_offers = $this->offer_model->get_item_offers($itemid);
+		}else{
+			$current_item_offers = FALSE;
+		}
+
+		if ($current_item_offers !== FALSE) {
+			foreach ($current_item_offers as $offer) {
+				$cio[] = $offer['offer_item_id'];
+			}
+			$itemsdb = $this->db->select('*')
+			->from('items')
+			->group_by('items.id')
+			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->group_by('items.id')
+			->where('account_id', $account_id)
+			->where_not_in('item_id', $cio)
+			//->where('offers.item_id', $itemid)
+			->get();
+		}else{
+			$itemsdb = $this->db->select('*')
+			->from('items')
+			->group_by('items.id')
+			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->group_by('items.id')
+			->where('account_id', $account_id)
+			->get();
+		}
+
+		if ($itemsdb->num_rows() > 0) {
+			return $itemsdb->result_array();
+		}
+		return FALSE;
+	}
+
+
 
 	public function get_items($limit = 12, $offset = ''){
 		$itemsdb = $this->db->select('items.id as itemid, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')

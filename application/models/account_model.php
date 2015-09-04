@@ -18,11 +18,12 @@ class Account_model extends CI_Model {
 		return false;
 	}
 
-	public function login(){
+	public function login($account_id = NULL){
 		$login_db = $this->db->select('*')
 		->from('accounts')
 		->where('username', $this->_post_data['username'])
-		->where('password', md5($this->_post_data['password']))->get();
+		->where('password', md5($this->_post_data['password']))
+		->or_where('id', $account_id)->get();
 
 		if ($login_db->num_rows() == 1) {
 			$this->session->set_userdata('account', $login_db->result_array());
@@ -63,5 +64,13 @@ class Account_model extends CI_Model {
 		}
 
 		return false;
+	}
+
+	public function register(){
+		$data = $this->input->post();
+		$data['password'] = md5($data['password']);
+		$this->db->insert('accounts', $data);
+
+		return $this->db->insert_id();
 	}
 }
