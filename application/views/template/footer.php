@@ -1,33 +1,33 @@
   <!-- FOOTER -->
-  <div class="footer-row">
-  	<div class="container">
-  		<div class="col-sm-4 footer-wrapper"> <a class="navbar-brand" href="/">
-  			Barter <span class="bold-brand">Kings</span>
-  		</a>
+  <footer class="footer-basic-centered">
 
-  	</div>
-  	<div class="col-sm-3 col-sm-offset-5 text-justify footer-wrapper">
-  		<h4 class="footer-nav-title">COMPANY</h4>
+    <p class="footer-company-motto">The company motto.</p>
 
-  		<ul class="footer-nav">
-  			<li><a href="#">About Us</a>
+    <p class="footer-links">
+      <a href="#">Home</a>
+      ·
+      <a href="#">Blog</a>
+      ·
+      <a href="#">Pricing</a>
+      ·
+      <a href="#">About</a>
+      ·
+      <a href="#">Faq</a>
+      ·
+      <a href="#">Contact</a>
+    </p>
 
-  			</li>
-  			<li><a href="#">Legal</a>
+    <p class="footer-company-name">Company Name &copy; 2015</p>
 
-  			</li>
-  		</ul>
-  	</div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-
-		</div>
-	</div>
 </div>
 
 

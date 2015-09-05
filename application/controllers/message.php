@@ -9,7 +9,7 @@ class Message extends MY_Controller {
 	}
 
 	public function index(){
-		$count_messages = $this->message_model->get_messages_inbox();
+		$count_messages = $this->message_model->get_messages_inbox_unread();
 		$data['count_inbox'] = ($count_messages != FALSE ? count($count_messages) : 0);
 		$data['messages'] = $this->message_model->get_messages_inbox();
 		$this->_load_view('message/main', $data);
@@ -30,7 +30,16 @@ class Message extends MY_Controller {
 	}
 
 	public function trash(){
-		$this->load->view('template/message-template');
+		$data['display_tools_untrash'] = true;
+		$data['messages'] = $this->message_model->get_messages_trash();
+		$this->load->view('template/message-template', $data);
+	}
+
+	public function view($message_id){
+		$data['display_tools'] = true;
+		$data['messages'] = $this->message_model->get_message_by_message_id($message_id);
+		$this->message_model->update_message_is_read($message_id);
+		$this->load->view('template/message-template', $data);
 	}
 
 	public function create(){
@@ -39,5 +48,28 @@ class Message extends MY_Controller {
 		}else{
 			$this->load->view('template/message-compose-template');
 		}
+	}
+
+	public function reply($message_id){
+		$data['reply'] =  $this->message_model->get_message_replyto_by_message_id($message_id);
+		$this->load->view('template/message-compose-template', $data);
+	}
+
+	public function forward($message_id){
+		$data['forward'] =  $this->message_model->get_message_replyto_by_message_id($message_id);
+		$data['forward'][0]['username'] = $this->message_model->get_message_replyto_by_message_id($message_id);
+		$this->load->view('template/message-compose-template', $data);
+	}
+
+	public function delete($message_id){
+		$this->message_model->update_message_is_trash($message_id);
+		$data['messages'] = $this->message_model->get_messages_inbox();
+		$this->load->view('template/message-template', $data);
+	}
+
+	public function undelete($message_id){
+		$this->message_model->update_message_is_untrash($message_id);
+		$data['messages'] = $this->message_model->get_messages_inbox();
+		$this->load->view('template/message-template', $data);
 	}
 }

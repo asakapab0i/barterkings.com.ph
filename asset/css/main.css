@@ -445,6 +445,7 @@ textarea {
     background-color:#fff;
     padding:35px 20px;
     margin-bottom:20px;
+    min-height: 350px;
 }
 h1.content-title{
     font-size:32px;

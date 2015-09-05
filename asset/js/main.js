@@ -290,13 +290,22 @@ $(function(){
 /*Tabbing Via Js*/
 
 $(document).on('click', '.show-tab', function (e) {
+	e.preventDefault();
+
 	var type = $(this).data('type');
+	var message_id = $(this).data('message-id');
+	var name = type;
 	var container = $('content-container');
+
+	if (message_id != undefined) {
+		type = type + '/' + message_id;
+	};
+
 	$.ajax({
 		type : 'GET',
 		url : base_url + 'message/' + type,
 		success : function(result){
-			$('.content-title').html(type[0].toUpperCase() + type.substr(1));
+			$('.content-title').html(name[0].toUpperCase() + name.substr(1));
 			$('.content-body').html(result);
 		}
 	});

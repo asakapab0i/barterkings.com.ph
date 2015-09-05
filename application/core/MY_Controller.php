@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller {
 
 	public function _get_inbox_count(){
 		$this->load->model('message_model');
-		return $this->message_model->get_messages_inbox();
+		return $this->message_model->get_messages_inbox_unread();
 	}
 
 	public function _get_session_data(){

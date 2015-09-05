@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/footer.css">
   <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
@@ -50,15 +51,17 @@
                   <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
                     <li><a href="<?php echo base_url('profile'); ?>">Profile</a></li>
                     <li><a href="<?php echo base_url('message'); ?>">Inbox 
-                    <span class="label label-success"><?php echo $_inbox_count; ?></span> </a></li>
-                    <li><a href="<?php echo base_url('account/logout'); ?>">Logout</a></li>
-                  <?php else: ?>
-                    <li><a href="<?php echo base_url('account/login'); ?>">Login</a></li>
-                    <li><a href="<?php echo base_url('account/register'); ?>">Register</a></li>
-                  <?php endif; ?>
-                </ul>
+                      <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
+                        <span class="label label-success"><?php echo $_inbox_count; ?></span> </a></li>
+                      <?php endif;?>
+                      <li><a href="<?php echo base_url('account/logout'); ?>">Logout</a></li>
+                    <?php else: ?>
+                      <li><a href="<?php echo base_url('account/login'); ?>">Login</a></li>
+                      <li><a href="<?php echo base_url('account/register'); ?>">Register</a></li>
+                    <?php endif; ?>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </nav>
+            </nav>
 
-          
+            
