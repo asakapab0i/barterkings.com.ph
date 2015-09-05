@@ -1,39 +1,24 @@
 <input type="search" placeholder="Search Mail" class="form-control mail-search" />
 
 <ul class="mail-list">
+
+
+ <?php if(isset($messages) && $messages !== FALSE): ?>
+  <?php foreach($messages as $message): ?>
+    <li>
+     <a href="">
+       <span class="pull-right mail-subject"><?php echo timespan(strtotime($message['date_sent'])); ?></span>
+       <span class="mail-sender"><?php echo $message['username']; ?></span>
+       <span class="mail-subject"><?php echo $message['subject']; ?></span>
+       <span class="mail-message-preview"><?php echo $message['message'];?></span>
+     </a>
+   </li>
+ <?php endforeach; ?>
+<?php else: ?>
  <li>
-   <a href="">
-     <span class="mail-sender">You Tube</span>
-     <span class="mail-subject">New subscribers!</span>
-     <span class="mail-message-preview">You have ten more subscriptions click her...</span>
-   </a>
+   <div class="text-center">
+      <span class="">No messages.</span>
+   </div>
  </li>
- <li>
-   <a href="">
-     <span class="mail-sender">You Tube</span>
-     <span class="mail-subject">New subscribers!</span>
-     <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-   </a>
- </li>
- <li>
-   <a href="">
-     <span class="mail-sender">You Tube</span>
-     <span class="mail-subject">New subscribers!</span>
-     <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-   </a>
- </li>
- <li>
-   <a href="">
-     <span class="mail-sender">You Tube</span>
-     <span class="mail-subject">New subscribers!</span>
-     <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-   </a>
- </li>
- <li>
-   <a href="">
-     <span class="mail-sender">You Tube</span>
-     <span class="mail-subject">New subscribers!</span>
-     <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-   </a>
- </li>
+<?php endif;?>
 </ul>

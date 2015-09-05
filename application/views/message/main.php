@@ -1,24 +1,32 @@
 <div class="container">
   <ul class="nav nav-tabs" role="tablist">
     <li class="">
-      <a type="button" href="#compose" role="tab" data-toggle="tab"> 
+      <a type="button" data-type="create" href="#compose" class="show-tab"> 
         <span class="glyphicon glyphicon-pencil"></span> Compose
       </a>
     </li>
-    <li class="active"><a href="#inbox" role="tab" data-toggle="tab">
-      Inbox <span class="label label-success">10</span>
+    <li class="active"><a data-type="inbox" href="#inbox" class="show-tab">
+      Inbox <span class="label label-success"><?php echo $count_inbox; ?></span>
     </a></li>
-    <li><a href="#sent-mail" role="tab" data-toggle="tab">Sent Message</a>
+    <li><a data-type="sent" href="#sent" class="show-tab">Sent Message</a>
     </li>
-    <li><a href="#draft" role="tab" data-toggle="tab">Draft</a>
+    <li><a data-type="draft" href="#draft" class="show-tab">Draft</a>
     </li>
-    <li><a href="#trash" role="tab" data-toggle="tab">Trash</a>
+    <li><a data-type="trash" href="#trash" class="show-tab">Trash</a>
     </li>
   </ul>
 </div>
 
 <div class="tab-content">
-  <div class="tab-pane" id="compose">
+ <div class="container">
+  <div class="content-container clearfix">
+    <h1 class="content-title"></h1>
+    <div class="content-body">
+      <?php $this->load->view('template/message-template'); ?>
+    </div>
+  </div>
+</div>
+<!--   <div class="tab-pane" id="compose">
     <div class="container">
       <div class="content-container clearfix">
         <h1 class="content-title">Compose</h1>
@@ -29,7 +37,7 @@
   <div class="tab-pane active" id="inbox">
    <div class="container">
     <div class="content-container clearfix">
-    <h1 class="content-title">Inbox</h1>
+      <h1 class="content-title">Inbox</h1>
       <?php $this->load->view('template/message-template'); ?>
     </div>
   </div>
@@ -57,5 +65,5 @@
     <?php $this->load->view('template/message-template'); ?>
   </div>
 </div>
-</div>
+</div> -->
 </div>

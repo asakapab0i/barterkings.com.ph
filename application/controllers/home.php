@@ -5,12 +5,14 @@ class Home extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('item_model');
+		$this->load->model('message_model');
 		$this->load->helper('text');
 	}
 
 	public function index(){
-		$data = $this->item_model->get_items();
-		$this->_load_view('home/index', array('data' => $data));
+		$items = $this->item_model->get_items();
+		$data['data'] = $items;
+		$this->_load_view('home/index', $data);
 	}
 
 	public function item(){

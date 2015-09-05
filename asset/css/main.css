@@ -500,4 +500,5 @@ ul.mail-list li span.mail-message-preview{
 .profile-offers-list{
     overflow: auto;
     height: 300px;
+    padding: 20px;
 }

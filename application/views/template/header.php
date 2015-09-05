@@ -47,9 +47,10 @@
                 </form>
 
                 <ul class="nav navbar-nav navbar-right">
-                  <?php if ($this->session->userdata('account') != NULL): ?>
+                  <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
                     <li><a href="<?php echo base_url('profile'); ?>">Profile</a></li>
-                    <li><a href="<?php echo base_url('message/inbox'); ?>">Inbox</a></li>
+                    <li><a href="<?php echo base_url('message'); ?>">Inbox 
+                    <span class="label label-success"><?php echo $_inbox_count; ?></span> </a></li>
                     <li><a href="<?php echo base_url('account/logout'); ?>">Logout</a></li>
                   <?php else: ?>
                     <li><a href="<?php echo base_url('account/login'); ?>">Login</a></li>

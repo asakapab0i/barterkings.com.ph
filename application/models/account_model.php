@@ -89,6 +89,21 @@ class Account_model extends CI_Model {
 		return false;
 	}
 
+	public function get_account_id_by_item_id($item_id){
+		$account_id = $this->db->select('accounts.id as acc_id')
+		->from('items')
+		->join('accounts', 'accounts.id = items.account_id', 'left')
+		->where('items.id', $item_id)
+		->get();
+
+		if ($account_id->num_rows() > 0) {
+			$data = $account_id->result_array();
+			return $data[0]['acc_id'];
+		}
+
+		return FALSE;
+	}
+
 	public function get_account_info_by_account_id($account_id){
 		$account_info = $this->db->select('*')
 		->from('accounts')

@@ -1,12 +1,14 @@
 <div class="col-md-12">
-  <div class="form-group">
-    <input id="tokenfield" type="text" class="form-control" placeholder="To" />
+<form id="message-create-form" action="message/create" method="POST" accept-charset="utf-8">
+   <div class="form-group">
+    <input id="send-to" type="text" name="to" class="form-control" placeholder="To" />
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Subject" />
+    <input id="send-subject" type="text" name="subject" class="form-control" placeholder="Subject" />
   </div>
-  <textarea class="form-control" placeholder="message"></textarea>
+  <textarea id="send-message" name="message" class="form-control" placeholder="message"></textarea>
   <div class="btn-send">
     <button class="form-control btn btn-success">Send</button>
-  </div>
+  </div> 
+</form>
 </div>

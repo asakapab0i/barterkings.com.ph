@@ -1,6 +1,7 @@
 'use strict';
 
 $(function(){
+
 	$(document).on('click', '.pop-modal', function(e){
 		e.preventDefault();
 
@@ -9,17 +10,17 @@ $(function(){
 		var that = $('#myModal');
 		that.find('.modal-content').empty();
 
-		//pop the modal
-		that.modal('show');
+	//pop the modal
+	that.modal('show');
 
-		$.ajax({
-			method: "POST",
-			url: base_url + url,
-			data: { id: id}
-		}).done(function( result ) {
-			that.find('.modal-content').html(result);
-		});
+	$.ajax({
+		method: "POST",
+		url: base_url + url,
+		data: { id: id}
+	}).done(function( result ) {
+		that.find('.modal-content').html(result);
 	});
+});
 
 	$(document).on('click', '#upload-profile-img-btn', function(event){
 		event.preventDefault();
@@ -257,3 +258,68 @@ $(function(){
 		$this.text(linkText);
 	});
 });
+
+/*Message Event*/
+
+$(function(){
+	$(document).on('click', '.btn-send', function(event){
+		event.preventDefault();
+		$(this).trigger('send-message-event', function(){
+			console.log('send-message-event triggered.');
+		});
+	});
+
+	$(document).on('send-message-event', '.btn-send', function(){
+		var form = $('#message-create-form');
+		var formdata = new FormData(form[0]);
+
+		$.ajax({
+			type : 'POST',
+			url : base_url + form.attr('action'),
+			data : formdata,
+			processData: false,
+			contentType: false,
+			success : function(result){
+				console.log('Message sent.');
+				$('.content-container').html('<div class="alert alert-success">'+result+'</div>');
+			}
+		});
+	});
+});
+
+/*Tabbing Via Js*/
+
+$(document).on('click', '.show-tab', function (e) {
+	var type = $(this).data('type');
+	var container = $('content-container');
+	$.ajax({
+		type : 'GET',
+		url : base_url + 'message/' + type,
+		success : function(result){
+			$('.content-title').html(type[0].toUpperCase() + type.substr(1));
+			$('.content-body').html(result);
+		}
+	});
+	$(this).tab('show');
+});
+
+// Javascript to enable link to tab
+var url = document.location.toString();
+if (url.match('#')) {
+	$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+
+	var href = url.split('#')[1]
+	$.ajax({
+		type : 'GET',
+		url : base_url + 'message/' + href,
+		success : function(result){
+			$('.content-title').html(href[0].toUpperCase() + href.substr(1));
+			$('.content-body').html(result);
+		}
+	});
+} 
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+	window.location.hash = e.target.hash;
+})
