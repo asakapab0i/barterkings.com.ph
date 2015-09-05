@@ -46,7 +46,7 @@
 					<div class="content hideContent">
 							<?php echo nl2br($offer[0]['description']); ?>
 						</div>
-						<?php if(strlen($offer[0]['description']) > 200): ?>
+						<?php if(strlen($offer[0]['description']) > 100): ?>
 							<div class="show-more">
 								<a href="#">Show more</a>
 							</div>

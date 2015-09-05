@@ -496,3 +496,8 @@ ul.mail-list li span.mail-message-preview{
 .mail-search{
     border-bottom-color:#7FBCC9!important; 
 }
+
+.profile-offers-list{
+    overflow: auto;
+    height: 300px;
+}

@@ -30,7 +30,7 @@
 						<div class="content hideContent">
 							<?php echo nl2br($value['description']); ?>
 						</div>
-						<?php if(strlen($value['description']) > 200): ?>
+						<?php if(strlen($value['description']) > 100): ?>
 							<div class="show-more">
 								<a href="#">Show more</a>
 							</div>

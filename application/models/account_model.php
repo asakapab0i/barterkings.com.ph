@@ -9,6 +9,29 @@ class Account_model extends CI_Model {
 		$this->_post_data = $this->input->post();
 	}
 
+	public function _upload_create_thumbnail($filename, $account_id){
+		$config['image_library'] = 'gd2';
+		//$config['source_image']	= "./asset/img/items/" . $filename;
+		$config['new_image'] = "./asset/img/profiles_thumbs/";
+		$config['create_thumb'] = TRUE;
+		$config['maintain_ratio'] = FALSE;
+		$config['width']	= 200;
+		$config['height']	= 200;
+		$this->load->library('image_lib');
+
+		$config['source_image']	= "./asset/img/profiles/" . $filename;
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
+
+		$image = $this->image_lib->explode_name($filename);
+
+		$file_thumb = $image['name'] . "_thumb" . $image['ext'];
+		$file_name = $image['name'] . $image['ext'];
+
+		$this->db->where('id', $account_id);
+		$this->db->update('accounts', array('profile_img' => $file_name, 'profile_img_thumb' => $file_thumb));
+	}
+
 	public function get_session(){
 		$this->_session_data = $this->session->userdata('account');
 		if ($this->_session_data !== false) {
@@ -66,11 +89,55 @@ class Account_model extends CI_Model {
 		return false;
 	}
 
+	public function get_account_info_by_account_id($account_id){
+		$account_info = $this->db->select('*')
+		->from('accounts')
+		->where('id', $account_id)
+		->get();
+
+		if ($account_info->num_rows() > 0) {
+			return $account_info->result_array();
+		}
+
+		return false;
+	}
+
 	public function register(){
 		$data = $this->input->post();
 		$data['password'] = md5($data['password']);
 		$this->db->insert('accounts', $data);
 
 		return $this->db->insert_id();
+	}
+
+	public function upload_profile(){
+		$this->load->library('Upload');
+		$this->load->library('image_lib');
+
+		$files = $_FILES['userfile'];
+		$_FILES['profile_img[]']['name']= $files['name'];
+		$_FILES['profile_img[]']['type']= $files['type'];
+		$_FILES['profile_img[]']['tmp_name']= $files['tmp_name'];
+		$_FILES['profile_img[]']['error']= $files['error'];
+		$_FILES['profile_img[]']['size']= $files['size'];
+
+		$new_image = $this->image_lib->explode_name($files['name']);
+		$fileName = url_title(microtime() . '_' .$new_image['name']) . $new_image['ext'];
+
+		$config['upload_path'] = './asset/img/profiles';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '*';
+		$config['max_width'] = '';
+		$config['max_height'] = '';
+		$config['remove_spaces'] = TRUE;
+		$config['file_name'] = $fileName;
+		$this->upload->initialize($config);
+
+		if ($this->upload->do_upload('profile_img[]')) {
+			$sess = $this->get_session();
+			$this->_upload_create_thumbnail($fileName, $sess[0]['id']);
+		} else {
+			return FALSE;
+		}
 	}
 }

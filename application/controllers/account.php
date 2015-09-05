@@ -45,17 +45,32 @@ class Account extends MY_Controller {
 
 	public function profile($username = NULL){
 		if ($username != NULL) {
-			$account_id = $this->account_model->get_account_id_by_username($username);			
+			$account_id = $this->account_model->get_account_id_by_username($username);		
+			$data['is_logged_in'] = false;
 		}else{
 			$account_id = $this->account_model->get_session();
+			$data['is_logged_in'] = true;
 		}
 
 		$account_id = $account_id[0]['id'];
 
-		$data['user'] = $this->account_model->get_session();
-		$data['data'] = $this->item_model->get_items_by_account_id($account_id);
+		$data['user'] = $this->account_model->get_account_info_by_account_id($account_id);
+		$data['items'] = $this->item_model->get_items_by_account_id($account_id);
+		$data['items_count'] = count($data['items']);
 		$data['offers'] = $this->offer_model->get_offered_items_by_account_id($account_id);
+		$data['offers_count'] = count($data['offers']);
 		$this->_load_view('account/profile', $data);
+	}
+
+	public function profile_upload(){
+		if (isset($_FILES['userfile']) && $_FILES['userfile'] != NULL) {
+			$this->account_model->upload_profile();
+		}else{
+			$sess = $this->account_model->get_session();
+			$data['is_logged_in'] = ($sess !== FALSE ? TRUE : FALSE);
+			$data['user'] = $this->account_model->get_account_info_by_account_id($sess[0]['id']);
+			$this->load->view('template/profile-template', $data);
+		}
 	}
 
 	public function inbox(){
