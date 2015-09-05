@@ -8,8 +8,8 @@
     <img height="380" width="500" src="<?php echo base_url('asset/img/profiles_thumbs'); ?>/<?php echo $user[0]['profile_img_thumb']; ?>" alt="" class="img-responsive" />
     <?php if(isset($is_logged_in) && $is_logged_in === true): ?>
         <form id="upload-profile-img-form" action="account/upload" method="POST" accept-charset="utf-8">
-         <input type="file" id="profile-img" name="profile_image" class="form-control">
-         <button id="upload-profile-img-btn" class="form-control btn btn-info btn-sm btn-block">Upload Profile</button>
+         <input accept="image/x-png, image/gif, image/jpeg" type="file" id="profile-img" name="profile_image" class="form-control">
+         <button id="upload-profile-img-btn" class="form-control btn btn-primary btn-sm btn-block">Upload Profile</button>
      </form>
  <?php endif; ?>
 </div>
