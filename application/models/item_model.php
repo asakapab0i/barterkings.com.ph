@@ -287,7 +287,12 @@ class Item_model extends CI_Model {
 		->get();
 
 		if ($comments->num_rows() > 0) {
-			return $comments->result_array();
+			$data = $comments->result_array();
+			if (empty($data[0]['profile_img_thumb'])) {
+				$data[0]['profile_img_thumb'] = 'default_thumb.JPG';
+			}
+			
+			return $data;
 		}
 
 		return FALSE;

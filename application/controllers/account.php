@@ -56,9 +56,9 @@ class Account extends MY_Controller {
 
 		$data['user'] = $this->account_model->get_account_info_by_account_id($account_id);
 		$data['items'] = $this->item_model->get_items_by_account_id($account_id);
-		$data['items_count'] = count($data['items']);
+		$data['items_count'] = ($data['items'] !== false ? count($data['items']) : 0);
 		$data['offers'] = $this->offer_model->get_offered_items_by_account_id($account_id);
-		$data['offers_count'] = count($data['offers']);
+		$data['offers_count'] = ($data['offers'] !== false ? count($data['offers']) : 0);
 		$this->_load_view('account/profile', $data);
 	}
 

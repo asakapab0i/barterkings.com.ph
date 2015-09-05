@@ -1,7 +1,7 @@
 <form action="<?php echo base_url('home/item'); ?>" class="well well-no-bg">
 			<div class="form-group">
 				<label for="item">Search Items</label>
-				<input name="item" type="text" class="form-control" id="item" placeholder="">
+				<input value="<?php if(isset($search['item'])) echo $search['item']; ?>" name="item" type="text" class="form-control" id="item" placeholder="">
 			</div>
 			<div class="form-group">
 				<label for="category">Location</label>

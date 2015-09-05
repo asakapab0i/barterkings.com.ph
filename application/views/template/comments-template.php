@@ -3,7 +3,7 @@
     <div class="media">
       <p class="pull-right"><small><?php echo timespan(strtotime($comment['comment_date_inserted'])); ?></small></p>
       <a class="media-left" href="#">
-        <img src="http://lorempixel.com/40/40/people/4/">
+        <img height="40" width="40" src="<?php echo base_url('asset/img/profiles_thumbs'); ?>/<?php echo $comment['profile_img_thumb']; ?>">
       </a>
       <div class="media-body">
 

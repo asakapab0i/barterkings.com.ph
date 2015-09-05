@@ -1,6 +1,6 @@
 <?php if($data !== FALSE): ?>
 	<?php if(isset($search) && $search !== FALSE): ?>
-		<div class="container">
+		<div class="col-md-12">
 			<div class="pull-left">
 				<p>Search for: <b><?php echo $search['item']; ?></b></p>
 			</div>

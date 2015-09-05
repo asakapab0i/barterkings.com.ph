@@ -96,7 +96,11 @@ class Account_model extends CI_Model {
 		->get();
 
 		if ($account_info->num_rows() > 0) {
-			return $account_info->result_array();
+			$data = $account_info->result_array();
+			if (empty($data[0]['profile_img_thumb'])) {
+				$data[0]['profile_img_thumb'] = 'default_thumb.JPG';
+			}
+			return $data;
 		}
 
 		return false;
