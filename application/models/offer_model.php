@@ -50,12 +50,13 @@ class Offer_model extends CI_Model {
 	}
 
 	public function get_item_offers($itemid){
+
 		$offerdb = $this->db->select('*')
 		->from('offers')
 		->join('items', 'offers.offer_item_id = items.id', 'left')
 		->join('items_images', 'offers.offer_item_id = items_images.item_id', 'left')
 		->where('offers.item_id', $itemid)
-		->group_by('offers.offer_id')
+		//->group_by('offers.offer_id')
 		->order_by('offer_date_inserted', 'DESC')
 		->get();
 
@@ -89,7 +90,7 @@ class Offer_model extends CI_Model {
 		->join('items', 'items.id = item_id', 'left')
 		->join('items_images', 'items_images.item_id = items.id')
 		->where('items.account_id', $sess[0]['id'])
-		->group_by('items.id')
+		//->group_by('items.id')
 		->get();
 
 		if ($offered->num_rows() > 0) {

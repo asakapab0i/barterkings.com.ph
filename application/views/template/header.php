@@ -40,9 +40,9 @@
                  <ul class="nav navbar-nav">
                   <li><a href="<?php echo base_url('item/add'); ?>">Add items</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search items">
+                    <input type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Search items">
                   </div>
                   <button type="submit" class="btn btn-default">Search</button>
                 </form>

@@ -22,9 +22,9 @@ class Message_model extends CI_Model {
 			$this->db->insert('messages', $auto_send);
 		}else{
 			$sess = $this->account_model->get_session();
-			$data = $this->account_model->get_account_id_by_username($this->_data['to']);
+			$data = $this->account_model->get_account_id_by_username($this->_data['recepient']);
 
-			$this->_data['to'] = $data[0]['id'];
+			$this->_data['recepient'] = $data[0]['id'];
 			$this->_data['account_id'] = $sess[0]['id'];
 			$this->_data['is_sent'] = 1;
 			$this->_data['is_inbox'] = 1;
@@ -41,7 +41,7 @@ class Message_model extends CI_Model {
 		$messages = $this->db->select('*')
 		->from('messages')
 		->join('accounts', 'accounts.id = messages.account_id')
-		->where('to', $sess[0]['id'])
+		->where('recepient', $sess[0]['id'])
 		->where('is_inbox', 1)
 		->where('is_trash', 0)
 		->order_by('date_sent', 'DESC')
@@ -56,7 +56,7 @@ class Message_model extends CI_Model {
 		$messages = $this->db->select('*')
 		->from('messages')
 		->join('accounts', 'accounts.id = messages.account_id')
-		->where('to', $sess[0]['id'])
+		->where('recepient', $sess[0]['id'])
 		->where('is_inbox', 1)
 		->where('is_read', 0)
 		->order_by('date_sent', 'DESC')
@@ -99,7 +99,7 @@ class Message_model extends CI_Model {
 		$messages = $this->db->select('*')
 		->from('messages')
 		->join('accounts', 'accounts.id = messages.account_id')
-		->where('to', $sess[0]['id'])
+		->where('recepient', $sess[0]['id'])
 		->order_by('date_sent', 'DESC')
 		->where('is_trash', 1)
 		->get();
@@ -113,7 +113,7 @@ class Message_model extends CI_Model {
 		$messages = $this->db->select('*')
 		->from('messages')
 		->join('accounts', 'accounts.id = messages.account_id', 'left')
-		->where('to', $sess[0]['id'])
+		->where('recepient', $sess[0]['id'])
 		->where('is_inbox', 1)
 		->where('message_id', $message_id)
 		->get();

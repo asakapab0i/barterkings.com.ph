@@ -48,14 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'barterapp';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['hostname'] = 'ec2-54-197-245-93.compute-1.amazonaws.com';
+$db['default']['username'] = 'hdydrbgyvjdilk';
+$db['default']['password'] = 'V240OwKC0CQxT0gjP9aG75R08d';
+$db['default']['database'] = 'd9fa8evnmc8h1k';
+$db['default']['dbdriver'] = 'postgre';//'mysql';
 $db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = FALSE;
-$db['default']['db_debug'] = TRUE;
+$db['default']['pconnect'] = TRUE;
+$db['default']['db_debug'] = 1;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = '';
 $db['default']['char_set'] = 'utf8';

@@ -66,10 +66,9 @@ class Item_model extends CI_Model {
 			}
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			->group_by('items.id')
 			->where('account_id', $account_id)
 			->where_not_in('offer_item_id', $cio)
 			//->where('offers.item_id', $itemid)
@@ -77,10 +76,9 @@ class Item_model extends CI_Model {
 		}else{
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->where('account_id', $account_id)
 			->get();
 		}
@@ -104,19 +102,19 @@ class Item_model extends CI_Model {
 			}
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->where('account_id', $account_id)
 			->where_not_in('item_id', $cio)
-			//->where('offers.item_id', $itemid)
+			->where('items_images.item_id', $itemid)
 			->get();
 		}else{
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			->group_by('items.id')
+			//->group_by('items.id')
 			->where('account_id', $account_id)
 			->get();
 		}
@@ -134,7 +132,7 @@ class Item_model extends CI_Model {
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->limit($limit, $offset)
-		->group_by('items.id')
+		//->group_by('items.id')
 		->order_by('items.id', 'DESC')
 		->get();
 
