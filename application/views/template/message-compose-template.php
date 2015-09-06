@@ -10,7 +10,7 @@
 <div class="col-md-12">
 <form id="message-create-form" action="message/create" method="POST" accept-charset="utf-8">
    <div class="form-group">
-    <input value="<?php echo (isset($reply[0]['username']) ? $reply[0]['username'] : ''); ?>" id="send-to" type="text" name="to" class="form-control" placeholder="To" />
+    <input value="<?php echo (isset($reply[0]['username']) ? $reply[0]['username'] : ''); ?>" id="send-to" type="text" name="recepient" class="form-control" placeholder="To" />
   </div>
   <div class="form-group">
     <input value="<?php echo (isset($subject) ? $subject : ''); ?>" id="send-subject" type="text" name="subject" class="form-control" placeholder="Subject" />
