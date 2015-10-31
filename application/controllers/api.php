@@ -34,7 +34,7 @@ class Api extends MY_Controller {
 		$this->_api_id = 'MyApiId';
 		$this->_api_pass = 'MyApiPass';
 
-		if ( isset($this->request_data) && ($this->request_data['api_id'] && $this->request_data['api_pass']) ) {
+		if ( $this->_api_verified === false && ($this->isset($this->request_data) && ($this->request_data['api_id'] && $this->request_data['api_pass'])) ) {
 
 			if ( $this->_api_id == $this->request_data['api_id'] && $this->_api_pass == $this->request_data['api_pass'] ) {
 
@@ -46,12 +46,17 @@ class Api extends MY_Controller {
 
 			}
 
+		}else if ($this->_api_verified === false && $this->_session_data !== false ) {
+
+			$this->_api_verified = true;
+
 		}
+
 
 		if ( $this->_api_verified !== true ) {
 
 			$error_messages['status'] = 'Error';
-			$error_messages['messages'] = "Connection is not verified.";
+			$error_messages['response'] = "Connection is not verified.";
 			echo json_encode($error_messages);
 			exit();
 
@@ -71,7 +76,7 @@ class Api extends MY_Controller {
 				if ( in_array($key, array('type', 'class', 'method', 'parameters', 'api_id', 'api_pass')) === false ) {
 
 					$errors = true;
-					$error_messages['messages'][$key] = ucfirst($key) . ' not found.';
+					$error_messages['response'][$key] = ucfirst($key) . ' not found.';
 
 				}
 
@@ -115,7 +120,27 @@ class Api extends MY_Controller {
 						break;
 				}
 
-				echo json_encode( call_user_func(array($this->_instance->$class, $method), $parameters) );
+				$class_caller = new ReflectionMethod($class, $method);
+				$result = $class_caller->invokeArgs($this->_instance->$class, $parameters);
+
+				if ( $result !== NULL && $result !== false ) {
+
+					echo json_encode($result);
+
+				}else if( $result == false && $result !== NULL ){
+
+					$error_messages['status'] = 'Error';
+					$error_messages['response'] =  'No result found.';
+
+					echo json_encode($error_messages);
+
+				}else{
+
+					$error_messages['status'] = 'Error'; 
+					$error_messages['response'] = "It's either the class/method doesn't exists or configuration is wrong.";
+
+					echo json_encode($error_messages);
+				}
 
 			} catch (Exception $e) {
 
@@ -125,7 +150,7 @@ class Api extends MY_Controller {
 		}else{
 
 			$error_messages['status'] = 'Error'; 
-			$error_messages['messages'] = "No _POST or _GET data.";
+			$error_messages['response'] = "No _POST or _GET data.";
 
 			echo json_encode($error_messages);
 
@@ -136,6 +161,10 @@ class Api extends MY_Controller {
 
 		$this->index();
 
+	}
+
+	public function __destruct(){
+		//var_dump(debug_backtrace());
 	}
 	
 }
