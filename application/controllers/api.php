@@ -2,15 +2,13 @@
 
 class Api extends MY_Controller {
 
-	public $data;
-
-	private $_post_data;
-	private $_get_data;
+	public $request_data;
 
 	private $_instance;
 
 	private $_api_id;
 	private $_api_pass;
+
 	private $_api_verified;
 
 	public function __construct(){
@@ -18,8 +16,16 @@ class Api extends MY_Controller {
 		parent::__construct();
 
 		$this->_instance =& get_instance();
-		$this->_post_data = $this->input->post();
-		$this->_get_data = $this->input->get();
+
+		if ( $this->input->post() !== false ){
+
+			$this->request_data = $this->input->post();
+
+		}else if( $this->input->get() !== false ){
+
+			$this->request_data = $this->input->get();
+
+		}
 
 	}
 
@@ -28,19 +34,25 @@ class Api extends MY_Controller {
 		$this->_api_id = 'MyApiId';
 		$this->_api_pass = 'MyApiPass';
 
-		if ( $this->data['api_id'] && $this->data['api_pass'] ) {
+		if ( isset($this->request_data) && ($this->request_data['api_id'] && $this->request_data['api_pass']) ) {
 
-			if ( $this->_api_id == $this->data['api_id'] && $this->_api_pass == $this->data['api_pass'] ) {
+			if ( $this->_api_id == $this->request_data['api_id'] && $this->_api_pass == $this->request_data['api_pass'] ) {
+
 				$this->_api_verified = true;
+
 			}else{
+
 				$this->_api_verified = false;
+
 			}
 
 		}
 
 		if ( $this->_api_verified !== true ) {
 
-			echo "Connection is not verified.";
+			$error_messages['status'] = 'Error';
+			$error_messages['messages'] = "Connection is not verified.";
+			echo json_encode($error_messages);
 			exit();
 
 		}
@@ -52,28 +64,14 @@ class Api extends MY_Controller {
 		$errors = false;
 		$error_messages = array();
 
-		if ( $this->_post_data !== false ){
+		if ( $this->request_data !== false || (is_array($this->request_data) && count($this->request_data) > 0) ) {
 
-			$this->data = $this->_post_data;
-
-		}else if( $this->_get_data !== false ){
-
-			$this->data = $this->_get_data;
-
-		}else{
-
-			$error_messages = 'No data.';
-
-		}
-
-		if ( $data !== false || (is_array($data) && count($data) > 0) ) {
-
-			foreach ($this->data as $key => $value) {
+			foreach ($this->request_data as $key => $value) {
 
 				if ( in_array($key, array('type', 'class', 'method', 'parameters', 'api_id', 'api_pass')) === false ) {
 
 					$errors = true;
-					$error_messages[$key] = ucfirst($key) . ' not found.';
+					$error_messages['messages'][$key] = ucfirst($key) . ' not found.';
 
 				}
 
@@ -82,7 +80,7 @@ class Api extends MY_Controller {
 		}
 
 		if ( $errors === true ) {
-
+			$error_messages['status']	= 'Error';
 			echo json_encode($error_messages);
 			exit();
 
@@ -91,15 +89,16 @@ class Api extends MY_Controller {
 
 	public function index(){
 
-		if ( $this->_post_data !== false || $this->_get_data !== false ) {
+		$this->_verify_api_credentials(); //verify api
+
+		if ( $this->request_data !== false ) {
 
 			$data = $this->_get_api_params();
-			$this->_verify_api_credentials(); //verify api
-
-			$type = $this->data['type'];
-			$class = $this->data['class'];
-			$method = $this->data['method'];
-			$parameters = $this->data['parameters'];
+			
+			$type = $this->request_data['type'];
+			$class = $this->request_data['class'];
+			$method = $this->request_data['method'];
+			$parameters = $this->request_data['parameters'];
 
 			try {			
 
@@ -125,7 +124,10 @@ class Api extends MY_Controller {
 
 		}else{
 
-			echo "Error!, No _POST or _GET data.";
+			$error_messages['status'] = 'Error'; 
+			$error_messages['messages'] = "No _POST or _GET data.";
+
+			echo json_encode($error_messages);
 
 		}
 	}
