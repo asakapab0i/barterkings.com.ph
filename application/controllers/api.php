@@ -104,6 +104,7 @@ class Api extends MY_Controller {
 	}
 
 	private function _load_and_call_class(){
+		
 		switch ( $this->request_data['type'] ) {
 
 			case 'controller':
