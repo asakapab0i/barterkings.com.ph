@@ -5,6 +5,8 @@ class Api extends MY_Controller {
 	public $request_data;
 
 	private $error;
+	private $error_response;
+
 	private $response;
 
 	private $result;
@@ -95,7 +97,6 @@ class Api extends MY_Controller {
 		}
 
 		if ( $this->error === true ) {
-			echo "<pre>";
 			$this->error_response['status']	= 'Error';
 			echo json_encode($this->error_response);
 			exit();
@@ -175,7 +176,7 @@ class Api extends MY_Controller {
 
 			} catch (Exception $e) {
 
-				echo json_encode($e);	
+				echo json_encode($e->getMessage());	
 			}
 
 		}else{
