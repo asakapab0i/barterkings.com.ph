@@ -214,21 +214,15 @@ class Api extends MY_Controller {
 
 				} 
 
-				echo json_encode($this->_response);
-
-			} catch (Exception $e) {
+			} catch ( Exception $e ) {
 
 				$this->_setup_error($e->getMessage());	
 
-				echo json_encode($this->_response);
-
 			}
 
-		} else {
-
-			echo json_encode($this->_response);
-
 		}
+
+		$this->_send_response();
 
 	}
 
@@ -244,6 +238,12 @@ class Api extends MY_Controller {
 
 		$this->_response['status'] = 'Success';
 		$this->_response['message'] = $message;
+
+	}
+
+	private function _send_response(){
+
+		echo json_encode($this->_response);
 
 	}
 
