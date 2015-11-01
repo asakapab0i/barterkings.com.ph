@@ -11,9 +11,6 @@ class Api extends MY_Controller {
 
 	private $_instance;
 
-	private $_api_id;
-	private $_api_pass;
-
 	private $_api_verified = false;
 
 	private $_required_parameters = array('type', 'class', 'method');
@@ -39,28 +36,11 @@ class Api extends MY_Controller {
 
 	private function _verify_api_credentials(){
 
-		$this->_api_id = 'MyApiId';
-		$this->_api_pass = 'MyApiPass';
-
-		if ( $this->_api_verified === false && (isset($this->_request_data) && (isset($this->_request_data['api_id']) && isset($this->_request_data['api_pass']))) ) {
-
-			if ( $this->_api_id == $this->_request_data['api_id'] && $this->_api_pass == $this->_request_data['api_pass'] ) {
-
-				$this->_api_verified = true;
-
-			} else {
-
-				$this->_api_verified = false;
-
-			}
-
-		} else if ( $this->_api_verified === false && $this->_get_session_data() !== false ) {
+		if ( $this->_api_verified === false && $this->_get_session_data() !== false ) {
 
 			$this->_api_verified = true;
 
-		}
-
-		if ( $this->_api_verified !== true ) {
+		} else {
 
 			$this->_setup_error('Connection is not verified.');
 
@@ -70,7 +50,7 @@ class Api extends MY_Controller {
 
 	private function _verify_api_params(){
 
-		if ( $this->_request_data !== false || (is_array($this->_request_data) && count($this->_request_data) > 0) ) {
+		if ( $this->_request_data !== NULL && $this->_request_data !== false && (is_array($this->_request_data) && count($this->_request_data) > 0) ) {
 
 			foreach ($this->_required_parameters as $key => $value) {
 
@@ -111,7 +91,7 @@ class Api extends MY_Controller {
 
 	}
 
-	private function _load_and_execute_class(){
+	private function _load_class(){
 
 		switch ( $this->_request_data['type'] ) {
 
@@ -153,62 +133,67 @@ class Api extends MY_Controller {
 
 		}
 
-		if ( $this->_error !== true ) {
+	}	
 
-			$methods = array_flip(get_class_methods($this->_instance->{$this->_request_data['class']}));
+	private function _execute_method(){
 
-			if ( array_search($this->_request_data['method'], $methods) !== false ) {
+		$methods = array_flip(get_class_methods($this->_instance->{$this->_request_data['class']}));
 
-				$object = new ReflectionMethod($this->_request_data['class'], $this->_request_data['method']);
+		if ( array_search($this->_request_data['method'], $methods) !== false ) {
 
-				if ( isset($this->_request_data['parameters']) ) {
+			$object = new ReflectionMethod($this->_request_data['class'], $this->_request_data['method']);
 
-					$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
+			if ( isset($this->_request_data['parameters']) ) {
 
-				}else{
+				$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
 
-					$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
-
-				}
-				
 			} else {
 
-				$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
+				$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
 
 			}
+			
+		} else {
+
+			$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
 
 		}
-
 	}
 
 	public function index(){
 
-		$this->_verify_api_credentials(); //verify api
 		$this->_verify_api_params();
+		$this->_verify_api_credentials(); //verify api
 
 		if ( $this->_error !== true ) {
 
 			try {			
 
-				$this->_load_and_execute_class();
+				$this->_load_class();
 
 				if ( $this->_error === false ) {
 
-					if ( $this->_result === NULL ) {
+					$this->_execute_method();
 
-						$this->_setup_error('No result found');
+					if ( $this->_error === false ) {
 
-					} else if ( $this->_result === false ){
+						if ( $this->_result === NULL ) {
 
-						$this->_setup_error('Operation failed.');
+							$this->_setup_error('No result found.');
 
-					} else if ( $this->_result === true ){
+						} else if ( $this->_result === false ){
 
-						$this->_setup_success('Operation success.');
+							$this->_setup_error('Operation failed.');
 
-					}else{
+						} else if ( $this->_result === true ){
 
-						$this->_setup_success($this->_result);
+							$this->_setup_success('Operation success.');
+
+						} else {
+
+							$this->_setup_success($this->_result);
+
+						}
 
 					}
 
@@ -229,14 +214,14 @@ class Api extends MY_Controller {
 	private function _setup_error($message){
 
 		$this->_error = true;
-		$this->_response['status'] = 'Error';
+		$this->_response['status'] = 'error';
 		$this->_response['response'] = $message;
 
 	}
 
 	private function _setup_success($message){
 
-		$this->_response['status'] = 'Success';
+		$this->_response['status'] = 'success';
 		$this->_response['message'] = $message;
 
 	}
