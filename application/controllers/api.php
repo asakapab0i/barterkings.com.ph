@@ -109,32 +109,60 @@ class Api extends MY_Controller {
 
 			case 'controller':
 
-				$this->_instance->load->library('../controllers/' . strtolower($this->request_data['class']) . '.php');
+				if ( $this->_instance->load->library_api('../controllers/' . strtolower($this->request_data['class']) . '.php') === false ){
+
+					$this->error = true;
+					$this->error_response['status'] = 'Error';
+					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+
+				}
+
 				break;
+
 			case 'model':
 
-				$this->_instance->load->model($this->request_data['class']);
+				if ( $this->_instance->load->model_api($this->request_data['class']) === false ) {
+
+					$this->error = true;
+					$this->error_response['status'] = 'Error';
+					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+
+				}
+
 				break;
 
 			case 'library':
 
-				$this->_instance->load->library($this->request_data['class']);
+				$this->_instance->load->library_api($this->request_data['class']);
+
+				if ( $this->_instance->load->library_api($this->request_data['class']) === false ){
+
+					$this->error = true;
+					$this->error_response['status'] = 'Error';
+					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+
+				}
+
 				break;
 
 		}
 
-		$methods = array_flip(get_class_methods($this->_instance->{$this->request_data['class']}));
+		if ( $this->error !== false ) {
 
-		if ( array_search($this->request_data['method'], $methods) !== false ) {
+			$methods = array_flip(get_class_methods($this->_instance->{$this->request_data['class']}));
 
-			$object = new ReflectionMethod($this->request_data['class'], $this->request_data['method']);
-			$this->result = $object->invokeArgs($this->_instance->{$this->request_data['class']}, $this->request_data['parameters']);
+			if ( array_search($this->request_data['method'], $methods) !== false ) {
 
-		} else {
+				$object = new ReflectionMethod($this->request_data['class'], $this->request_data['method']);
+				$this->result = $object->invokeArgs($this->_instance->{$this->request_data['class']}, $this->request_data['parameters']);
 
-			$this->error = true;
-			$this->error_response['status'] = 'Error';
-			$this->error_response['message'] = "{$this->request_data['class']}::{$this->request_data['method']} does not exists.";
+			} else {
+
+				$this->error = true;
+				$this->error_response['status'] = 'Error';
+				$this->error_response['message'] = "{$this->request_data['class']}::{$this->request_data['method']} does not exists.";
+
+			}
 
 		}
 
