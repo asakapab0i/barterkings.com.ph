@@ -96,6 +96,7 @@ class Api extends MY_Controller {
 		}
 
 		if ( $this->error === true ) {
+			
 			$this->error_response['status']	= 'Error';
 			echo json_encode($this->error_response);
 			exit();
@@ -192,7 +193,7 @@ class Api extends MY_Controller {
 
 						echo json_encode($this->error_response);
 
-					} else{
+					} else {
 
 						$this->error_response['status'] = 'Error'; 
 						$this->error_response['response'] = "It's either the class/method doesn't exists or the configuration is wrong.";
@@ -200,7 +201,7 @@ class Api extends MY_Controller {
 						echo json_encode($this->error_response);
 					}
 
-				} else{
+				} else {
 
 					echo json_encode($this->error_response);
 
@@ -228,8 +229,6 @@ class Api extends MY_Controller {
 	}
 
 	public function __destruct(){
-
-
 
 	}
 	
