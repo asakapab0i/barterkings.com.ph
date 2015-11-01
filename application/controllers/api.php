@@ -41,7 +41,6 @@ class Api extends MY_Controller {
 
 		}
 
-
 	}
 
 	private function _verify_api_credentials(){
@@ -96,12 +95,13 @@ class Api extends MY_Controller {
 		}
 
 		if ( $this->error === true ) {
-			
+
 			$this->error_response['status']	= 'Error';
 			echo json_encode($this->error_response);
 			exit();
 
 		}
+
 	}
 
 	private function _load_and_call_class(){
@@ -220,6 +220,7 @@ class Api extends MY_Controller {
 			echo json_encode($this->error_response);
 
 		}
+
 	}
 
 	public function v1(){
