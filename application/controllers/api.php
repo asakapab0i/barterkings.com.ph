@@ -109,7 +109,7 @@ class Api extends MY_Controller {
 		switch ( $this->request_data['type'] ) {
 
 			case 'controller':
-				$this->_instance->load->library('../controllers/' . $this->request_data['class'] . '.php');
+				$this->_instance->load->library('../controllers/' . strtolower($this->request_data['class']) . '.php');
 				break;
 			case 'model':
 				$this->_instance->load->model($this->request_data['class']);
