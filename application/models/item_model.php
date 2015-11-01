@@ -40,6 +40,11 @@ class Item_model extends CI_Model {
 	}
 
 	public function get_item($itemid){
+
+		if ($itemid === false) {
+			$itemid = $this->_input_data['itemid'];
+		}
+
 		$itemdb = $this->db->select('accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
 		->from('items')
 		->join('accounts', 'items.account_id = accounts.id', 'left')
@@ -66,19 +71,19 @@ class Item_model extends CI_Model {
 			}
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			//->group_by('items.id')
+			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
 			->where('account_id', $account_id)
 			->where_not_in('offer_item_id', $cio)
-			//->where('offers.item_id', $itemid)
+			->where('offers.item_id', $itemid)
 			->get();
 		}else{
 			$itemsdb = $this->db->select('*')
 			->from('items')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			//->group_by('items.id')
+			->group_by('items.id')
 			->where('account_id', $account_id)
 			->get();
 		}
@@ -102,9 +107,8 @@ class Item_model extends CI_Model {
 			}
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			//->group_by('items.id')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			//->group_by('items.id')
+			->group_by('items.id')
 			->where('account_id', $account_id)
 			->where_not_in('item_id', $cio)
 			->where('items_images.item_id', $itemid)
@@ -112,9 +116,8 @@ class Item_model extends CI_Model {
 		}else{
 			$itemsdb = $this->db->select('*')
 			->from('items')
-			//->group_by('items.id')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
-			//->group_by('items.id')
+			->group_by('items.id')
 			->where('account_id', $account_id)
 			->get();
 		}
@@ -128,11 +131,24 @@ class Item_model extends CI_Model {
 
 
 	public function get_items($limit = 12, $offset = ''){
+
+		if ($this->_input_data['limit']) {
+
+			$limit = $this->_input_data['limit'];
+			
+		}
+
+		if ($this->_input_data['offset']) {
+
+			$offset = $this->_input_data['offset'];
+
+		}
+
 		$itemsdb = $this->db->select('items.id as itemid, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->limit($limit, $offset)
-		//->group_by('items.id')
+		->group_by('items.id')
 		->order_by('items.id', 'DESC')
 		->get();
 

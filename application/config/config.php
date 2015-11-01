@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://shielded-wave-3616.herokuapp.com/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------

@@ -48,8 +48,12 @@ class Account_model extends CI_Model {
 		->where('password', md5($this->_post_data['password']))
 		->or_where('id', $account_id)->get();
 
+		//generate token
+		$login_data = $login_db->result_array();
+		$login_data['api_token'] = md5(time());
+
 		if ($login_db->num_rows() == 1) {
-			$this->session->set_userdata('account', $login_db->result_array());
+			$this->session->set_userdata('account', $login_data);
 			return true;
 		}
 

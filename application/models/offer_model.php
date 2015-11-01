@@ -46,7 +46,7 @@ class Offer_model extends CI_Model {
 		$message['to'] = $this->account_model->get_account_id_by_item_id($data['item_id']);
 		$message['account_id'] = 8;
 		$this->message_model->create_message_compose($message);
-		return true;
+		return TRUE;
 	}
 
 	public function get_item_offers($itemid){
@@ -56,7 +56,7 @@ class Offer_model extends CI_Model {
 		->join('items', 'offers.offer_item_id = items.id', 'left')
 		->join('items_images', 'offers.offer_item_id = items_images.item_id', 'left')
 		->where('offers.item_id', $itemid)
-		//->group_by('offers.offer_id')
+		->group_by('offers.offer_id')
 		->order_by('offer_date_inserted', 'DESC')
 		->get();
 
@@ -90,7 +90,7 @@ class Offer_model extends CI_Model {
 		->join('items', 'items.id = item_id', 'left')
 		->join('items_images', 'items_images.item_id = items.id')
 		->where('items.account_id', $sess[0]['id'])
-		//->group_by('items.id')
+		->group_by('items.id')
 		->get();
 
 		if ($offered->num_rows() > 0) {
@@ -133,10 +133,10 @@ class Offer_model extends CI_Model {
 			$data = $ownerdb->result_array();
 
 			if ($data[0]['aid'] == $account_id) {
-				return true;
+				return TRUE;
 			}
 		}
 
-		return false;
+		return FALSE;
 	}
 }

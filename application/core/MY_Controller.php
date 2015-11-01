@@ -3,9 +3,24 @@
 class MY_Controller extends CI_Controller {
 
 	public $_data;
+	public $_input_data;
+	public $_session_data;
+
 
 	public function __contruct(){
-		parent::__contruct();	
+
+		parent::__contruct();
+		$this->_session_data = NULL;
+
+	}
+
+	public function _get_post_data(){
+
+		if ($this->input->post()) {
+			$this->_input_data = $this->input->post();
+		}else {
+			$this->_input_data = $this->input->get();
+		}
 	}
 
 	public function _load_defaults(){
