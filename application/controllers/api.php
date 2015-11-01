@@ -16,7 +16,8 @@ class Api extends MY_Controller {
 
 	private $_api_verified = false;
 
-	private $_required_parameters = array('type', 'class', 'method', 'parameters');
+	private $_required_parameters = array('type', 'class', 'method');
+	private $_optional_parameters = array('parameters');
 
 	public function __construct(){
 
@@ -81,6 +82,27 @@ class Api extends MY_Controller {
 
 			}
 
+			foreach ($this->_request_data as $key => $value) {
+
+				$optional_params = array_flip($this->_optional_parameters);
+				$required_params = array_flip($this->_required_parameters);
+
+				if ( isset($required_params[$key]) === false && isset($optional_params[$key])  === false ) {
+
+					$this->_setup_error("Additional parameter '$key' supplied is not allowed");
+
+				} else {
+
+					if ( isset($this->_request_data['parameters']) && is_array($this->_request_data['parameters']) === false ) {
+
+						$this->_setup_error("Optional parameter '$key' must be an array.");
+
+					}
+
+				}
+
+			}
+
 		} else {
 
 			$this->_setup_error('No _POST or _GET data.');
@@ -138,8 +160,17 @@ class Api extends MY_Controller {
 			if ( array_search($this->_request_data['method'], $methods) !== false ) {
 
 				$object = new ReflectionMethod($this->_request_data['class'], $this->_request_data['method']);
-				$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
 
+				if ( isset($this->_request_data['parameters']) ) {
+
+					$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
+
+				}else{
+
+					$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
+
+				}
+				
 			} else {
 
 				$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
@@ -165,11 +196,11 @@ class Api extends MY_Controller {
 
 					if ( $this->_result === NULL ) {
 
-						$this->_setup_success('No result found');
+						$this->_setup_error('No result found');
 
 					} else if ( $this->_result === false ){
 
-						$this->_setup_success('Operation failed.');
+						$this->_setup_error('Operation failed.');
 
 					} else if ( $this->_result === true ){
 
