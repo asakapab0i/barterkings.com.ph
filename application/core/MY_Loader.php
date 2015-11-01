@@ -121,7 +121,7 @@ class MY_Loader extends CI_Loader {
 		// couldn't find the model
 		// show_error('Unable to locate the model you have specified: '.$model);
 
-		return TRUE;
+		return FALSE;
 	}
 
 }
