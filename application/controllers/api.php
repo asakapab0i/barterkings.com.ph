@@ -83,7 +83,7 @@ class Api extends MY_Controller {
 
 			foreach ($this->request_data as $key => $value) {
 
-				if ( array_key_exists($key, $this->request_data) === false ) {
+				if ( array_search($key, array('type', 'class', 'method', 'parameters')) === false ) {
 
 					$this->error = true;
 					$this->error_response['response'][$key] = ucfirst($key) . ' does not exist.';
@@ -105,7 +105,7 @@ class Api extends MY_Controller {
 	}
 
 	private function _load_and_call_class(){
-		
+
 		switch ( $this->request_data['type'] ) {
 
 			case 'controller':
@@ -114,7 +114,7 @@ class Api extends MY_Controller {
 
 					$this->error = true;
 					$this->error_response['status'] = 'Error';
-					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+					$this->error_response['response'] = "Controller class {$this->request_data['class']} not found.";
 
 				}
 
@@ -126,7 +126,7 @@ class Api extends MY_Controller {
 
 					$this->error = true;
 					$this->error_response['status'] = 'Error';
-					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+					$this->error_response['response'] = "Model class {$this->request_data['class']} not found.";
 
 				}
 
@@ -134,21 +134,25 @@ class Api extends MY_Controller {
 
 			case 'library':
 
-				$this->_instance->load->library_api($this->request_data['class']);
-
 				if ( $this->_instance->load->library_api($this->request_data['class']) === false ){
 
 					$this->error = true;
 					$this->error_response['status'] = 'Error';
-					$this->error_response['response'] = "Class {$this->request_data['class']} not found.";
+					$this->error_response['response'] = "Library class {$this->request_data['class']} not found.";
 
 				}
 
 				break;
 
+			default: 
+
+				$this->error = true;
+				$this->error_response['status'] = "Error";
+				$this->error_response['response'] = "Cound'nt find the class type.";
+
 		}
 
-		if ( $this->error !== false ) {
+		if ( $this->error !== true ) {
 
 			$methods = array_flip(get_class_methods($this->_instance->{$this->request_data['class']}));
 
@@ -161,7 +165,7 @@ class Api extends MY_Controller {
 
 				$this->error = true;
 				$this->error_response['status'] = 'Error';
-				$this->error_response['message'] = "{$this->request_data['class']}::{$this->request_data['method']} does not exists.";
+				$this->error_response['message'] = "Model ".ucfirst($this->request_data['class'])."::{$this->request_data['method']}() does not exists.";
 
 			}
 
@@ -174,7 +178,7 @@ class Api extends MY_Controller {
 		$this->_verify_api_credentials(); //verify api
 		$this->_verify_api_params();
 
-		if ( $this->request_data !== false ) {
+		if ( $this->error !== true ) {
 
 			try {			
 
@@ -209,7 +213,10 @@ class Api extends MY_Controller {
 
 			} catch (Exception $e) {
 
-				echo json_encode($e->getMessage());	
+				$this->error['status'] = 'Error';
+				$this->error_response['message'] = $e->getMessage();
+				echo json_encode($this->error_response);	
+
 			}
 
 		} else {
@@ -230,6 +237,8 @@ class Api extends MY_Controller {
 	}
 
 	public function __destruct(){
+
+		// /var_dump($this->request_data);
 
 	}
 	
