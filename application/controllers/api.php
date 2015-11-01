@@ -35,7 +35,7 @@ class Api extends MY_Controller {
 
 			$this->request_data = $this->input->post();
 
-		}else if( $this->input->get() !== false ){
+		} else if ( $this->input->get() !== false ){
 
 			$this->request_data = $this->input->get();
 
@@ -55,18 +55,17 @@ class Api extends MY_Controller {
 
 				$this->_api_verified = true;
 
-			}else{
+			} else {
 
 				$this->_api_verified = false;
 
 			}
 
-		}else if ($this->_api_verified === false && $this->_get_session_data() !== false ) {
+		} else if ( $this->_api_verified === false && $this->_get_session_data() !== false ) {
 
 			$this->_api_verified = true;
 
 		}
-
 
 		if ( $this->_api_verified !== true ) {
 
@@ -109,14 +108,19 @@ class Api extends MY_Controller {
 		switch ( $this->request_data['type'] ) {
 
 			case 'controller':
+
 				$this->_instance->load->library('../controllers/' . strtolower($this->request_data['class']) . '.php');
 				break;
 			case 'model':
+
 				$this->_instance->load->model($this->request_data['class']);
 				break;
+
 			case 'library':
+
 				$this->_instance->load->library($this->request_data['class']);
 				break;
+
 		}
 
 		$methods = array_flip(get_class_methods($this->_instance->{$this->request_data['class']}));
@@ -126,7 +130,7 @@ class Api extends MY_Controller {
 			$object = new ReflectionMethod($this->request_data['class'], $this->request_data['method']);
 			$this->result = $object->invokeArgs($this->_instance->{$this->request_data['class']}, $this->request_data['parameters']);
 
-		}else{
+		} else {
 
 			$this->error = true;
 			$this->error_response['status'] = 'Error';
@@ -153,14 +157,14 @@ class Api extends MY_Controller {
 
 						echo json_encode($this->result);
 
-					}else if( $this->result == false && $this->result !== NULL ){
+					} else if ( $this->result == false && $this->result !== NULL ){
 
 						$this->error_response['status'] = 'Error';
 						$this->error_response['response'] =  'No result found.';
 
 						echo json_encode($this->error_response);
 
-					}else{
+					} else{
 
 						$this->error_response['status'] = 'Error'; 
 						$this->error_response['response'] = "It's either the class/method doesn't exists or the configuration is wrong.";
@@ -168,7 +172,7 @@ class Api extends MY_Controller {
 						echo json_encode($this->error_response);
 					}
 
-				}else{
+				} else{
 
 					echo json_encode($this->error_response);
 
@@ -179,7 +183,7 @@ class Api extends MY_Controller {
 				echo json_encode($e->getMessage());	
 			}
 
-		}else{
+		} else {
 
 			$this->error_response['status'] = 'Error'; 
 			$this->error_response['response'] = "No _POST or _GET data.";
@@ -196,10 +200,9 @@ class Api extends MY_Controller {
 	}
 
 	public function __destruct(){
-		//var_dump(debug_backtrace());
 
-		//var_dump($this->error_response);
-		//var_dump($this->error);
+
+
 	}
 	
 }
