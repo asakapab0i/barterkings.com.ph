@@ -213,7 +213,7 @@ class Api extends MY_Controller {
 
 			} catch (Exception $e) {
 
-				$this->error['status'] = 'Error';
+				$this->error_response['status'] = 'Error';
 				$this->error_response['message'] = $e->getMessage();
 				echo json_encode($this->error_response);	
 
