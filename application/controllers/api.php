@@ -78,6 +78,7 @@ class Api extends MY_Controller {
 			}
 
 		}
+
 	}
 
 	private function _verify_api_credentials(){
@@ -169,6 +170,7 @@ class Api extends MY_Controller {
 			}
 
 		}
+		
 	}
 
 	private function _evaluate_result(){
