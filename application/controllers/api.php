@@ -61,7 +61,7 @@ class Api extends MY_Controller {
 
 					if ( isset($required_params[$key]) === false && isset($optional_params[$key])  === false ) {
 
-						$this->_setup_error("Additional parameter '$key' supplied is not allowed");
+						$this->_setup_error("Additional parameter '$key' supplied is not allowed.");
 
 					} else {
 
@@ -132,7 +132,7 @@ class Api extends MY_Controller {
 
 			default: 
 
-				$this->_setup_error('Cound\'nt find the class type.');
+				$this->_setup_error('Could\'nt find the class type.');
 
 				break;
 
