@@ -20,6 +20,10 @@ class Api extends MY_Controller {
 
 		parent::__construct();
 
+	}
+
+	private function _get_api_parameters(){
+
 		if ( $this->input->post() !== false ){
 
 			$this->_request_data = $this->input->post();
@@ -30,13 +34,14 @@ class Api extends MY_Controller {
 
 		} else {
 
-			$this->_setup_error('No _POST or _GET data.');
+			//$this->_setup_error('No _POST or _GET data.');
+			throw new Exception('No _POST or _GET data.');
 
 		}
 
 	}
 
-	private function _verify_api_params(){
+	private function _verify_api_parameters(){
 
 		if ( $this->_request_data !== NULL && $this->_request_data !== false && (is_array($this->_request_data) && count($this->_request_data) > 0) ) {
 
@@ -200,7 +205,8 @@ class Api extends MY_Controller {
 
 		try {
 
-			$this->_verify_api_params();
+			$this->_get_api_parameters();
+			$this->_verify_api_parameters();
 			$this->_verify_api_credentials(); //verify api
 
 			$this->_load_class();
