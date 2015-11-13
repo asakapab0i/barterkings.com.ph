@@ -40,36 +40,38 @@ class Api extends MY_Controller {
 
 	private function _verify_api_params(){
 
-		if ( $this->_error === false ) {
+		if ( $this->_request_data !== NULL && $this->_request_data !== false && (is_array($this->_request_data) && count($this->_request_data) > 0) ) {
 
-			if ( $this->_request_data !== NULL && $this->_request_data !== false && (is_array($this->_request_data) && count($this->_request_data) > 0) ) {
+			foreach ($this->_required_parameters as $key => $value) {
 
-				foreach ($this->_required_parameters as $key => $value) {
+				if ( isset($this->_request_data[$value]) === false ) {
 
-					if ( isset($this->_request_data[$value]) === false ) {
-
-						$this->_setup_error("Required parameter '$value' does not exist.");
-
-					}
+					//$this->_setup_error("Required parameter '$value' does not exist.");
+					throw new Exception("Required parameter '$value' does not exist.");
+					
 
 				}
 
-				foreach ($this->_request_data as $key => $value) {
+			}
 
-					$optional_params = array_flip($this->_optional_parameters);
-					$required_params = array_flip($this->_required_parameters);
+			foreach ($this->_request_data as $key => $value) {
 
-					if ( isset($required_params[$key]) === false && isset($optional_params[$key])  === false ) {
+				$optional_params = array_flip($this->_optional_parameters);
+				$required_params = array_flip($this->_required_parameters);
 
-						$this->_setup_error("Additional parameter '$key' supplied is not allowed.");
+				if ( isset($required_params[$key]) === false && isset($optional_params[$key])  === false ) {
 
-					} else {
+					//$this->_setup_error("Additional parameter '$key' supplied is not allowed.");
+					throw new Exception("Additional parameter '$key' supplied is not allowed.");
+					
 
-						if ( isset($this->_request_data['parameters']) && is_array($this->_request_data['parameters']) === false ) {
+				} else {
 
-							$this->_setup_error("Optional parameter '$key' must be an array.");
+					if ( isset($this->_request_data['parameters']) && is_array($this->_request_data['parameters']) === false ) {
 
-						}
+						//$this->_setup_error("Optional parameter '$key' must be an array.");
+						throw new Exception("Optional parameter '$key' must be an array.");
+						
 
 					}
 
@@ -89,7 +91,9 @@ class Api extends MY_Controller {
 
 		} else {
 
-			$this->_setup_error('Connection is not verified.');
+			//$this->_setup_error('Connection is not verified.');
+			throw new Exception('Connection is not verified.');
+			
 
 		}
 
@@ -97,47 +101,50 @@ class Api extends MY_Controller {
 
 	private function _load_class(){
 
-		if ( $this->_error === false ) {
+		switch ( $this->_request_data['type'] ) {
 
-			switch ( $this->_request_data['type'] ) {
+		case 'controller':
 
-			case 'controller':
+			if ( $this->_instance->load->library_api('../controllers/' . strtolower($this->_request_data['class']) . '.php') === false ){
 
-				if ( $this->_instance->load->library_api('../controllers/' . strtolower($this->_request_data['class']) . '.php') === false ){
-
-					$this->_setup_error("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
-
-				}
-
-				break;
-
-			case 'model':
-
-				if ( $this->_instance->load->model_api($this->_request_data['class']) === false ) {
-
-					$this->_setup_error("Model class '".ucfirst($this->_request_data['class'])."' not found.");
-
-				}
-
-				break;
-
-			case 'library':
-
-				if ( $this->_instance->load->library_api($this->_request_data['class']) === false ){
-
-					$this->_setup_error("Library class '".ucfirst($this->_request_data['class'])."' not found.");
-
-				}
-
-				break;
-
-			default: 
-
-				$this->_setup_error('Could\'nt find the class type.');
-
-				break;
+				//$this->_setup_error("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
+				throw new Exception("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
+				
 
 			}
+
+			break;
+
+		case 'model':
+
+			if ( $this->_instance->load->model_api($this->_request_data['class']) === false ) {
+
+				//$this->_setup_error("Model class '".ucfirst($this->_request_data['class'])."' not found.");
+				throw new Exception("Model class '".ucfirst($this->_request_data['class'])."' not found.");
+				
+
+			}
+
+			break;
+
+		case 'library':
+
+			if ( $this->_instance->load->library_api($this->_request_data['class']) === false ){
+
+				//$this->_setup_error("Library class '".ucfirst($this->_request_data['class'])."' not found.");
+				throw new Exception("Library class '".ucfirst($this->_request_data['class'])."' not found.");
+				
+
+			}
+
+			break;
+
+		default: 
+
+			//$this->_setup_error('Could\'nt find the class type.');
+			throw new Exception('Could\'nt find the class type.');
+
+			break;
 
 		}
 
@@ -145,29 +152,27 @@ class Api extends MY_Controller {
 
 	private function _execute_method(){
 
-		if ( $this->_error === false) {
+		$methods = array_flip(get_class_methods($this->_instance->{$this->_request_data['class']}));
 
-			$methods = array_flip(get_class_methods($this->_instance->{$this->_request_data['class']}));
+		if ( array_search($this->_request_data['method'], $methods) !== false ) {
 
-			if ( array_search($this->_request_data['method'], $methods) !== false ) {
+			$object = new ReflectionMethod($this->_request_data['class'], $this->_request_data['method']);
 
-				$object = new ReflectionMethod($this->_request_data['class'], $this->_request_data['method']);
+			if ( isset($this->_request_data['parameters']) ) {
 
-				if ( isset($this->_request_data['parameters']) ) {
+				$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
 
-					$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
-
-				} else {
-
-					$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
-
-				}
-				
 			} else {
 
-				$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
+				$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
 
 			}
+			
+		} else {
+
+			//$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
+			throw new Exception("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
+			
 
 		}
 		
@@ -175,25 +180,25 @@ class Api extends MY_Controller {
 
 	private function _evaluate_result(){
 
-		if ( $this->_error === false ) {
+		if ( $this->_result === NULL ) {
 
-			if ( $this->_result === NULL ) {
+			//$this->_setup_error('No result found.');
+			throw new Exception('No result found.');
+			
 
-				$this->_setup_error('No result found.');
+		} else if ( $this->_result === false ){
 
-			} else if ( $this->_result === false ){
+			//$this->_setup_error('Operation failed.');
+			throw new Exception('Operation failed.');
+			
 
-				$this->_setup_error('Operation failed.');
+		} else if ( $this->_result === true ){
 
-			} else if ( $this->_result === true ){
+			$this->_setup_success('Operation success.');
 
-				$this->_setup_success('Operation success.');
+		} else {
 
-			} else {
-
-				$this->_setup_success($this->_result);
-
-			}
+			$this->_setup_success($this->_result);
 
 		}
 
@@ -201,22 +206,18 @@ class Api extends MY_Controller {
 
 	public function index(){
 
-		$this->_verify_api_params();
-		$this->_verify_api_credentials(); //verify api
+		try {
 
-		if ( $this->_error !== true ) {
+			$this->_verify_api_params();
+			$this->_verify_api_credentials(); //verify api
 
-			try {			
+			$this->_load_class();
+			$this->_execute_method();
+			$this->_evaluate_result();
 
-				$this->_load_class();
-				$this->_execute_method();
-				$this->_evaluate_result();
+		} catch ( Exception $e ) {
 
-			} catch ( Exception $e ) {
-
-				$this->_setup_error($e->getMessage());	
-
-			}
+			$this->_setup_error($e->getMessage());	
 
 		}
 
