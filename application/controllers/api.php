@@ -20,8 +20,6 @@ class Api extends MY_Controller {
 
 		parent::__construct();
 
-		$this->_instance =& get_instance();
-
 		if ( $this->input->post() !== false ){
 
 			$this->_request_data = $this->input->post();
@@ -48,7 +46,6 @@ class Api extends MY_Controller {
 
 					//$this->_setup_error("Required parameter '$value' does not exist.");
 					throw new Exception("Required parameter '$value' does not exist.");
-					
 
 				}
 
@@ -64,14 +61,12 @@ class Api extends MY_Controller {
 					//$this->_setup_error("Additional parameter '$key' supplied is not allowed.");
 					throw new Exception("Additional parameter '$key' supplied is not allowed.");
 					
-
 				} else {
 
 					if ( isset($this->_request_data['parameters']) && is_array($this->_request_data['parameters']) === false ) {
 
 						//$this->_setup_error("Optional parameter '$key' must be an array.");
 						throw new Exception("Optional parameter '$key' must be an array.");
-						
 
 					}
 
@@ -94,12 +89,13 @@ class Api extends MY_Controller {
 			//$this->_setup_error('Connection is not verified.');
 			throw new Exception('Connection is not verified.');
 			
-
 		}
 
 	}
 
 	private function _load_class(){
+
+		$this->_instance =& get_instance();
 
 		switch ( $this->_request_data['type'] ) {
 
@@ -110,7 +106,6 @@ class Api extends MY_Controller {
 				//$this->_setup_error("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
 				
-
 			}
 
 			break;
@@ -122,7 +117,6 @@ class Api extends MY_Controller {
 				//$this->_setup_error("Model class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Model class '".ucfirst($this->_request_data['class'])."' not found.");
 				
-
 			}
 
 			break;
@@ -134,7 +128,6 @@ class Api extends MY_Controller {
 				//$this->_setup_error("Library class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Library class '".ucfirst($this->_request_data['class'])."' not found.");
 				
-
 			}
 
 			break;
@@ -173,7 +166,6 @@ class Api extends MY_Controller {
 			//$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
 			throw new Exception("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
 			
-
 		}
 		
 	}
