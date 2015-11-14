@@ -9,8 +9,6 @@ class Api extends MY_Controller {
 	private $_result = NULL;
 	private $_response = NULL;
 
-	private $_instance;
-
 	private $_api_verified = false;
 
 	private $_required_parameters = array('type', 'class', 'method');
@@ -100,13 +98,11 @@ class Api extends MY_Controller {
 
 	private function _load_class(){
 
-		$this->_instance =& get_instance();
-
 		switch ( $this->_request_data['type'] ) {
 
 		case 'controller':
 
-			if ( $this->_instance->load->library_api('../controllers/' . strtolower($this->_request_data['class']) . '.php') === false ){
+			if ( $this->load->library_api('../controllers/' . strtolower($this->_request_data['class']) . '.php') === false ){
 
 				//$this->_setup_error("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
@@ -117,7 +113,7 @@ class Api extends MY_Controller {
 
 		case 'model':
 
-			if ( $this->_instance->load->model_api($this->_request_data['class']) === false ) {
+			if ( $this->load->model_api($this->_request_data['class']) === false ) {
 
 				//$this->_setup_error("Model class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Model class '".ucfirst($this->_request_data['class'])."' not found.");
@@ -128,7 +124,7 @@ class Api extends MY_Controller {
 
 		case 'library':
 
-			if ( $this->_instance->load->library_api($this->_request_data['class']) === false ){
+			if ( $this->load->library_api($this->_request_data['class']) === false ){
 
 				//$this->_setup_error("Library class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Library class '".ucfirst($this->_request_data['class'])."' not found.");
@@ -150,7 +146,7 @@ class Api extends MY_Controller {
 
 	private function _execute_method(){
 
-		$methods = array_flip(get_class_methods($this->_instance->{$this->_request_data['class']}));
+		$methods = array_flip(get_class_methods($this->{$this->_request_data['class']}));
 
 		if ( array_search($this->_request_data['method'], $methods) !== false ) {
 
@@ -158,11 +154,11 @@ class Api extends MY_Controller {
 
 			if ( isset($this->_request_data['parameters']) ) {
 
-				$this->_result = $object->invokeArgs($this->_instance->{$this->_request_data['class']}, $this->_request_data['parameters']);
+				$this->_result = $object->invokeArgs($this->{$this->_request_data['class']}, $this->_request_data['parameters']);
 
 			} else {
 
-				$this->_result = $object->invoke($this->_instance->{$this->_request_data['class']});
+				$this->_result = $object->invoke($this->{$this->_request_data['class']});
 
 			}
 			
