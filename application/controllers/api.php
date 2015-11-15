@@ -32,7 +32,6 @@ class Api extends MY_Controller {
 
 		} else {
 
-			//$this->_setup_error('No _POST or _GET data.');
 			throw new Exception('No _POST or _GET data.');
 
 		}
@@ -47,7 +46,6 @@ class Api extends MY_Controller {
 
 				if ( isset($this->_request_data[$value]) === false ) {
 
-					//$this->_setup_error("Required parameter '$value' does not exist.");
 					throw new Exception("Required parameter '$value' does not exist.");
 
 				}
@@ -61,14 +59,12 @@ class Api extends MY_Controller {
 
 				if ( isset($required_params[$key]) === false && isset($optional_params[$key])  === false ) {
 
-					//$this->_setup_error("Additional parameter '$key' supplied is not allowed.");
 					throw new Exception("Additional parameter '$key' supplied is not allowed.");
 					
 				} else {
 
 					if ( isset($this->_request_data['parameters']) && is_array($this->_request_data['parameters']) === false ) {
 
-						//$this->_setup_error("Optional parameter '$key' must be an array.");
 						throw new Exception("Optional parameter '$key' must be an array.");
 
 					}
@@ -89,7 +85,6 @@ class Api extends MY_Controller {
 
 		} else {
 
-			//$this->_setup_error('Connection is not verified.');
 			throw new Exception('Connection is not verified.');
 			
 		}
@@ -104,7 +99,6 @@ class Api extends MY_Controller {
 
 			if ( $this->load->library_api('../controllers/' . strtolower($this->_request_data['class']) . '.php') === false ){
 
-				//$this->_setup_error("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Controller class '".ucfirst($this->_request_data['class'])."' not found.");
 				
 			}
@@ -115,7 +109,6 @@ class Api extends MY_Controller {
 
 			if ( $this->load->model_api($this->_request_data['class']) === false ) {
 
-				//$this->_setup_error("Model class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Model class '".ucfirst($this->_request_data['class'])."' not found.");
 				
 			}
@@ -126,7 +119,6 @@ class Api extends MY_Controller {
 
 			if ( $this->load->library_api($this->_request_data['class']) === false ){
 
-				//$this->_setup_error("Library class '".ucfirst($this->_request_data['class'])."' not found.");
 				throw new Exception("Library class '".ucfirst($this->_request_data['class'])."' not found.");
 				
 			}
@@ -135,7 +127,6 @@ class Api extends MY_Controller {
 
 		default: 
 
-			//$this->_setup_error('Could\'nt find the class type.');
 			throw new Exception('Could\'nt find the class type.');
 
 			break;
@@ -164,7 +155,6 @@ class Api extends MY_Controller {
 			
 		} else {
 
-			//$this->_setup_error("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
 			throw new Exception("Model ".ucfirst($this->_request_data['class'])."::{$this->_request_data['method']}() does not exists.");
 			
 		}
@@ -175,13 +165,11 @@ class Api extends MY_Controller {
 
 		if ( $this->_result === NULL ) {
 
-			//$this->_setup_error('No result found.');
 			throw new Exception('No result found.');
 			
 
 		} else if ( $this->_result === false ){
 
-			//$this->_setup_error('Operation failed.');
 			throw new Exception('Operation failed.');
 			
 
@@ -247,8 +235,6 @@ class Api extends MY_Controller {
 	}
 
 	public function __destruct(){
-
-		// /var_dump($this->_request_data);
 
 	}
 	
