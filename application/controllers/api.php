@@ -224,6 +224,8 @@ class Api extends MY_Controller {
 
 	private function _send_response(){
 
+		header('Content-type: application/json');
+        header('Access-Control-Allow-Origin: *');
 		echo json_encode($this->_response);
 
 	}
