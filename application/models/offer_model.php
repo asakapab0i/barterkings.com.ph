@@ -27,12 +27,14 @@ class Offer_model extends CI_Model {
 		$this->message_model->create_message_compose($message);
 
 
+		/*
 		$item_id = $this->input->post('item_id');
 		$offer_item_id = $this->input->post('offer_item_id');
 		$data['offer_item_id'] = $this->input->post('item_id');
 		$data['offer_name'] = "Auto offered from $item_id.";
 		$data['offer_description'] = "This offer is auto reoffered from this item $item_id.";
 		$data['item_id'] = $this->input->post('offer_item_id');
+		*/
 
 		$this->db->insert('offers', $data);
 		$last_id = $this->db->insert_id();

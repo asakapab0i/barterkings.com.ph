@@ -11,7 +11,6 @@ class Account_model extends CI_Model {
 
 	public function _upload_create_thumbnail($filename, $account_id){
 		$config['image_library'] = 'gd2';
-		//$config['source_image']	= "./asset/img/items/" . $filename;
 		$config['new_image'] = "./asset/img/profiles_thumbs/";
 		$config['create_thumb'] = TRUE;
 		$config['maintain_ratio'] = FALSE;
@@ -145,7 +144,7 @@ class Account_model extends CI_Model {
 		$_FILES['profile_img[]']['size']= $files['size'];
 
 		$new_image = $this->image_lib->explode_name($files['name']);
-		$fileName = url_title(microtime() . '_' .$new_image['name']) . $new_image['ext'];
+		$file_name = url_title(microtime() . '_' .$new_image['name']) . $new_image['ext'];
 
 		$config['upload_path'] = './asset/img/profiles';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -153,12 +152,12 @@ class Account_model extends CI_Model {
 		$config['max_width'] = '';
 		$config['max_height'] = '';
 		$config['remove_spaces'] = TRUE;
-		$config['file_name'] = $fileName;
+		$config['file_name'] = $file_name;
 		$this->upload->initialize($config);
 
 		if ($this->upload->do_upload('profile_img[]')) {
 			$sess = $this->get_session();
-			$this->_upload_create_thumbnail($fileName, $sess[0]['id']);
+			$this->_upload_create_thumbnail($file_name, $sess[0]['id']);
 		} else {
 			return FALSE;
 		}
