@@ -1,5 +1,5 @@
   <!-- FOOTER -->
-  <footer class="footer-basic-centered">
+<!--   <footer class="footer-basic-centered">
 
     <p class="footer-company-motto">The company motto.</p>
 
@@ -19,7 +19,7 @@
 
     <p class="footer-company-name">Company Name &copy; 2015</p>
 
-  </footer>
+  </footer> -->
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -35,7 +35,7 @@
 <script>
 	var base_url = "<?php echo base_url()?>";
 </script>
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>

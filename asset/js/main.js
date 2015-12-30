@@ -332,3 +332,31 @@ if (url.match('#')) {
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
 	window.location.hash = e.target.hash;
 })
+
+// Trigger tooltip
+$(function () {
+	$('[data-toggle="tooltip"]').tooltip({html:true, placement:'right'});
+})
+
+$(function(){
+	$(document).on('focus', '#search', function(){
+		$(this).animate({width: '250px'});
+	});
+	$(document).on('focusout', '#search', function(){
+		$(this).animate({width: '196px'});
+	});
+});
+
+$(function(){
+	/*
+	$(document).on('onmouseover', '.item-card-parent', function(){
+		alert(1);
+	});
+*/
+
+	$('.item-card-parent').hover(function(){
+		$(this).find('.user-info-card').show('fast');
+	}, function(){
+		$(this).find('.user-info-card').hide('fast');
+	});
+});
