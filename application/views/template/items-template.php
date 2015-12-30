@@ -9,7 +9,7 @@
 		<div class="thumbnail bootsnipp-thumb">
 			<div class="image-card">
 				<div class="xs user-info-card">
-					by <a href="<?php echo base_url('account/profile/' . $value->username); ?>"><?php echo $value->username; ?></a>
+					by <a href="<?php echo base_url('profile/' . $value->username); ?>"><?php echo $value->username; ?></a>
 				</div>
 				<a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>">
 					<img width="200" height="200" src="<?php echo base_url('asset/img/items_thumbs'); ?>/<?php echo $value->image_thumb; ?>" alt="test">
