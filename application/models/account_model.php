@@ -65,7 +65,8 @@ class Account_model extends MY_Model {
 
 		} else {
 
-			return $this->_get_session_data()[0];
+			$info = $this->_get_session_data();
+			return $info[0];
 
 		}
 
