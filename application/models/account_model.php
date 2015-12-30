@@ -1,12 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Account_model extends CI_Model {			
-
-	private $_post_data;
+class Account_model extends MY_Model {			
 
 	public function __construct(){
-		parent::__construct();
-		$this->_post_data = $this->input->post();
+
+		parent::__construct();		
+
 	}
 
 	public function _upload_create_thumbnail($filename, $account_id){
@@ -41,22 +40,35 @@ class Account_model extends CI_Model {
 	}
 
 	public function login($account_id = NULL){
-		$login_db = $this->db->select('*')
-		->from('accounts')
-		->where('username', $this->_post_data['username'])
-		->where('password', md5($this->_post_data['password']))
-		->or_where('id', $account_id)->get();
 
-		//generate token
-		$login_data = $login_db->result_array();
-		$login_data['api_token'] = md5(time());
+		if ( $this->_get_session_data() === false ) {
 
-		if ($login_db->num_rows() == 1) {
-			$this->session->set_userdata('account', $login_data);
-			return true;
+			$login_db = $this->db->select('*')
+			->from('accounts')
+			->where('username', $this->_input_data['username'])
+			->where('password', md5($this->_input_data['password']))
+			->or_where('id', $account_id)->get();
+
+			//generate token
+			$login_data = $login_db->result_array();
+			$login_data[0]['api_token'] = md5(time());
+
+			if ($login_db->num_rows() == 1) {
+
+				$this->session->set_userdata('account', $login_data);
+				return true;
+
+			} else {
+
+				return false;
+			}
+
+		} else {
+
+			return $this->_get_session_data()[0];
+
 		}
 
-		return false;
 	}
 
 	public function logout(){

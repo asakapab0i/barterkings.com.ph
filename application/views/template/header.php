@@ -14,8 +14,6 @@
 
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/vendor/bootflat.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/site.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/footer.css">
   <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>

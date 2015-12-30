@@ -44,6 +44,7 @@ $route['item/(:num)/(:any)'] = 'item/item/$1/$2';
 $route['item/(:num)'] = 'item/item/$1';
 $route['profile/(:any)'] = 'account/profile/$1';
 $route['profile'] = 'account/profile';
+$route['message/new/(:num)'] = 'message/create/$1';
 
 
 /* End of file routes.php */
