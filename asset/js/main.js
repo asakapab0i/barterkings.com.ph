@@ -335,7 +335,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 
 // Trigger tooltip
 $(function () {
-	$('[data-toggle="tooltip"]').tooltip({html:true, placement:'right'});
+	$('[data-toggle="tooltip"]').tooltip({html:true});
 })
 
 $(function(){

@@ -25,9 +25,9 @@
 					<div class="btn-group" role="group">
 						<a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">PHP <?php echo $value->value; ?></a>
 					</div>
-					<div class="btn-group" role="group" aria-label="...">
-						<button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-						<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+					<div class="btn-group extra-cart-links" role="group" aria-label="#">
+						<button data-toggle="tooltip" data-placement="bottom" title="Add to wishlist" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+						<button data-toggle="tooltip" data-placement="bottom" title="Give love" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			</div>
