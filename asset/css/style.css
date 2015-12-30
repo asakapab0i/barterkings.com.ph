@@ -35,6 +35,7 @@
 	padding-top: 5px;
 	padding-bottom: 0px;
 	height: 50px;
+	margin: 0px 0 6px;
 }
 
 .snipp-title a {
@@ -48,7 +49,13 @@
 
 .thumbnail .caption {
 	color: #555555;
-	padding: 0px;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	background-color: white;
+}
+
+.thumbnail .caption .item-card-location {
+	padding:0px 2px;
 }
 
 .user-info-card {
@@ -66,6 +73,19 @@
 }
 
 .extra-card-links {
-	
+
+}
+
+#search {
+	width: 115px;
+}
+
+.item-card-location{
+	padding: 2px;
+	margin-left: 4px;
+}
+
+.item-card-parent {
+	margin: 0 0 5px;
 }
 

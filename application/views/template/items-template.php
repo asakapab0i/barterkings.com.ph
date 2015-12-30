@@ -17,17 +17,17 @@
 				<p class="snipp-title">
 					<a title="<?php echo $value->name; ?>" href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>"><?php echo character_limiter(word_wrap($value->name), 40); ?></a>
 				</p>
+				<span class="item-card-location label label-success"><?php echo $value->location != '' ? $value->location : 'none'; ?></span>
 			</div>
 			<div class="caption text-center">
-				<!-- <span class="label label-success"><?php echo $value->location != '' ? $value->location : 'none'; ?></span> -->
 				<!-- <a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">PHP <?php echo $value->value; ?></a> -->
 				<div class="row">
 					<div class="btn-group" role="group">
 						<a href="<?php echo base_url('item')?>/<?php echo $value->itemid; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">PHP <?php echo $value->value; ?></a>
 					</div>
 					<div class="btn-group extra-cart-links" role="group" aria-label="#">
-						<button data-toggle="tooltip" data-placement="bottom" title="Add to wishlist" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-						<button data-toggle="tooltip" data-placement="bottom" title="Give love" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+						<button data-toggle="tooltip" data-placement="bottom" title="Favorite" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+						<button data-toggle="tooltip" data-placement="bottom" title="Love" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			</div>

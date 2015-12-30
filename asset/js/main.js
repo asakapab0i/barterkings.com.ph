@@ -340,10 +340,10 @@ $(function () {
 
 $(function(){
 	$(document).on('focus', '#search', function(){
-		$(this).animate({width: '250px'});
+		$(this).animate({width: '175px'});
 	});
 	$(document).on('focusout', '#search', function(){
-		$(this).animate({width: '196px'});
+		$(this).animate({width: '115px'});
 	});
 });
 

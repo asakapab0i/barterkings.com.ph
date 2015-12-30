@@ -38,7 +38,7 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
-                    <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> Barter Now!</a></li>
+                    <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> Barter Now</a></li>
                   </ul>
                   <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
