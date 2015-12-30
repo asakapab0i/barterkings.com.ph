@@ -58,7 +58,7 @@ class Item_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_items_by_account_id($account_id = NULL, $itemid = NULL){
+	public function get_items_by_account_id($account_id = NULL, $itemid = NULL, $limit = 4){
 		if ($itemid !== NULL) {
 			$current_item_offers = $this->offer_model->get_item_offers($itemid);
 		}else{
@@ -74,22 +74,26 @@ class Item_model extends CI_Model {
 			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->where('account_id', $account_id)
 			->where_not_in('offer_item_id', $cio)
 			->where('offers.item_id', $itemid)
+			->limit($limit)
 			->get();
 		}else{
 			$itemsdb = $this->db->select('*')
 			->from('items')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->group_by('items.id')
 			->where('account_id', $account_id)
+			->limit($limit)
 			->get();
 		}
 
 		if ($itemsdb->num_rows() > 0) {
-			return $itemsdb->result_array();
+			return $itemsdb->result();
 		}
 		return FALSE;
 	}
@@ -144,7 +148,7 @@ class Item_model extends CI_Model {
 
 		}
 
-		$itemsdb = $this->db->select('username, items.id as itemid, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->join('accounts', 'accounts.id = items.account_id')

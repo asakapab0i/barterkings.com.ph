@@ -84,15 +84,18 @@ class Offer_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_offered_items_by_account_id(){
+	public function get_offered_items_by_account_id($account_id, $limit = 4){
 		$sess = $this->account_model->get_session();
 
 		$offered = $this->db->select('*')
 		->from('offers')
 		->join('items', 'items.id = item_id', 'left')
 		->join('items_images', 'items_images.item_id = items.id')
+		->join('accounts', 'accounts.id = items.account_id', 'left')
 		->where('items.account_id', $sess[0]['id'])
+		->or_where('items.account_id', $account_id)
 		->group_by('items.id')
+		->limit($limit)
 		->get();
 
 		if ($offered->num_rows() > 0) {
