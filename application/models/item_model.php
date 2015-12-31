@@ -167,7 +167,7 @@ class Item_model extends CI_Model {
 	public function get_items_search(){
 		$search = $this->input->get();
 
-		$itemsdb = $this->db->select('username, items.id as itemid, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->join('accounts', 'items.account_id = accounts.id', 'left')

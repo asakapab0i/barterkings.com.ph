@@ -66,7 +66,7 @@
                     </ul>
 
                   </div>
-                  <hr>
+                  <hr class="nav-hr">
                 </div> 
                 <div class="container small">
                   <ul class="nav navbar-nav category-list">
