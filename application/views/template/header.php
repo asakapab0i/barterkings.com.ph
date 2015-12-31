@@ -75,9 +75,12 @@
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Computer Electronics</a>
                         <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Cellphones & Accessories</a></li>
+                          <li><a href="#">Computers & Accessories</a></li>
+                          <li><a href="#">Gadgets & Accessories</a></li>
+                          <li><a href="#">Household Appliances & Accessories</a></li>
+                          <li><a href="#">Photography Equipment & Accessories</a></li>
+                          <li><a href="#">Other Electronic Devices</a></li>
                         </ul>
                       </div>
 
@@ -86,10 +89,10 @@
                   
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Entertainment & Hobbies</a>
-                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat2">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                        <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat2">
+                          <li><a href="#">Books & Magazines</a></li>
+                          <li><a href="#">Collectibles, Memorabilias & Hobbies</a></li>
+                          <li><a href="#">Music & Movies</a></li>
                         </ul>
                       </div>
 
@@ -97,12 +100,7 @@
                     <li class="#">
                   
                       <div class="dropdown">
-                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Food & Beverages</a>
-                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat3">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                        </ul>
+                        <a href="#" class="category-each dropdown-toggle" id="cat3">Food & Beverages</a>
                       </div>
 
                     </li>
@@ -111,9 +109,9 @@
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Jobs</a>
                         <ul class="category-dropdown dropdown-menu" aria-labelledby="cat4">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Call Center / BPO</a></li>
+                          <li><a href="#">Overseas</a></li>
+                          <li><a href="#">Part-time & Home-based</a></li>
                         </ul>
                       </div>
 
@@ -123,9 +121,10 @@
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Lifestyle</a>
                         <ul class="category-dropdown dropdown-menu" aria-labelledby="cat5">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Babies & Kids Stuffs</a></li>
+                          <li><a href="#">Clothing & Accessories</a></li>
+                          <li><a href="#">Health & Beauty</a></li>
+                          <li><a href="#">Shoes, Bags & Accessories</a></li>
                         </ul>
                       </div>
 
@@ -133,24 +132,14 @@
                     <li class="#">
                   
                       <div class="dropdown">
-                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Pets</a>
-                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat6">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                        </ul>
+                        <a href="#" class="category-each dropdown-toggle" id="cat6">Pets</a>
                       </div>
 
                     </li>
                      <li class="#">
                   
                       <div class="dropdown">
-                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Real Estate</a>
-                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat7">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                        </ul>
+                        <a href="#" class="category-each dropdown-toggle"id="cat7">Real Estate</a>
                       </div>
 
                     </li>
@@ -159,9 +148,8 @@
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Specialty Services</a>
                         <ul class="category-dropdown dropdown-menu" aria-labelledby="cat8">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Parties & Events Coordination</a></li>
+                          <li><a href="#">Travel & Hospitality</a></li>
                         </ul>
                       </div>
 
@@ -169,12 +157,7 @@
                     <li class="#">
                   
                       <div class="dropdown">
-                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sporting Goods</a>
-                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat9">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                        </ul>
+                        <a href="#" class="category-each dropdown-toggle" id="cat9">Sporting Goods</a>
                       </div>
 
                     </li>
@@ -183,9 +166,13 @@
                       <div class="dropdown">
                         <a href="#" class="category-each dropdown-toggle" type="button" id="cat10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Vehicles, Parts, & Accessories</a>
                         <ul class="category-dropdown dropdown-menu" aria-labelledby="cat10">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                          <li><a href="#">Cars & Van</a></li>
+                          <li><a href="#">Pickup & SUVs</a></li>
+                          <li><a href="#">Tracks, Busses, & Service Vehicles</a></li>
+                          <li><a href="#">Auto Parts, Accessories, & Services</a></li>
+                          <li><a href="#">Motorcycles</a></li>
+                          <li><a href="#">Motorcycles Parts, Accesories, & Services</a></li>
+                          <li><a href="#">Common Grounds - Car Audio Gadgets</a></li>
                         </ul>
                       </div>
 
