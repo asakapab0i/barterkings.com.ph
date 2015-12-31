@@ -167,3 +167,39 @@
 .html, body{
 	height: 100%;
 }
+
+.category-list {
+	padding-bottom: 10px;
+}
+
+.category-list li {
+	padding-right: 20px;
+}
+
+.category-list li a {
+	color: #555555;
+	text-decoration: none;
+}
+
+.category-list .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.category-each {
+	padding-top: 5px;
+}
+
+.category-each:hover {
+	/*border: 1px solid #ccc;
+	padding: 5px;
+	border-radius: 2px;*/
+}
+
+.category-each ul {
+	border: 0px;
+}
+
+.category-dropdown{
+
+}

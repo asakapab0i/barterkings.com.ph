@@ -24,7 +24,7 @@
             <![endif]-->
             <!-- HEADER -->
             <nav class="navbar navbar-default">
-              <div class="container">
+            <div class="container">
                 <div class="container-fluid">
                   <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -40,14 +40,14 @@
                    <ul class="nav navbar-nav">
                     <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> Barter Now</a></li>
                   </ul>
+
                   <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                    <input id="search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Search items">
+                      <input id="search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Search items">
                       <span class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                       </span>
-                    </div><!-- /input-group -->
-                    
+                    </div>
                   </form>
 
                   <ul class="nav navbar-nav navbar-right">
@@ -64,7 +64,141 @@
                         <li><a href="<?php echo base_url('account/register'); ?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Register</a></li>
                       <?php endif; ?>
                     </ul>
+
                   </div>
+                  <hr>
+                </div> 
+                <div class="container small">
+                  <ul class="nav navbar-nav category-list">
+                    <li class="">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Computer Electronics</a>
+                        <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Entertainment & Hobbies</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat2">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Food & Beverages</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat3">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Jobs</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat4">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                     <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Lifestyle</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat5">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Pets</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat6">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                     <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Real Estate</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat7">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Specialty Services</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat8">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sporting Goods</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat9">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each dropdown-toggle" type="button" id="cat10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Vehicles, Parts, & Accessories</a>
+                        <ul class="category-dropdown dropdown-menu" aria-labelledby="cat10">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+
+                    </li>
+                    <li class="#">
+                  
+                      <div class="dropdown">
+                        <a href="#" class="category-each" id="cat11" >Other</a>
+                      </div>
+
+                    </li>
+
+                  </ul>
                 </div>
               </div>
             </nav>
