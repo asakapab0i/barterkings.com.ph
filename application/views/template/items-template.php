@@ -55,7 +55,7 @@ if (isset($items)) {
 	</div>	
 <?php endforeach;?>
 <?php else:?>
-	<p>No items found. Try different keywords.</p>
+	<!-- If no items found -->
 <?php endif;?>
 
 

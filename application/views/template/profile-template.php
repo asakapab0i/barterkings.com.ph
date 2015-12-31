@@ -13,6 +13,8 @@
             </span>
             <button id="upload-profile-img-btn" class="form-control btn btn-primary btn-sm btn-block">Upload Profile</button>
      </form>
+ <?php else: ?>
+   <button id="upload-profile-img-btn" class="form-control btn btn-primary btn-sm btn-block">Send Message</button> 
  <?php endif; ?>
 </div>
 <div class="col-sm-6 col-md-7">

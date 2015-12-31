@@ -359,4 +359,7 @@ $(function(){
 	}, function(){
 		$(this).find('.user-info-card').hide('fast');
 	});
+
+	
+
 });

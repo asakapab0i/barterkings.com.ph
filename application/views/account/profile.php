@@ -5,11 +5,11 @@
         </div>
     </div>
     <div class="col-md-6">
-         <div class="well well-no-bg">
+         <div class="profile-offers-list well well-no-bg">
             <h1><small class="pull-right"><span data-itemid="" class="reload-offers-count"><?php echo $offers_count; ?></span> offers</small> Offers 
             </h1>
             <hr>
-            <div class="profile-offers-list reload-offers">
+            <div class=" reload-offers">
                 <?php $this->load->view('template/profile-offers-template');?>
             </div>
         </div>

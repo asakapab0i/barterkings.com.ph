@@ -1,25 +1,26 @@
   <!-- FOOTER -->
-<!--   <footer class="footer-basic-centered">
+  <footer class="footer-basic-centered">
 
-    <p class="footer-company-motto">The company motto.</p>
+    <div class="container">
+      <p class="footer-links">
+        <a href="#">Home</a>
+        ·
+        <a href="#">Blog</a>
+        ·
+        <a href="#">Pricing</a>
+        ·
+        <a href="#">About</a>
+        ·
+        <a href="#">Faq</a>
+        ·
+        <a href="#">Contact</a>
+        <a href="#"><span class="pull-right footer-company-name">Company Name &copy; 2015</span></a>
+      </p>
 
-    <p class="footer-links">
-      <a href="#">Home</a>
-      ·
-      <a href="#">Blog</a>
-      ·
-      <a href="#">Pricing</a>
-      ·
-      <a href="#">About</a>
-      ·
-      <a href="#">Faq</a>
-      ·
-      <a href="#">Contact</a>
-    </p>
 
-    <p class="footer-company-name">Company Name &copy; 2015</p>
+    </div>
 
-  </footer> -->
+  </footer>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
