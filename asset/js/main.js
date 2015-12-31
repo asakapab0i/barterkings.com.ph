@@ -348,11 +348,6 @@ $(function(){
 });
 
 $(function(){
-	/*
-	$(document).on('onmouseover', '.item-card-parent', function(){
-		alert(1);
-	});
-*/
 
 	$('.item-card-parent').hover(function(){
 		$(this).find('.user-info-card').show('fast');
@@ -360,6 +355,17 @@ $(function(){
 		$(this).find('.user-info-card').hide('fast');
 	});
 
-	
+	$('.category-dropdown').hover(function(){
+		$(this).parent().find('.category-each').css({border:'1px solid #e7e7e7'});
+	}, function(){
+		$(this).parent().find('.category-each').css({border:'1px solid white'});
+	});
+
+	$('.category-each').hover(function(){
+		$(this).css({border:'1px solid #e7e7e7'});
+	}, function(){
+		$(this).css({border:'1px solid white'});
+	});
 
 });
+

@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="col-md-6"> 
-		<div class="well well-no-bg">
+		<div class="item-images  well well-no-bg">
 			<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images-count"><?php echo $images_count; ?></span> images</small> Images
 				<?php if ($editable === TRUE):?>
 					<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/upload/" data-method="upload" class="pop-modal btn btn-primary">Upload</a>
@@ -43,5 +43,5 @@
 			</div>
 		</div> 
 	</div>
-	
+
 </div>

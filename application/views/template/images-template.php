@@ -1,7 +1,7 @@
 <?php if($images !== FALSE): ?>
 	<?php foreach($images as $image): ?>
 		<?php $name = $image['image_thumb']; ?>
-		<div class="">
+		<div class="col-md-3">
 			<img src="<?php echo base_url("asset/img/items_thumbs/$name"); ?>" alt="teste" class="thumbnail img-thumbnail">
 		</div>	
 	<?php endforeach;?>
