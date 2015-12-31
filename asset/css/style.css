@@ -32,7 +32,6 @@
 }
 
 .snipp-title{
-	padding-top: 5px;
 	padding-bottom: 0px;
 	height: 50px;
 	margin: 0px 0 6px;
@@ -65,7 +64,11 @@
 
 .image-card{
 	overflow: hidden;
-	height: 250px;
+	height: 247px;
+}
+
+.image-card a img {
+	width: 100%;
 }
 
 .form-control {
@@ -81,8 +84,7 @@
 }
 
 .item-card-location{
-	padding: 2px;
-	margin-left: 4px;
+	padding: 5px 10px;
 }
 
 .item-card-parent {

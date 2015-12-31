@@ -1,7 +1,7 @@
 <?php 
-	if (isset($items)) {
-		$data = $items;
-	}
+if (isset($items)) {
+	$data = $items;
+}
 ?>
 <?php if($data !== FALSE): ?>
 
@@ -24,18 +24,28 @@
 				</p>
 				<span class="item-card-location label label-success"><?php echo $value->location != '' ? $value->location : 'none'; ?></span>
 			</div>
-			<div class="caption text-center">
-				<!-- <a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">PHP <?php echo $value->value; ?></a> -->
-				<div class="row">
-					<div class="btn-group" role="group">
-						<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary btn-block">PHP <?php echo $value->value; ?></a>
-					</div>
-					<div class="btn-group extra-cart-links" role="group" aria-label="#">
-						<button data-toggle="tooltip" data-placement="bottom" title="Favorite" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
-						<button data-toggle="tooltip" data-placement="bottom" title="Love" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-					</div>
+
+			<div class="row">
+				<div class="col-md-12">
+				<div class="btn-group btn-block">
+					<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn col-md-6 btn-sm btn-primary">PHP <?php echo $value->value; ?></a>
+					<button data-toggle="tooltip" data-placement="top" title="Favorite" type="button" class="col-md-3 btn-sm btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+					<button data-toggle="tooltip" data-placement="top" title="Love" type="button" class="col-md-3 btn btn-sm btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
 				</div>
 			</div>
+			</div>
+			<!-- <div class="caption text-center">
+				
+				<div class="row">
+					<div class="btn-group" role="group">
+						<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary">PHP <?php echo $value->value; ?></a>
+						
+					</div>
+					<div class="btn-group extra-cart-links" role="group" aria-label="#">
+						
+					</div>
+				</div>
+			</div> -->
 		</div>
 	</div>	
 <?php endforeach;?>

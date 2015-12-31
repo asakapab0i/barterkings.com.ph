@@ -34,13 +34,11 @@
 			</div>
 		</div>
 	<?php else: ?>
-		<div class="container">
-			<div class="col-md-3">
-				<?php $this->load->view('template/advance-search-template'); ?>
-			</div>
-			<div class="col-md-9">
-				<?php $this->load->view('template/items-template'); ?>
-			</div>
+		<div class="col-md-3">
+			<?php $this->load->view('template/advance-search-template'); ?>
+		</div>
+		<div class="col-md-9">
+			<?php $this->load->view('template/items-template'); ?>
 		</div>
 	<?php endif; ?>
 </div>
