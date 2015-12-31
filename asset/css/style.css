@@ -94,3 +94,11 @@
 .media{
 	overflow: inherit;
 }
+
+.image-card a {
+	color: #555555;
+}
+
+.user-info-card .item-card-views {
+	font-size: 10px;
+}

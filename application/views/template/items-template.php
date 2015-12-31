@@ -13,8 +13,13 @@ if (isset($items)) {
 	<div class="item-card-parent col-sm-12 col-xs-12 col-md-3 col-lg-3">
 		<div class="thumbnail bootsnipp-thumb">
 			<div class="image-card">
-				<div class="xs user-info-card">
+				<div class="user-info-card">
 					by <a href="<?php echo base_url('profile/' . $value->username); ?>"><?php echo $value->username; ?></a>
+					<i class="pull-right label label-default">
+						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 212
+					</i>
+
+					<!-- <span class="pull-right glyphicon glyphicon-eye-open" aria-hidden="true"><i class="item-card-views">21K</i></span> -->
 				</div>
 				<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>">
 					<img width="200" height="200" src="<?php echo base_url('asset/img/items_thumbs'); ?>/<?php echo $value->image_thumb; ?>" alt="test">
