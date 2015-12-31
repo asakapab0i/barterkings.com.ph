@@ -1,6 +1,6 @@
 <?php foreach ($data as $value): ?>
 	<div class="page-details">
-		<table class="pull-left">
+		<table class="">
 			<tbody>
 				<tr>
 					<td class="item-head"><strong>Item Name</strong></td>
