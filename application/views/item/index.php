@@ -9,6 +9,14 @@
 				</h4><hr>
 				<?php $this->load->view('template/item-template'); ?>
 		</div> 
+		<div class="well well-no-bg">
+			<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
+				<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-primary">Make comments</a>
+			</h4><hr>
+			<div class="comments-list reload-comments">
+				<?php $this->load->view('template/comments-template');?>
+			</div>
+		</div> 
 	</div>
 
 	<div class="col-md-6"> 
@@ -22,19 +30,6 @@
 				<?php $this->load->view('template/images-template'); ?>	
 			</div>
 		</div>
-	</div>
-
-	<div class="col-md-6">
-		<div class="well well-no-bg">
-			<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
-				<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-primary">Make comments</a>
-			</h4><hr>
-			<div class="comments-list reload-comments">
-				<?php $this->load->view('template/comments-template');?>
-			</div>
-		</div> 
-	</div>
-	<div class="col-md-6">
 		<div class="well well-no-bg">
 			<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers</small> Offers 
 				<?php if($item_owner === FALSE): ?>
@@ -48,4 +43,5 @@
 			</div>
 		</div> 
 	</div>
+	
 </div>
