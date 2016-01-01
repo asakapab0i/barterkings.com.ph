@@ -270,7 +270,7 @@
   content: '';
 }
 
-.nav-profile-image > .thumbnail {
+.nav-profile-image .thumbnail {
 	margin-bottom: 0px;
 	display: inline-block;
 
