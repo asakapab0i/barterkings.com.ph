@@ -367,5 +367,13 @@ $(function(){
 		$(this).css({border:'1px solid white'});
 	});
 
+	$('.nav-profile-image').hover(function(){
+		$('.nav-profile-dropdown').addClass('open').show();
+		$('.nav-username .caret').hide();
+	}, function(){
+		$('.nav-profile-dropdown').removeClass('open').hide();
+		$('.nav-username .caret').show();
+	});
+
 });
 

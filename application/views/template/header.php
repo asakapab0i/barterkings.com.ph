@@ -24,7 +24,7 @@
             <![endif]-->
             <!-- HEADER -->
             <nav class="navbar navbar-default">
-            <div class="container">
+              <div class="container">
                 <div class="container-fluid">
                   <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -38,7 +38,7 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
-                    <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span></a></li>
+                    <li class="barter-now"><a data-placement="bottom" data-toggle="tooltip" title="Barter Now" href="<?php echo base_url('item/add'); ?>"><span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span></a></li>
                   </ul>
 
                   <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
@@ -52,25 +52,40 @@
 
                   <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
-                      <li><a href="<?php echo base_url('profile'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
-                      <li><a href="<?php echo base_url('settings'); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a></li>
-                      <li><a href="<?php echo base_url('notification'); ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> </a></li>
-                      <li><a href="<?php echo base_url('message'); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Profile" href="<?php echo base_url('profile'); ?>"><span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Notification" href="<?php echo base_url('notification'); ?>"><span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span> </a></li>
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>"><span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
-                          <span class="label label-success"><?php echo $_inbox_count; ?></span> </a></li>
-                        <?php endif;?>
-                        <li><a href="<?php echo base_url('account/logout'); ?>"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+                          <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> </a></li>
+                        <?php endif;?></a></li>
+                        <li class="dropdown nav-profile-image">
+                         <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
+                          <img src="<?php echo base_url('asset/img/profiles/profile.jpg');?>">
+                         </span>
+
+                         <span class="text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                          <?php echo $_is_logged_in[0]['username'] ?>  <span class="caret"></span>
+                         </span> 
+
+                          <ul class="dropdown-menu nav-profile-dropdown">
+                            <li><a title="Dashboard" href="<?php echo base_url('dashboard'); ?>"> Dashboard</a></li>
+                            <li><a title="Settings" href="<?php echo base_url('settings'); ?>"> Settings</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a title="Logout" href="<?php echo base_url('account/logout'); ?>"> Logout</a></li>
+                          </ul>
+
+                        </li>
                       <?php else: ?>
-                        <li><a href="<?php echo base_url('account/login'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
-                        <li><a href="<?php echo base_url('account/register'); ?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Register</a></li>
+                        <li><a data-placement="bottom" data-toggle="tooltip title="Login" href="<?php echo base_url('account/login'); ?>"><span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+                        <li><a data-placement="bottom" data-toggle="tooltip" title="Register" href="<?php echo base_url('account/register'); ?>"><span class="nav-icon glyphicon glyphicon-heart" aria-hidden="true"></span> Register</a></li>
                       <?php endif; ?>
                     </ul>
 
                   </div>
                   <hr class="nav-hr">
                 </div> 
-              
-              <?php $this->load->view('template/subnav_category'); ?>
+
+                <?php $this->load->view('template/subnav_category'); ?>
 
               </div>
             </nav>
