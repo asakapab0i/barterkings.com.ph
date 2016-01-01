@@ -27,7 +27,7 @@ class MY_Controller extends CI_Controller {
 	public function _load_defaults(){
 
 		$this->_data['_inbox_count'] = ($this->_get_inbox_count() !== FALSE ? count($this->_get_inbox_count()) : 0);
-		$this->_data['_is_logged_in'] =  $this->_get_session_data();
+		$this->_data['_is_logged_in'] = $this->_get_account_info();
 
 	}
 
@@ -35,6 +35,18 @@ class MY_Controller extends CI_Controller {
 
 		$this->load->model('message_model');
 		return $this->message_model->get_messages_inbox_unread();
+
+	}
+
+	public function _get_account_info(){
+		$this->load->model('account_model');
+		$session_data = $this->account_model->get_session();
+
+		if ($session_data !== FALSE) {
+			 return $this->account_model->get_account_info_by_account_id($session_data[0]['id']);
+		}
+
+		return FALSE;
 
 	}
 
