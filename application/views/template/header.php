@@ -38,12 +38,17 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
-                    <li class="barter-now"><a data-placement="bottom" data-toggle="tooltip" title="Barter Now" href="<?php echo base_url('item/add'); ?>"><span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span></a></li>
+                    <li class="barter-now">
+                      <a data-placement="bottom" data-toggle="tooltip" title="Barter Now" href="<?php echo base_url('item/add'); ?>">
+                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span>
+                        <span class="visible-xs-inline nav-xs-label">Barter Now</span>
+                      </a>
+                    </li>
                   </ul>
 
                   <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                      <input id="search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Search items">
+                      <input id="nav-search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Looking for something?">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                       </span>
@@ -52,12 +57,20 @@
 
                   <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
-                      <li><a data-placement="bottom" data-toggle="tooltip" title="Profile" href="<?php echo base_url('profile'); ?>"><span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
-                      <li><a data-placement="bottom" data-toggle="tooltip" title="Notification" href="<?php echo base_url('notification'); ?>"><span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span> </a></li>
-                      <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>"><span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
+                      <li>
+                        <a data-placement="bottom" data-toggle="tooltip" title="Profile" href="<?php echo base_url('profile'); ?>">
+                          <span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span>
+                          <span class="visible-xs-inline nav-xs-label">My Profile</span>
+                        </a>
+                      </li>
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Notification" href="<?php echo base_url('notification'); ?>">
+                        <span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span><span class="visible-xs-inline nav-xs-label"> Notifications</span> </a>
+                      </li>
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>">
+                        <span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
-                          <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> </a></li>
-                        <?php endif;?></a></li>
+                          <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> <span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
+                        <?php endif;?><span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <li class="dropdown nav-profile-image">
                          <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
                           <img src="<?php echo base_url('asset/img/profiles_thumbs/' . $_is_logged_in[0]['profile_img_thumb']);?>">

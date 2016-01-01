@@ -338,14 +338,14 @@ $(function () {
 	$('[data-toggle="tooltip"]').tooltip({html:true});
 })
 
-$(function(){
-	$(document).on('focus', '#search', function(){
-		$(this).animate({width: '175px'});
-	});
-	$(document).on('focusout', '#search', function(){
-		$(this).animate({width: '115px'});
-	});
-});
+// $(function(){
+// 	$(document).on('focus', '#search', function(){
+// 		$(this).animate({width: '500px'});
+// 	});
+// 	$(document).on('focusout', '#search', function(){
+// 		$(this).animate({width: '400px'});
+// 	});
+// });
 
 $(function(){
 

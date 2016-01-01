@@ -1,4 +1,4 @@
-<form action="<?php echo base_url('home/item'); ?>" class="well well-no-bg">
+<form action="<?php echo base_url('home/item'); ?>" class="well well-no-bg hidden-sm hidden-xs">
 	<div class="form-group">
 		<label for="item">Search Items</label>
 		<input value="<?php if(isset($search['item'])) echo $search['item']; ?>" name="item" type="text" class="form-control" id="item" placeholder="">
