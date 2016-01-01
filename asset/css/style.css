@@ -298,9 +298,7 @@
 	}
 
 	.image-card a img {
-		width: 100%;
 		height: 135px;
-		border-radius: 5px;
 	}
 }
 
@@ -318,9 +316,7 @@
 	}
 
 	.image-card a img {
-		width: 100%;
 		height: 180px;
-		border-radius: 5px;
 	}
 }
 
@@ -343,9 +339,7 @@
 	}
 
 	.image-card a img {
-		width: 100%;
 		height: 150px;
-		border-radius: 5px;
 	}
 }
 
@@ -367,9 +361,7 @@
 	}
 
 	.image-card a img {
-		width: 100%;
 		height: 128px;
-		border-radius: 5px;
 	}
 }
 
@@ -391,8 +383,6 @@
 	}
 
 	.image-card a img {
-		width: 100%;
 		height: 125px;
-		border-radius: 5px;
 	}
 }

@@ -356,8 +356,10 @@ $(function(){
 	});
 
 	$('.category-dropdown').hover(function(){
+		$(this).parent().find('.category-each').dropdown('toggle');
 		$(this).parent().find('.category-each').css({border:'1px solid #e7e7e7'});
 	}, function(){
+		$(this).parent().find('.category-each').dropdown('toggle');
 		$(this).parent().find('.category-each').css({border:'1px solid white'});
 	});
 
@@ -368,10 +370,12 @@ $(function(){
 	});
 
 	$('.nav-profile-image').hover(function(){
-		$('.nav-profile-dropdown').addClass('open').show();
+		$('.nav-profile-dropdown').dropdown('toggle');
+		// $('.nav-profile-dropdown').addClass('open').show();
 		$('.nav-username .caret').css({color: 'white'});
 	}, function(){
-		$('.nav-profile-dropdown').removeClass('open').hide();
+		// $('.nav-profile-dropdown').removeClass('open').hide();
+		$('.nav-profile-dropdown').dropdown('toggle');
 		$('.nav-username .caret').css({color : '#555555'});
 	});
 
