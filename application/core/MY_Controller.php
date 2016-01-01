@@ -27,7 +27,8 @@ class MY_Controller extends CI_Controller {
 	public function _load_defaults(){
 
 		$this->_data['_inbox_count'] = ($this->_get_inbox_count() !== FALSE ? count($this->_get_inbox_count()) : 0);
-		$this->_data['_is_logged_in'] = $this->_get_session_data();
+		$this->_data['_is_logged_in']['session_data'] = $session_data = $this->_get_session_data();
+
 	}
 
 	public function _get_inbox_count(){
