@@ -60,11 +60,11 @@
                         <?php endif;?></a></li>
                         <li class="dropdown nav-profile-image">
                          <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
-                          <img src="<?php echo base_url('asset/img/profiles_thumbs/' . $_is_logged_in['session_data'][0]['profile_img_thumb']);?>">
+                          <img src="<?php echo base_url('asset/img/profiles_thumbs/' . $_is_logged_in[0]['profile_img_thumb']);?>">
                          </span>
 
                          <span class="text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-                          <?php echo $_is_logged_in['session_data'][0]['username'] ?>  <span class="caret"></span>
+                          <?php echo $_is_logged_in[0]['username'] ?>  <span class="caret"></span>
                          </span> 
 
                           <ul class="dropdown-menu nav-profile-dropdown">
