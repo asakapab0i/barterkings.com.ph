@@ -72,7 +72,7 @@
                      <li class="#">
                   
                       <div class="dropdown">
-                        <a href="#" class="category-each dropdown-toggle"id="cat7">Real Estate</a>
+                        <a href="#" class="category-each dropdown-toggle" id="cat7">Real Estate</a>
                       </div>
 
                     </li>

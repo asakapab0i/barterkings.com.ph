@@ -225,3 +225,7 @@
 .category-list a{
 	font-size: 85%;
 }
+
+.glyphicon {
+	vertical-align: -2px;
+}

@@ -38,7 +38,7 @@
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
-                    <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> Barter Now</a></li>
+                    <li class="barter-now"><a href="<?php echo base_url('item/add'); ?>"><span class="glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span></a></li>
                   </ul>
 
                   <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
@@ -52,9 +52,10 @@
 
                   <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
-                      <li><a href="<?php echo base_url('profile'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
-                      <li><a href="<?php echo base_url('settings'); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
-                      <li><a href="<?php echo base_url('message'); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Inbox 
+                      <li><a href="<?php echo base_url('profile'); ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
+                      <li><a href="<?php echo base_url('settings'); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a></li>
+                      <li><a href="<?php echo base_url('notification'); ?>"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> </a></li>
+                      <li><a href="<?php echo base_url('message'); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
                           <span class="label label-success"><?php echo $_inbox_count; ?></span> </a></li>
                         <?php endif;?>
