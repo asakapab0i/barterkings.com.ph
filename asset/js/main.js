@@ -369,10 +369,10 @@ $(function(){
 
 	$('.nav-profile-image').hover(function(){
 		$('.nav-profile-dropdown').addClass('open').show();
-		$('.nav-username .caret').hide();
+		$('.nav-username .caret').css({color: 'white'});
 	}, function(){
 		$('.nav-profile-dropdown').removeClass('open').hide();
-		$('.nav-username .caret').show();
+		$('.nav-username .caret').css({color : '#555555'});
 	});
 
 });

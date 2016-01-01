@@ -1,5 +1,5 @@
   <div class="container">
-                <div class="container-fluid">
+                <div class="">
                   <ul class="nav navbar-nav category-list">
                     <li class="">
                   
