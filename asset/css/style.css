@@ -406,11 +406,11 @@
 
 @media (min-width: 768px){
 	#nav-search {
-		width: 107px;
+		width: 285px;
 	}
 
 	#nav-search:focus {
-		width: 378px;
+		width: 290px;
 	}
 
 	.item-card-parent{
@@ -454,7 +454,7 @@
 	}
 
 	#nav-search:focus{
-		width: 500px;
+		width: 455px;
 	}
 
 	.item-card-parent{
