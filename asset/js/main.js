@@ -394,5 +394,11 @@ $(function(){
 		$('.nav-username .caret').css({color : '#555555'});
 	});
 
+	$('.barter-now button').click(function(){
+		var url = $(this).attr('href');
+		console.log(url);
+		window.location.replace(url);
+	});
+
 });
 
