@@ -245,26 +245,26 @@
 }
 
 .nav-profile-dropdown:before {
-  position: absolute;
-  top: -6px;
-  right: 9px;
-  display: inline-block;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
-  border-left: 7px solid transparent;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  content: '';
+	position: absolute;
+	top: -6px;
+	right: 9px;
+	display: inline-block;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #ccc;
+	border-left: 7px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+	content: '';
 }
 
 .nav-profile-dropdown:after {
-  position: absolute;
-  top: -5px;
-  right: 10px;
-  display: inline-block;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid #ffffff;
-  border-left: 6px solid transparent;
-  content: '';
+	position: absolute;
+	top: -5px;
+	right: 10px;
+	display: inline-block;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid #ffffff;
+	border-left: 6px solid transparent;
+	content: '';
 }
 
 .nav-profile-image .thumbnail {
@@ -285,6 +285,75 @@
 	min-width: 120px;
 }
 
+.panel {
+	border: 1px solid #e7e7e7;
+	-webkit-box-shadow: inset 0 2px 0 rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 0 rgba(0,0,0,0.05);
+}
+
+.panel > .panel-heading {
+	background-color: #ffffff;
+	-webkit-box-shadow: inset 0 2px 0 rgba(0,0,0,0.05);
+	box-shadow: inset 0 2px 0 rgba(0,0,0,0.05);
+	border-bottom: 1px solid rgba(0,0,0,0.05)
+}
+
+.panel-heading > h4 {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.panel-heading > h3 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.slider.slider-horizontal{
+	width: 100%;
+}
+
+.slider.slider-horizontal span{
+	background-color: #28b62c;
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: bold;
+	line-height: 1;
+	color: #ffffff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+.slider-tick.in-selection{
+	border-radius: 50%;
+    background: #fff;
+    border: 4px solid #28b62c;
+    color: #666;
+}
+
+.slider-handle{
+	border-radius: 50%;
+    background: #fff;
+    border: 4px solid #28b62c;
+    color: #666;
+}
+
+.slider-selection.tick-slider-selection{
+	 background: #28b62c;
+}
+
+.slider-track{
+	background: #DDD;
+}
+
+.slider.slider-horizontal .slider-tick, .slider.slider-horizontal .slider-handle{
+	margin-top: -7px;
+}
+
+.slider.slider-horizontal .slider-track{
+	height: 6px;
+}
 
 /*SEACH INPUT RESPONSIVE*/
 

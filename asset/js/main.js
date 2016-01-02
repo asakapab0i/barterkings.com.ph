@@ -326,17 +326,27 @@ if (url.match('#')) {
 			$('.content-body').html(result);
 		}
 	});
-} 
+}
 
-// Change hash for page-reload
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-	window.location.hash = e.target.hash;
-})
+//ACTIVATION OF PLUGIN 
 
-// Trigger tooltip
-$(function () {
+$(function(){
+	$('.nav-tabs a').on('shown.bs.tab', function (e) {
+		window.location.hash = e.target.hash;
+	})
+
 	$('[data-toggle="tooltip"]').tooltip({html:true});
-})
+
+	$('.slider').slider({
+		formatter: function(value) {
+			return 'Current value: ' + value;
+		}
+	});
+
+	$('.selectpicker').selectpicker({
+		style: 'btn-default',
+		size: 4
+	});
 
 // $(function(){
 // 	$(document).on('focus', '#search', function(){
@@ -346,6 +356,11 @@ $(function () {
 // 		$(this).animate({width: '400px'});
 // 	});
 // });
+
+});
+
+
+//ACTIVATION OF SPECIFIC ELEMENT
 
 $(function(){
 

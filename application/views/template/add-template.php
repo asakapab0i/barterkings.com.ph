@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
         <label for="category" class="control-label">Item Category</label>
-        <select class="form-control" id="category" name="category" data-placement="right" title="<h4>Please select a category</h4>" data-toggle="tooltip">
+        <select class="selectpicker form-control" id="category" name="category" data-placement="right" title="<h4>Please select a category</h4>" data-toggle="tooltip">
             <option></option>
             <option>Computer Electronics</option>
             <option>Animals And Pet</option>

@@ -40,6 +40,8 @@
 <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
+<script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
+<script src="<?php echo base_url('asset/js/vendor/bootstrap-select.js')?>"></script>
 <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
 
