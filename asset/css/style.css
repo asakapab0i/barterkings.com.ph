@@ -409,6 +409,10 @@
 		width: 50%;
 	}
 
+	.barter-now button{
+		width: 100%;
+	}
+
 	.image-card {
 		height: 216px;
 	}
@@ -419,8 +423,16 @@
 }
 
 @media (min-width: 480px){
+	body{
+		margin-top: 150px;
+	}
+
 	.nav-xs-label{
 		vertical-align: 2px;
+	}
+
+	.barter-now button{
+		width: 100%;
 	}
 
 	.item-card-parent {
@@ -438,6 +450,10 @@
 
 
 @media (min-width: 768px){
+	body{
+		margin-top: 200px;
+	}
+
 	#nav-search {
 		width: 285px;
 	}
@@ -460,6 +476,11 @@
 }
 
 @media (min-width: 992px){
+
+	body{
+		margin-top: 150px;
+	}
+
 	#nav-search {
 		width: 260px;
 	}
@@ -482,6 +503,11 @@
 }
 
 @media (min-width: 1200px){
+
+	body {
+		margin-top: 120px;
+	}
+
 	#nav-search {
 		width: 400px;
 	}
