@@ -385,13 +385,18 @@ $(function(){
 	});
 
 	$('.nav-profile-image').hover(function(){
-		$('.nav-profile-dropdown').dropdown('toggle');
-		// $('.nav-profile-dropdown').addClass('open').show();
+		// $('.nav-profile-dropdown').dropdown('toggle');
+		$('.nav-profile-dropdown').addClass('open').show();
 		$('.nav-username .caret').css({color: 'white'});
 	}, function(){
-		// $('.nav-profile-dropdown').removeClass('open').hide();
-		$('.nav-profile-dropdown').dropdown('toggle');
+		$('.nav-profile-dropdown').removeClass('open').hide();
+		// $('.nav-profile-dropdown').dropdown('toggle');
 		$('.nav-username .caret').css({color : '#555555'});
+	});
+
+	$('.nav-sub-category').click(function() {
+		$('#navbar-open').toggleClass('hidden');
+		$('#navbar-close').toggleClass('hidden');  
 	});
 
 	$('.barter-now button').click(function(){
@@ -399,6 +404,5 @@ $(function(){
 		console.log(url);
 		window.location.replace(url);
 	});
-
 });
 

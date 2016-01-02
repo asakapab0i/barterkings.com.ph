@@ -385,6 +385,23 @@
 	margin-bottom: 10px;
 }
 
+#nav-search{
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.nav-sub-category{
+	float:none;
+	margin-left: 15px;
+	border-color: white !important;
+}
+
+
+.nav-category-label span{
+	margin-right: 20px;
+}
+
 /*SEACH INPUT RESPONSIVE*/
 
 @media (min-width : 320px) {
@@ -448,7 +465,7 @@
 	}
 
 	#nav-search:focus {
-		width: 300px;
+		width: 270px;
 	}
 
 	.item-card-parent{
