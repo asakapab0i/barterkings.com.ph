@@ -41,10 +41,10 @@
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
                     <li class="barter-now">
-                      <a data-placement="bottom" data-toggle="tooltip" title="Barter Now" href="<?php echo base_url('item/add'); ?>">
-                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span>
-                        <span class="visible-xs-inline nav-xs-label">Barter Now</span>
-                      </a>
+                      <button data-placement="bottom" data-toggle="tooltip" title="Barter Now" title="Barter Now" href="<?php echo base_url('item/add'); ?>" class="btn btn-success btn-sm">
+                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> 
+                        Start Selling
+                      </button>
                     </li>
                   </ul>
 
