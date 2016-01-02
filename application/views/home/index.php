@@ -38,7 +38,24 @@
 			<?php $this->load->view('template/advance-search-template'); ?>
 		</div>
 		<div class="col-md-9">
-			<?php $this->load->view('template/items-template'); ?>
+			<div class="search-panel panel panel-default">
+
+				<div class="panel-heading">
+					<h3 class="panel-title clearfix"><span class="panel-text">1000 Ads</span>
+						<span class="pull-right"><a class="ads-save-search btn btn-primary btn-sm">Save search</a></span>
+					</h3>
+					
+						
+					
+				</div>
+				<div class="panel-divider">
+					<small>Sort by: </small>
+				</div>
+				<div class="panel-body">
+					<?php $this->load->view('template/items-template'); ?>
+				</div>
+
+			</div>			
 		</div>
 	<?php endif; ?>
 </div>
