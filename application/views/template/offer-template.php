@@ -12,7 +12,7 @@
 
 
 <?php if($item_owner === FALSE): ?>
-	<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="offer/add" data-method="upload" class="pop-modal btn btn-primary">Make an offer</a>
+	<!-- <a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="offer/add" data-method="upload" class="pop-modal btn btn-primary">Make an offer</a> -->
 <?php else:?>
 	<!-- <a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="offer/view" data-method="upload" class="pop-modal btn btn-primary">View offers</a> -->
 <?php endif; ?>
