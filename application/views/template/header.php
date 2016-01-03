@@ -52,7 +52,7 @@
                     <div class="input-group">
                       <input id="nav-search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Looking for something?">
                       <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>
                     </div>
                   </form>
@@ -74,12 +74,15 @@
                           <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> <span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <?php endif;?><span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <li class="dropdown nav-profile-image">
-                         <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
+                         <div class="pull-right">
+                           <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
                           <img src="<?php echo base_url('asset/img/profiles_thumbs/' . $_is_logged_in[0]['profile_img_thumb']);?>">
-                         </span>
+                          </span>
+                         </div>
+                         
 
-                         <span class="text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-                          <?php echo $_is_logged_in[0]['username'] ?>  <span class="caret"></span>
+                         <span class="pull-right text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                          <?php echo $_is_logged_in[0]['username'] ?>
                          </span> 
 
                           <ul class="dropdown-menu nav-profile-dropdown">

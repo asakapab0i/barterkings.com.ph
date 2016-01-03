@@ -233,6 +233,7 @@
 	margin-left: 10px;
 	padding-top: 7px;
 	margin-right: 25px;
+	/*width: 190px;*/
 }
 
 .nav-profile-image img{
@@ -276,6 +277,8 @@
 
 .nav-username {
 	vertical-align: 10px;
+	margin-top: 7px;
+	margin-right: 5px;
 }
 
 .nav-label {
@@ -330,7 +333,8 @@
 }
 
 .panel-text {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	padding-top: 7px;
 	display: inline-block;
 }
 
@@ -382,7 +386,7 @@
 }
 
 .ads-save-search{
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 }
 
 #nav-search{
@@ -402,9 +406,25 @@
 	margin-right: 20px;
 }
 
+.listing-sort-by a{
+	margin-left: 5px;
+}
+
+/*.listing-sort-by small{
+	padding-right: 5px;
+}*/
+
+.listing-sort-label{
+	/*padding-right: 5px;*/
+}
+
 /*SEACH INPUT RESPONSIVE*/
 
 @media (min-width : 320px) {
+	body{
+		margin-top: 140px;
+	}
+
 	.item-card-parent {
 		width: 50%;
 	}
@@ -455,11 +475,11 @@
 	}
 
 	#nav-search {
-		width: 285px;
+		width: 350px;
 	}
 
 	#nav-search:focus {
-		width: 290px;
+		width: 370px;
 	}
 
 	.item-card-parent{
@@ -482,11 +502,11 @@
 	}
 
 	#nav-search {
-		width: 260px;
+		width: 200px;
 	}
 
 	#nav-search:focus {
-		width: 270px;
+		width: 220px;
 	}
 
 	.item-card-parent{
@@ -513,7 +533,7 @@
 	}
 
 	#nav-search:focus{
-		width: 455px;
+		width: 420px;
 	}
 
 	.item-card-parent{
