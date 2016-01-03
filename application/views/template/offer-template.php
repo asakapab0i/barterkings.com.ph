@@ -1,4 +1,4 @@
-<form id="Add item" method="POST" action="http://localhost/barterkings/item/offer">
+<form id="Add item" method="POST" action="<?php echo base_url("item/offer"); ?>">
 	<div class="form-group">
 		<div class="input-group"> <span class="input-group-addon">PHP</span> <input type="number" id="value" name="value" class="form-control" aria-label="Amount (to the nearest dollar)" title="" data-placement="right" data-toggle="tooltip" data-original-title="<h4>Please enter the approximate price</h4>"> <span class="input-group-addon">.00</span> </div>
 	</div>
