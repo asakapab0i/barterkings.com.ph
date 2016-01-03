@@ -24,21 +24,6 @@
 <div class="search-panel panel panel-default">
 
 	<div class="panel-heading">
-		<h4 class="panel-title">Ad Age</h4>
-	</div>
-	<div class="panel-body">
-		<div class="col-md-12">
-			<input class="slider" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1, 90]" 
-			data-slider-ticks-labels='["1 Day", "90+ Days"]' data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0"/>
-		</div>
-	</div>
-
-</div>
-
-
-<div class="search-panel panel panel-default">
-
-	<div class="panel-heading">
 		<h4 class="panel-title">Popular Searches</h4>
 	</div>
 	<div class="panel-body">
@@ -54,6 +39,20 @@
 	</div>
 	<div class="panel-body">
 
+	</div>
+
+</div>
+
+<div class="search-panel panel panel-default">
+
+	<div class="panel-heading">
+		<h4 class="panel-title">Ad Age</h4>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<input class="slider" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1, 90]" 
+			data-slider-ticks-labels='["1 Day", "90+ Days"]' data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0"/>
+		</div>
 	</div>
 
 </div>
