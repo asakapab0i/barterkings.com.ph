@@ -49,9 +49,10 @@
 					
 				</div>
 				<div class="panel-divider listing-sort-by">
-					<small class="listing-sort-label">
+					<small class="listing-sort-label clearfix">
 						Sort by: <a href="#">Most Recent</a> <a href="#">Most Offers</a> <a href="#">Most Viewed</a> <a href="#">Most Liked</a>
-						<a class="pull-right" href="#">List View</a>
+						<a class="btn btn-primary btn-xs pull-right" href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+						<a class="btn btn-primary btn-xs pull-right" href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
 					</small>
 				</div>
 				<div class="panel-body">

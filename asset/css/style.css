@@ -406,6 +406,10 @@
 	margin-right: 20px;
 }
 
+.listing-sort-by {
+	height: 36px;
+}
+
 .listing-sort-by a{
 	margin-left: 5px;
 }
@@ -416,7 +420,14 @@
 
 .listing-sort-label{
 	/*padding-right: 5px;*/
+	margin-top: 5px;
 }
+
+/*.profile-picture img {
+	height: 400px;
+}
+*/
+
 
 /*SEACH INPUT RESPONSIVE*/
 
@@ -520,6 +531,10 @@
 	.image-card a img {
 		height: 128px;
 	}
+
+	.affix {
+		width: 283px;
+	}
 }
 
 @media (min-width: 1200px){
@@ -546,5 +561,9 @@
 
 	.image-card a img {
 		height: 125px;
+	}
+
+	.affix {
+		width: 350px;
 	}
 }
