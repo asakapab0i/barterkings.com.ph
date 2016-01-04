@@ -213,7 +213,6 @@ class Item_model extends MY_Model {
 		->join('items_images', 'item_id = items.id', 'left')
 		->join('accounts', 'accounts.id = items.account_id')
 		->where("value $operator", $price_range)
-		// ->where('date_posted <=', date('Y-m-d', strtotime(time() . "+ $ad_age")))
 		->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 		->limit($limit, $offset)
 		->group_by('items.id')
@@ -227,26 +226,46 @@ class Item_model extends MY_Model {
 		return FALSE;
 	}
 
-	public function get_items_search($limit = 12, $offset = ''){
+	public function get_items_search($limit = 12, $offset = '', $price_range = 100, $ad_age = 1){
 
-		$term = '';
-		$price_range = 100;
+		$operator = '<=';
 
-		if ($this->_input_data['term']) {
-			$term = $this->_input_data['term'];
-		}	
-
-		if ($this->_input_data['price_range']) {
-			$price_range = $this->_input_data['price_range'];
+		if (isset($this->_input_data['limit'])) {
+			$limit = $this->_input_data['limit'];
 		}
+
+		if (isset($this->_input_data['offset'])) {
+			$offset = $this->_input_data['offset'];
+		}
+
+		if (isset($this->_input_data['term'])) {
+			$term= $this->_input_data['term'];
+		}
+
+		if (isset($this->_input_data['price_range'])) {
+			$price_range = $this->_input_data['price_range'];
+			if ($price_range > 19999) {
+				$operator = '>=';
+			}
+		}
+
+		if (isset($this->_input_data['ad_age'])) {
+			$ad_age = $this->_input_data['ad_age'];
+		}
+
+		$datenow = date('Y-m-d');		
+		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
-		->join('accounts', 'items.account_id = accounts.id', 'left')
+		->join('accounts', 'accounts.id = items.account_id')
 		->like('name', $term)
+		->where("value $operator", $price_range)
+		->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 		->limit($limit, $offset)
 		->group_by('items.id')
+		->order_by('value', 'DESC')
 		->get();
 
 		if ($itemsdb->num_rows() > 0) {

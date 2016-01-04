@@ -48,9 +48,9 @@
                     </li>
                   </ul>
 
-                  <form method="GET" action="<?php echo base_url()?>/home/item" class="navbar-form navbar-left" role="search">
+                  <form method="GET" action="<?php echo base_url('home')?>" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                      <input id="nav-search" type="text" value="<?php echo $this->input->get('item'); ?>" name="item" class="form-control" placeholder="Looking for something?">
+                      <input id="nav-search" type="text" value="<?php echo $this->input->get('item'); ?>" name="term" class="form-control" placeholder="Looking for something?">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>

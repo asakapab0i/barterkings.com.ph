@@ -16,13 +16,17 @@
 		<form action="<?php echo base_url('home') ;?>" method="GET">
 			<div class="col-md-12">
 
+				<?php if ($this->input->get('term')): ?>
+					<input name='term' value='<?php echo $this->input->get("term"); ?>' type='hidden' />
+				<?php endif; ?>
+
 				<?php if ($this->input->get('sort')): ?>
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 				<?php endif; ?>
 
 				<input class="slider" name="price_range" 
 				data-slider-id='ex1Slider' type="text" 
-				data-slider-ticks="[0, 20000]" 
+				data-slider-ticks="[100, 20000]" 
 				data-slider-ticks-labels='["₱ 0", "20000+"]' 
 				data-slider-min="0" 
 				data-slider-max="20" 
@@ -72,6 +76,10 @@
 
 	<form action="<?php echo base_url('home') ;?>" method="GET">
 			<div class="col-md-12">
+
+			<?php if ($this->input->get('term')): ?>
+				<input name='term' value='<?php echo $this->input->get("term"); ?>' type='hidden' />
+			<?php endif; ?>
 			<?php if ($this->input->get('sort')): ?>
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 			<?php endif; ?>
@@ -87,6 +95,7 @@
 					data-slider-step="1" 
 					data-slider-value="<?php echo $this->input->get('ad_age') ? $this->input->get('ad_age') : 0; ?>" />
 			</div>
+			
 			<div class="col-md-12" style="margin-top: 5px;">
 				<input class="pull-right btn-block btn btn-xs btn-success" value="update" type="submit" />
 			</div>
