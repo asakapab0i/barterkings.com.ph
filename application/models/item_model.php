@@ -63,7 +63,7 @@ class Item_model extends MY_Model {
 		$category = $this->db->select('*')->from('category_labels')->get()->result_array();
 		$sub_category = $this->db->select('*')->from('sub_category')->get()->result_array();
 
-		$categories = [];
+		$categories = array();
 
 		foreach ($category as $key => $cat) {
 			foreach ($sub_category as $key => $subcat) {
