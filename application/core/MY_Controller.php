@@ -28,7 +28,19 @@ class MY_Controller extends CI_Controller {
 
 		$this->_data['_inbox_count'] = ($this->_get_inbox_count() !== FALSE ? count($this->_get_inbox_count()) : 0);
 		$this->_data['_is_logged_in'] = $this->_get_account_info();
+		$this->_data['_categories'] = $this->_get_categories();
 
+	}
+
+	public function _get_categories(){
+		$this->load->model('item_model');	
+		$categories = $this->item_model->get_categories();
+
+		if ($categories !== FALSE) {
+			return $categories;
+		}
+
+		return FALSE;
 	}
 
 	public function _get_inbox_count(){
@@ -66,6 +78,7 @@ class MY_Controller extends CI_Controller {
 	public function _load_view($view, $params = NULL){
 
 		$this->_load_defaults();
+
 		$this->load->view('template/header', $this->_data);
 		$this->load->view($view, $params);
 		$this->load->view('template/footer');

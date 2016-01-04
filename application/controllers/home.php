@@ -10,9 +10,16 @@ class Home extends MY_Controller {
 	}
 
 	public function index(){
-		$items = $this->item_model->get_items();
+
+		if ($this->input->get('term')) {
+			$items = $this->item_model->get_items_search();
+		}else{
+			$items = $this->item_model->get_items();
+		}
+
 		$data['data'] = $items;
 		$this->_load_view('home/index', $data);
+
 	}
 
 	public function item(){

@@ -43,17 +43,11 @@
 				<div class="panel-heading">
 					<h3 class="panel-title clearfix"><span class="panel-text">1000 Ads</span>
 						<span class="pull-right"><a class="ads-save-search btn btn-primary btn-xs">Save this search</a></span>
-					</h3>
-					
-						
-					
+					</h3>	
 				</div>
+
 				<div class="panel-divider listing-sort-by">
-					<small class="listing-sort-label clearfix">
-						Sort by: <a href="#">Most Recent</a> <a href="#">Most Offers</a> <a href="#">Most Viewed</a> <a href="#">Most Liked</a>
-						<a class="btn btn-primary btn-xs pull-right" href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
-						<a class="btn btn-primary btn-xs pull-right" href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
-					</small>
+					<?php $this->load->view('template/items-sort-links'); ?>
 				</div>
 				<div class="panel-body">
 					<?php $this->load->view('template/items-template'); ?>

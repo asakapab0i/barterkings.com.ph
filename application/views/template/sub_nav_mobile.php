@@ -1,24 +1,15 @@
 
 <div class="nav-header">
-  <button type="button" class="nav-sub-category navbar-toggle collapsed" data-toggle="collapse" data-target="#subnav-category">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnav-category">
     <span class="sr-only">Toggle navigation</span>
-
-    <div id="navbar-open"> 
-      <span class="nav-down-icon glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-    </div>
-
-    <div id="navbar-close" class="hidden">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </div>
-    <!-- <h1 class="pull-left">Categories</h1> -->
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
   </button>
 
-  <div class="visible-xs-inline nav-category-label">
-    <span class="navbar-brand pull-right" href="#">Categories</span>
-  </div>
-
-  
-
+  <span class="sr-only">
+    <a class="navbar-brand" href="<?php echo base_url('home'); ?>">Categories</a>
+  </span>
 </div>
 
 <div class="collapse navbar-collapse" id="subnav-category">
@@ -26,35 +17,7 @@
   <div class="container">
 
     <ul class="nav navbar-nav category-list">
-
-      <?php foreach($_categories as $cat => $subcat): ?>
-
-       <li class="">
-
-        <div class="dropdown">
-          <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $cat; ?></a>
-          <?php if ($subcat !== NULL): ?>
-
-          <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
-              <?php foreach($subcat as $subname): ?>
-                <li><a href="#"><?php echo $subname; ?></a></li>
-              <?php endforeach; ?>
-          </ul>
-          
-          <?php endif; ?>
-        </div>
-
-      </li>
-
-    <?php endforeach; ?>
-
-  </ul>
-</div>
-</div>
-
-
-<!-- 
-   <li class="">
+      <li class="">
 
         <div class="dropdown">
           <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Computer Electronics</a>
@@ -170,4 +133,7 @@
         </div>
 
       </li>
- -->
+
+    </ul>
+  </div>
+</div>

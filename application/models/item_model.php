@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Item_model extends CI_Model {
+class Item_model extends MY_Model {
 
 	private $items;
 
@@ -56,6 +56,26 @@ class Item_model extends CI_Model {
 		}
 
 		return FALSE;
+	}
+
+	public function get_categories(){
+		
+		$category = $this->db->select('*')->from('category_labels')->get()->result_array();
+		$sub_category = $this->db->select('*')->from('sub_category')->get()->result_array();
+
+		$categories = [];
+
+		foreach ($category as $key => $cat) {
+			foreach ($sub_category as $key => $subcat) {
+				if ($cat['category_id'] == $subcat['sub_category_id']) {
+					$categories[$cat['category_name']][] = $subcat['sub_category_name'];
+				}else {
+					$categories[$cat['category_name']] = NULL;
+				}
+			}
+		}
+
+		return $categories;
 	}
 
 	public function get_items_by_account_id($account_id = NULL, $itemid = NULL, $limit = 4){
@@ -132,29 +152,72 @@ class Item_model extends CI_Model {
 		return FALSE;
 	}
 
+	private function _get_advance_search(){
 
+		$search = array();
 
-	public function get_items($limit = 12, $offset = ''){
+		if ($this->_input_data['term']) {
+			$search['name'] = $this->_input_data['term'];
+		}
 
 		if ($this->_input_data['limit']) {
-
-			$limit = $this->_input_data['limit'];
-			
+			$search['limit'] = $this->_input_data['limit'];
 		}
 
 		if ($this->_input_data['offset']) {
-
-			$offset = $this->_input_data['offset'];
-
+			$search['offset'] = $this->_input_data['offset'];
 		}
+
+		if ($this->_input_data['price_range']) {
+			$search['value'] = $this->_input_data['price_range'];
+		}
+
+		if ($this->_input_data['ad_age']) {
+			$search['date_posted'] = $this->_input_data['ad_age'];
+		}
+
+		return $search;
+
+	}
+
+
+
+	public function get_items($limit = 12, $offset = '', $price_range = 100, $ad_age = 1){
+
+		$operator = '<=';
+
+		if (isset($this->_input_data['limit'])) {
+			$limit = $this->_input_data['limit'];
+		}
+
+		if (isset($this->_input_data['offset'])) {
+			$offset = $this->_input_data['offset'];
+		}
+
+		if (isset($this->_input_data['price_range'])) {
+			$price_range = $this->_input_data['price_range'];
+			if ($price_range > 19999) {
+				$operator = '>=';
+			}
+		}
+
+		if (isset($this->_input_data['ad_age'])) {
+			$ad_age = $this->_input_data['ad_age'];
+		}
+
+		$datenow = date('Y-m-d');		
+		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->join('accounts', 'accounts.id = items.account_id')
+		->where("value $operator", $price_range)
+		// ->where('date_posted <=', date('Y-m-d', strtotime(time() . "+ $ad_age")))
+		->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 		->limit($limit, $offset)
 		->group_by('items.id')
-		->order_by('items.id', 'DESC')
+		->order_by('value', 'DESC')
 		->get();
 
 		if ($itemsdb->num_rows() > 0) {
@@ -164,14 +227,25 @@ class Item_model extends CI_Model {
 		return FALSE;
 	}
 
-	public function get_items_search(){
-		$search = $this->input->get();
+	public function get_items_search($limit = 12, $offset = ''){
+
+		$term = '';
+		$price_range = 100;
+
+		if ($this->_input_data['term']) {
+			$term = $this->_input_data['term'];
+		}	
+
+		if ($this->_input_data['price_range']) {
+			$price_range = $this->_input_data['price_range'];
+		}
 
 		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 		->from('items')
 		->join('items_images', 'item_id = items.id', 'left')
 		->join('accounts', 'items.account_id = accounts.id', 'left')
-		->like('name', $search['item'])
+		->like('name', $term)
+		->limit($limit, $offset)
 		->group_by('items.id')
 		->get();
 
@@ -185,6 +259,7 @@ class Item_model extends CI_Model {
 	public function add_item($session_id){
 		$data = $this->input->post();
 		$data['account_id']	 = $session_id[0]['id'];
+		$data['date_posted'] = date('Y-m-d');
 		$this->db->insert('items', $data);
 		return $this->db->insert_id();
 	}

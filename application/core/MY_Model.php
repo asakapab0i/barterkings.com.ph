@@ -6,25 +6,17 @@ class MY_Model extends CI_Model {
 
 	public function __construct(){
 
-		$this->_get_post_data();
+		$this->_get_data();
 	}
 
-	public function _get_post_data(){
+	public function _get_data(){
 
-		$this->_input_data = $this->input->post();
-
-		if ( isset($this->_input_data['parameters']) ) {
-
-			foreach ($this->_input_data['parameters'] as $key => $value) {
-
-				$this->_input_data[$key] = $value;
-
-			}
-
-			unset($this->_input_data['parameters']);
-
+		if ($this->input->post()) {
+			$this->_input_data = $this->input->post();
+		}else{
+			$this->_input_data = $this->input->get();
 		}
-		
+
 	}
 
 	public function _get_session_data(){
