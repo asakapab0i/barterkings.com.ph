@@ -1,7 +1,7 @@
 <div class="container">
 
-	<?php if($this->session->userdata('account') == NULL): ?>
-		<div class="col-lg-6">
+	<?php //if($this->session->userdata('account') == NULL): ?>
+		<!-- <div class="col-lg-6">
 			<div class="well well-no-bg">
 				<h1>Lorem</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -32,8 +32,8 @@
 			<div class="well well-no-bg">
 				<?php $this->load->view('template/login-template', array('show_or_hide' => 'hide')); ?>
 			</div>
-		</div>
-	<?php else: ?>
+		</div> -->
+	<?php //else: ?>
 		<div class="col-md-3">
 			<?php $this->load->view('template/advance-search-template'); ?>
 		</div>
@@ -64,5 +64,5 @@
 
 			</div>			
 		</div>
-	<?php endif; ?>
+	<?php //endif; ?>
 </div>
