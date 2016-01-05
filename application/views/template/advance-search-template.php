@@ -30,8 +30,8 @@
 
 				<input class="slider" name="price_range" 
 				data-slider-id='ex1Slider' type="text" 
-				data-slider-ticks="[100, 20000]" 
-				data-slider-ticks-labels='["₱ 0", "20000+"]' 
+				data-slider-ticks="[100, 100000]" 
+				data-slider-ticks-labels='["₱ 100", "100000"]' 
 				data-slider-min="0" 
 				data-slider-max="20" 
 				data-slider-step="1" 

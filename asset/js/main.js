@@ -404,5 +404,10 @@ $(function(){
 		console.log(url);
 		window.location.replace(url);
 	});
+
+	$('.listing-order-label').change(function(){
+		$(this).submit();
+	});
+
 });
 

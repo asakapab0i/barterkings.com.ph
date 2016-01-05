@@ -180,11 +180,135 @@ class Item_model extends MY_Model {
 
 	}
 
+	public function _query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange){
+
+		if ($this->_input_data['sort'] == 'most_recent') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}else if ($this->_input_data['sort'] == 'most_offers') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			->having('COUNT(offers.item_id) >', 0, false)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->order_by('COUNT(offers.item_id)', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}else if ($this->_input_data['sort'] == 'all') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}
+
+		return false;
+
+	}
+
+	public function _query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange){
+
+		if ($this->_input_data['sort'] == 'most_recent') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			->like("name", $term)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}else if ($this->_input_data['sort'] == 'most_offers') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			->having('COUNT(offers.item_id) >', 0, false)
+			->like("name", $term)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->order_by('COUNT(offers.item_id)', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}else if ($this->_input_data['sort'] == 'all') {
+
+			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->join('offers', 'offer_item_id = items.id', 'left')
+			->where("value $operator", $price_range)
+			->like("name", $term)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
+			->get();
+
+			return $itemsdb;
+
+		}
+
+		return false;
+
+	}
 
 
-	public function get_items($limit = 12, $offset = '', $price_range = 100, $ad_age = 1){
+
+	public function get_items($limit = 12, $offset = '', $price_range = 100, $ad_age = 1, $sort = ''){
 
 		$operator = '<=';
+		$order = "desc";
 
 		if (isset($this->_input_data['limit'])) {
 			$limit = $this->_input_data['limit'];
@@ -196,7 +320,7 @@ class Item_model extends MY_Model {
 
 		if (isset($this->_input_data['price_range'])) {
 			$price_range = $this->_input_data['price_range'];
-			if ($price_range > 19999) {
+			if ($price_range > 100000) {
 				$operator = '>=';
 			}
 		}
@@ -205,19 +329,28 @@ class Item_model extends MY_Model {
 			$ad_age = $this->_input_data['ad_age'];
 		}
 
+
+		if (isset($this->_input_data['order'])) {
+			$order = $this->_input_data['order'];
+		}
+
 		$datenow = date('Y-m-d');		
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
-		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-		->from('items')
-		->join('items_images', 'item_id = items.id', 'left')
-		->join('accounts', 'accounts.id = items.account_id')
-		->where("value $operator", $price_range)
-		->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
-		->limit($limit, $offset)
-		->group_by('items.id')
-		->order_by('value', 'DESC')
-		->get();
+		if (isset($this->_input_data['sort'])) {
+			$itemsdb = $this->_query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
+		}else{
+			$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->where("value $operator", $price_range)
+			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->get();
+		}
 
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
@@ -226,9 +359,10 @@ class Item_model extends MY_Model {
 		return FALSE;
 	}
 
-	public function get_items_search($limit = 12, $offset = '', $price_range = 100, $ad_age = 1){
+	public function get_items_search($limit = 12, $offset = '', $price_range = 100, $ad_age = 1, $sort = 'desc'){
 
 		$operator = '<=';
+		$order = 'desc';
 
 		if (isset($this->_input_data['limit'])) {
 			$limit = $this->_input_data['limit'];
@@ -244,8 +378,8 @@ class Item_model extends MY_Model {
 
 		if (isset($this->_input_data['price_range'])) {
 			$price_range = $this->_input_data['price_range'];
-			if ($price_range > 19999) {
-				$operator = '>=';
+			if ($price_range > 100000) {
+				$operator = '<=';
 			}
 		}
 
@@ -253,20 +387,29 @@ class Item_model extends MY_Model {
 			$ad_age = $this->_input_data['ad_age'];
 		}
 
+		if (isset($this->_input_data['order'])) {
+			$order = $this->_input_data['order'];
+		}
+
 		$datenow = date('Y-m-d');		
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
-		$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-		->from('items')
-		->join('items_images', 'item_id = items.id', 'left')
-		->join('accounts', 'accounts.id = items.account_id')
-		->like('name', $term)
-		->where("value $operator", $price_range)
-		->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
-		->limit($limit, $offset)
-		->group_by('items.id')
-		->order_by('value', 'DESC')
-		->get();
+		if (isset($this->_input_data['sort'])) {
+			$itemsdb = $this->_query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
+		}else{
+			$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			->from('items')
+			->join('items_images', 'item_id = items.id', 'left')
+			->join('accounts', 'accounts.id = items.account_id')
+			->like('name', $term)
+			->where("value $operator", $price_range)
+			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
+			->limit($limit, $offset)
+			->group_by('items.id')
+			->order_by('value', $order)
+			->get();
+		}
+
 
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
@@ -280,6 +423,7 @@ class Item_model extends MY_Model {
 		$data['account_id']	 = $session_id[0]['id'];
 		$data['date_posted'] = date('Y-m-d');
 		$this->db->insert('items', $data);
+
 		return $this->db->insert_id();
 	}
 

@@ -424,6 +424,10 @@
 	display: inline-block;
 }
 
+.listing-order-label{
+	margin-top: -6px;
+}
+
 /*.profile-picture img {
 	height: 400px;
 }

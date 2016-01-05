@@ -50,9 +50,9 @@
 
                   <form method="GET" action="<?php echo base_url('home')?>" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                      <input id="nav-search" type="text" value="<?php echo $this->input->get('item'); ?>" name="term" class="form-control" placeholder="Looking for something?">
+                      <input id="nav-search" type="text" value="<?php echo $this->input->get('term'); ?>" name="term" class="form-control" placeholder="Looking for something?">
                       <span class="input-group-btn">
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>
                     </div>
                   </form>
