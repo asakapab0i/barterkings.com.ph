@@ -41,7 +41,7 @@
 			<div class="search-panel panel panel-default">
 
 				<div class="panel-heading">
-					<h3 class="panel-title clearfix"><span class="panel-text">1000 Ads</span>
+					<h3 class="panel-title clearfix"><span class="panel-text"><?php echo $total_results ? $total_results : 0; ?> Ads Found</span>
 						<span class="pull-right">
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn btn-xs btn-primary">

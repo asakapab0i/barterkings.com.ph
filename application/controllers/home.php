@@ -18,6 +18,7 @@ class Home extends MY_Controller {
 		}
 
 		$data['data'] = $items;
+		$data['total_results'] = count($items);
 		$this->_load_view('home/index', $data);
 
 	}
