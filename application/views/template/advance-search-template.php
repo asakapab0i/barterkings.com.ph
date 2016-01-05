@@ -24,6 +24,10 @@
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 				<?php endif; ?>
 
+				<?php if ($this->input->get('order')): ?>
+					<input name='order' value='<?php echo $this->input->get("order"); ?>' type='hidden' />
+				<?php endif; ?>
+
 				<input class="slider" name="price_range" 
 				data-slider-id='ex1Slider' type="text" 
 				data-slider-ticks="[100, 20000]" 
@@ -83,6 +87,9 @@
 			<?php if ($this->input->get('sort')): ?>
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 			<?php endif; ?>
+			<?php if ($this->input->get('order')): ?>
+					<input name='order' value='<?php echo $this->input->get("order"); ?>' type='hidden' />
+				<?php endif; ?>
 			<?php if ($this->input->get('price_range')): ?>
 					<input name='price_range' value='<?php echo $this->input->get("price_range"); ?>' type='hidden' />
 			<?php endif; ?>

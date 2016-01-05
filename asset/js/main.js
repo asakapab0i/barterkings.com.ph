@@ -344,8 +344,8 @@ $(function(){
 	});
 
 	$('.selectpicker').selectpicker({
-		style: 'btn-default',
-		size: 4
+		style: 'btn-primary btn-xs',
+		size: 3
 	});
 
 // $(function(){

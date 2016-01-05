@@ -42,7 +42,16 @@
 
 				<div class="panel-heading">
 					<h3 class="panel-title clearfix"><span class="panel-text">1000 Ads</span>
-						<span class="pull-right"><a class="ads-save-search btn btn-primary btn-xs">Save this search</a></span>
+						<span class="pull-right">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn btn-xs btn-primary">
+									<input type="checkbox" autocomplete="off"> Save this search 
+								</label>
+								<label class="btn btn-xs btn-primary">
+									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								</label>
+							</div>
+						</span>
 					</h3>	
 				</div>
 
