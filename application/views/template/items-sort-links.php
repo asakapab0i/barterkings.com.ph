@@ -26,7 +26,7 @@ if ($this->input->get()) {
 	<a class="btn btn-primary btn-xs" href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a> -->
 	<form class="form-inline listing-order-label" method="get">
 		<div class="form-group">
-			<label for="exampleInputName2">Order price: </label>
+			<label class="hidden-xs" for="exampleInputName2">Order price: </label>
 			<?php if ($this->input->get('term')): ?>
 					<input name='term' value='<?php echo $this->input->get("term"); ?>' type='hidden' />
 				<?php endif; ?>
