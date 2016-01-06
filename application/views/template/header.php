@@ -35,7 +35,10 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo base_url('home'); ?>">Barter Kings</a>
+                    <a class="navbar-brand navbar-logo" href="<?php echo base_url('home'); ?>">
+                      <!-- <img class="" src="<?php echo base_url('asset/img/cross-logo.jpg'); ?>"> -->
+                      Barter Kings
+                    </a>
                   </div>
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -94,8 +97,8 @@
 
                         </li>
                       <?php else: ?>
-                        <li><a data-placement="bottom" data-toggle="tooltip title="Login" href="<?php echo base_url('account/login'); ?>"><span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
-                        <li><a data-placement="bottom" data-toggle="tooltip" title="Register" href="<?php echo base_url('account/register'); ?>"><span class="nav-icon glyphicon glyphicon-heart" aria-hidden="true"></span> Register</a></li>
+                        <li><a data-placement="bottom" data-toggle="tooltip" title="Login" href="<?php echo base_url('account/login'); ?>">Login</a></li>
+                        <li><a data-placement="bottom" data-toggle="tooltip" title="Register" href="<?php echo base_url('account/register'); ?>">Register</a></li>
                       <?php endif; ?>
                     </ul>
 

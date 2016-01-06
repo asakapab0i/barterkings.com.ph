@@ -428,6 +428,16 @@
 	margin-top: -6px;
 }
 
+.navbar-logo img{
+	margin-right: 5px;
+	display: inline-block;
+	width: 40px;
+	margin-top: -7px;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
 /*.profile-picture img {
 	height: 400px;
 }
