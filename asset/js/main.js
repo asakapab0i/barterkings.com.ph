@@ -409,5 +409,19 @@ $(function(){
 		$(this).submit();
 	});
 
+	$('.category-card-parent').click(function(){
+
+		$('.category-card-parent').each(function(i, v){
+			var prevColor = $(v).data('category-color');
+			$(v).css({backgroundColor: 'white', color: prevColor, boder: '1px solid' + prevColor});
+		});
+
+		var color = $(this).data('category-color');
+		$(this).css({
+			backgroundColor: color,
+			color: 'white'
+		});
+	});
+
 });
 

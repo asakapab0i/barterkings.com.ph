@@ -44,6 +44,7 @@
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-select.js')?>"></script>
 <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
+<script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
 
 </body>
 </html>

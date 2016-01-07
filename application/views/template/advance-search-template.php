@@ -1,4 +1,4 @@
-<div class="search-panel panel panel-default">
+<!-- <div class="search-panel panel panel-default">
 
 	<div class="panel-heading">
 		<h3 class="panel-title">Refine your search</h3>
@@ -6,7 +6,7 @@
 
 </div>
 
-
+ -->
 <div class="search-panel panel panel-default">
 
 	<div class="panel-heading">

@@ -45,10 +45,13 @@ class Item_model extends MY_Model {
 			$itemid = $this->_input_data['itemid'];
 		}
 
-		$itemdb = $this->db->select('accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
+		$itemdb = $this->db->select('offers.*,items_images.*, accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
 		->from('items')
+		->join('offers', 'offer_item_id = items.id', 'left')
+		->join('items_images', 'items_images.item_id = items.id', 'left')
 		->join('accounts', 'items.account_id = accounts.id', 'left')
 		->where('items.id', $itemid)
+		->group_by('items.id')
 		->get();
 
 		if ($itemdb->num_rows() == 1) {
@@ -68,14 +71,39 @@ class Item_model extends MY_Model {
 		foreach ($category as $key => $cat) {
 			foreach ($sub_category as $key => $subcat) {
 				if ($cat['category_id'] == $subcat['sub_category_id']) {
-					$categories[$cat['category_name']][] = $subcat['sub_category_name'];
+					$categories[$cat['category_name']]['sub_category'][] = $subcat['sub_category_name'];
+					$categories[$cat['category_name']]['icon'] = $cat['category_icon'];
+					$categories[$cat['category_name']]['color'] = $cat['category_color'];
+					$categories[$cat['category_name']]['id'] = $cat['category_id'];
 				}else {
-					$categories[$cat['category_name']] = NULL;
+					$categories[$cat['category_name']]['sub_category'] = NULL;
+					$categories[$cat['category_name']]['icon'] = $cat['category_icon'];
+					$categories[$cat['category_name']]['color'] = $cat['category_color'];
+					$categories[$cat['category_name']]['id'] = $cat['category_id'];
 				}
 			}
 		}
 
 		return $categories;
+	}
+
+
+	public function get_category_by_id($id){
+		$category = $this->db->select('*')->from('category_labels')->where('category_id', $id)->get()->result_array();
+
+		return $category[0];
+	}
+
+	public function get_categories_v2(){
+		$category = $this->db->select('*')->from('category_labels')->get()->result_array();
+		
+		return $category;
+	}
+
+	public function get_sub_categories(){
+		$subcategory = $this->db->select('*')->from('sub_category')->get()->result_array();
+		
+		return $subcategory;
 	}
 
 	public function get_items_by_account_id($account_id = NULL, $itemid = NULL, $limit = 4){
@@ -427,9 +455,9 @@ class Item_model extends MY_Model {
 		return $this->db->insert_id();
 	}
 
-	public function edit_item($itemid){
-		$this->db->update('items', $this->input->post())
-		->where('id', $itemid);
+	public function edit_item($itemid, $data){
+		$this->db->where('id', $itemid);
+		$this->db->update('items', $data);
 		return TRUE;
 	}
 

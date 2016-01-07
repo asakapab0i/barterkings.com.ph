@@ -1,3 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+
+body {
+	background-color:#F7F7F7;
+	font-family: 'Open Sans', sans-serif;
+}
+/*Navbar*/
+.navbar-default {
+	background-color:#fff;
+	border-bottom-color:#E3E3E3;
+}
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus{
+	background-color:transparent!important;
+}
+.navbar-default .btn-compose {
+	padding-right:10px;
+	border-right:1px solid #F0F0F0;
+}
+
+.tooltip-inner{
+	max-width: 500px;
+}
+
+.tooltip-inner h4{
+	color:white;
+}
+
 .bootsnipp-thumb > .label {
 	padding: 0px;
 }
@@ -357,20 +386,20 @@
 }
 .slider-tick.in-selection{
 	border-radius: 50%;
-    background: #fff;
-    border: 4px solid #28b62c;
-    color: #666;
+	background: #fff;
+	border: 4px solid #28b62c;
+	color: #666;
 }
 
 .slider-handle{
 	border-radius: 50%;
-    background: #fff;
-    border: 4px solid #28b62c;
-    color: #666;
+	background: #fff;
+	border: 4px solid #28b62c;
+	color: #666;
 }
 
 .slider-selection.tick-slider-selection{
-	 background: #28b62c;
+	background: #28b62c;
 }
 
 .slider-track{
@@ -414,9 +443,6 @@
 	margin-left: 5px;
 }
 
-/*.listing-sort-by small{
-	padding-right: 5px;
-}*/
 
 .listing-sort-label{
 	/*padding-right: 5px;*/
@@ -437,6 +463,68 @@
 	-moz-user-select: none;
 	-webkit-user-drag: none;
 }
+
+.category-card-parent {
+	cursor: pointer;
+}
+
+.category-card-parent:hover{
+	border: 
+}
+
+.category-name{
+	margin: 0px;
+}
+
+.category-icon{
+	font-size: 30px;
+}
+
+.selling-card-parent{
+	padding: 20px;
+	cursor: pointer;
+}
+
+.selling-card-parent p {
+	padding: 0;
+}
+
+.selling-card-parent input[type="radio"] {
+	height: 25px;
+	width: 25px;
+	margin-right: 10px;
+}
+
+.selling-card-parent label {
+	vertical-align: 7px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.selling-form-auction {
+	display: inline-block;
+}
+
+.selling-description{
+	margin-left: 39px;
+	font-size: 18px;
+}
+
+.selling-details-label {
+	margin-top: 10px;
+}
+
+.selling-submit-button{
+	margin-top: 5px;
+}
+
+/*.selling-card-parent input[type='radio']:active {
+	color: blue;
+	}*/
+
+/*.select-category-list label {
+	width: 150px;
+	}*/
 
 /*.profile-picture img {
 	height: 400px;

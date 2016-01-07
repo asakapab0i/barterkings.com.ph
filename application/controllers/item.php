@@ -51,14 +51,55 @@ class Item extends MY_Controller {
 
 	public function add(){
 		if ($this->input->post()) {
-			if ($id = $this->item_model->add_item($this->account_model->get_session())) {
+
+			if ($this->account_model->get_session()) {
+				if ($id = $this->item_model->add_item($this->account_model->get_session())) {
 				$name = url_title($this->input->post('name'));
 				redirect("item/$id/$name");
-			}else{
-				$this->_load_view('item/add');
+				}else{
+					$data['categories'] = $this->item_model->get_categories();
+					$this->_load_view('item/add', $data);
+				}
+			}else {
+				redirect('account/login');
 			}
+
 		}else{
-			$this->_load_view('item/add');
+			$data['categories'] = $this->item_model->get_categories();
+			$this->_load_view('item/add', $data);
+		}
+	}
+
+	public function edit(){
+		if ($this->input->post()) {
+			$data = $this->input->post();
+			$item_id = $data['id'];
+			unset($data['id']);
+			$this->item_model->edit_item($item_id, $data);
+			redirect("item/{$item_id}/{$data['name']}");
+		}
+	}
+
+	public function classified(){
+		if ($this->input->post()) {
+			$id = $this->item_model->add_item($this->account_model->get_session());
+			$data['item'] = $this->item_model->get_item($id);
+			$data['images'] = $this->item_model->get_item_images($id);
+			$data['categories'] = $this->item_model->get_categories();
+			$data['categories_v2'] = $this->item_model->get_categories_v2();
+			$data['sub_categories'] = $this->item_model->get_sub_categories();
+			$this->_load_view('item/classified', $data);
+		}else{
+			redirect('item/add');
+		}
+	}
+
+	public function auction(){
+		if ($this->input->post()) {
+			$data = $this->input->post();
+			$this->_load_view('item/auction', $data);
+		}else{
+			redirect('item/add');
 		}
 	}
 

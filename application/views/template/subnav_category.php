@@ -33,10 +33,10 @@
 
         <div class="dropdown">
           <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $cat; ?></a>
-          <?php if ($subcat !== NULL): ?>
+          <?php if ($subcat['sub_category'] !== NULL): ?>
 
           <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
-              <?php foreach($subcat as $subname): ?>
+              <?php foreach($subcat['sub_category'] as $subname): ?>
                 <li><a href="#"><?php echo $subname; ?></a></li>
               <?php endforeach; ?>
           </ul>

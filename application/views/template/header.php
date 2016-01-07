@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/slider.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-select.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
