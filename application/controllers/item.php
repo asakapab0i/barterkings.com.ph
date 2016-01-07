@@ -82,13 +82,18 @@ class Item extends MY_Controller {
 
 	public function classified(){
 		if ($this->input->post()) {
-			$id = $this->item_model->add_item($this->account_model->get_session());
-			$data['item'] = $this->item_model->get_item($id);
-			$data['images'] = $this->item_model->get_item_images($id);
-			$data['categories'] = $this->item_model->get_categories();
-			$data['categories_v2'] = $this->item_model->get_categories_v2();
-			$data['sub_categories'] = $this->item_model->get_sub_categories();
-			$this->_load_view('item/classified', $data);
+			if ($this->account_model->get_session()) {
+				$id = $this->item_model->add_item($this->account_model->get_session());
+				$data['item'] = $this->item_model->get_item($id);
+				$data['images'] = $this->item_model->get_item_images($id);
+				$data['categories'] = $this->item_model->get_categories();
+				$data['categories_v2'] = $this->item_model->get_categories_v2();
+				$data['sub_categories'] = $this->item_model->get_sub_categories();
+				$this->_load_view('item/classified', $data);
+			}else{
+				redirect('account/register');
+			}
+			
 		}else{
 			redirect('item/add');
 		}
