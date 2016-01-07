@@ -74,9 +74,10 @@ class Item extends MY_Controller {
 		if ($this->input->post()) {
 			$data = $this->input->post();
 			$item_id = $data['id'];
+			$name = url_title($data['name']);
 			unset($data['id']);
 			$this->item_model->edit_item($item_id, $data);
-			redirect("item/{$item_id}/{$data['name']}");
+			redirect("item/{$item_id}/{$name}");
 		}
 	}
 
@@ -91,7 +92,7 @@ class Item extends MY_Controller {
 				$data['sub_categories'] = $this->item_model->get_sub_categories();
 				$this->_load_view('item/classified', $data);
 			}else{
-				redirect('account/register');
+				redirect('account/login');
 			}
 			
 		}else{
