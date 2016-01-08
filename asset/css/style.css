@@ -518,6 +518,10 @@ body {
 	margin-top: 5px;
 }
 
+.bootstrap-tagsinput{
+	display: block;
+}
+
 /*.selling-card-parent input[type='radio']:active {
 	color: blue;
 	}*/

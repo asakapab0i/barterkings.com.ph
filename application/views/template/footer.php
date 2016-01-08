@@ -42,6 +42,8 @@
 <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-select.js')?>"></script>
+<script src="<?php echo base_url('asset/js/vendor/bootstrap3-wysihtml5.all.js')?>"></script>
+<script src="<?php echo base_url('asset/js/vendor/bootstrap-tagsinput.js')?>"></script>
 <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>

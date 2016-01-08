@@ -23,7 +23,7 @@
 					<h4 class="item-instruction-number">2.</h4>
 				</div>
 				<div class="col-md-11">
-					<h4>Your Item For Sale</h4>
+					<h4>Name Your Price</h4>
 					<label>Buy Now Price</label>
 					<div class="item-form-input-body input-group">
 
@@ -85,13 +85,13 @@
 				</div>
 				<div class="col-md-11">
 					<label>Description</label>
-					<textarea style="height: 250px;" class="form-control" name="description"></textarea>
+					<textarea id="description-editor" style="height: 250px;" class="form-control" name="description"></textarea>
 				</div>
 			</div>
 
 			<div class="row item-form-input" style="margin-top: 10px;">
 				<div class="col-md-1">
-					<h4 class="item-instruction-number">4</h4>
+					<h4 class="item-instruction-number"></h4>
 				</div>
 				<div class="col-md-11">
 					<div class="item-form-input-body input-group">
@@ -119,6 +119,19 @@
 					<div data-itemid="<?php echo $item[0]['itemid']; ?>" class="reload-images">
 							<?php $this->load->view('template/images-template'); ?>	
 					</div>
+				</div>
+			</div>
+
+			<div class="row item-form-input">
+				<div class="col-md-1">
+					<h4 class="item-instruction-number">5.</h4>
+				</div>
+
+				<div class="col-md-11">
+					<h4>Add Tags</h4>
+					<label>Manage Tags<small> (Press enter to add to tags.)</small></label><br/>
+					<select multiple name="tags[]" tags id="tags-input"></select>
+					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
 				</div>
 			</div>
 

@@ -75,8 +75,12 @@ class Item extends MY_Controller {
 			$data = $this->input->post();
 			$item_id = $data['id'];
 			$name = url_title($data['name']);
+			$tags = $data['tags'];
+			unset($data['tags']);
 			unset($data['id']);
+			unset($data['_wysihtml5_mode']);
 			$this->item_model->edit_item($item_id, $data);
+			$this->item_model->add_tags($item_id, $tags);
 			redirect("item/{$item_id}/{$name}");
 		}
 	}

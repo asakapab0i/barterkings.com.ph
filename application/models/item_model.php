@@ -455,6 +455,13 @@ class Item_model extends MY_Model {
 		return $this->db->insert_id();
 	}
 
+	public function add_tags($itemid, $tags){
+		foreach ($tags as $key => $value) {
+			$this->db->insert('tags', array('tag_term' => $value, 'tag_parent' => $itemid));
+		}
+		return true;
+	}
+
 	public function edit_item($itemid, $data){
 		$this->db->where('id', $itemid);
 		$this->db->update('items', $data);
