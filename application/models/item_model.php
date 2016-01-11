@@ -462,6 +462,19 @@ class Item_model extends MY_Model {
 		return true;
 	}
 
+	public function update_favorite($item_id, $account_id){
+		$account_id = $account_id[0]['id'];
+		$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
+
+		if ($data->num_rows() == 0) {
+			$this->db->insert('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
+			return 'true';
+		}
+
+		return 'false';
+
+	}
+
 	public function edit_item($itemid, $data){
 		$this->db->where('id', $itemid);
 		$this->db->update('items', $data);

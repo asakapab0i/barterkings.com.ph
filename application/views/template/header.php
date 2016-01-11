@@ -39,8 +39,7 @@
                       <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand navbar-logo" href="<?php echo base_url('home'); ?>">
-                      <!-- <img class="" src="<?php echo base_url('asset/img/cross-logo.jpg'); ?>"> -->
-                      Barter Kings
+                      <img class="" src="<?php echo base_url('asset/img/logo.png'); ?>">
                     </a>
                   </div>
 
@@ -49,7 +48,7 @@
                     <li class="barter-now">
                       <button data-placement="bottom" data-toggle="tooltip" title="Barter Now" title="Barter Now" href="<?php echo base_url('item/add'); ?>" class="btn btn-success btn-sm">
                         <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> 
-                        Start Selling
+                        Start Trading
                       </button>
                     </li>
                   </ul>

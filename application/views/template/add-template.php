@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">1. What are you selling?</h3>
+    <h3 class="panel-title">1. What are you trading?</h3>
   </div>
   <div class="panel-body">
 
@@ -27,7 +27,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">2. How do you want to sell your asset?</h3>
+    <h3 class="panel-title">2. How do you want to trade your item?</h3>
   </div>
   <div class="panel-body"> 
 

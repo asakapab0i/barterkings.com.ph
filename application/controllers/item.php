@@ -85,6 +85,16 @@ class Item extends MY_Controller {
 		}
 	}
 
+	public function favorite(){
+		if ($this->input->post()) {
+
+			if ($this->account_model->get_session()) {
+				echo $this->item_model->update_favorite($this->input->post('id'), $this->account_model->get_session());
+			}
+
+		}
+	}
+
 	public function classified(){
 		if ($this->input->post()) {
 			if ($this->account_model->get_session()) {

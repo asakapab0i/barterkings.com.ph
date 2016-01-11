@@ -2,6 +2,27 @@
 
 $(function(){
 
+	$(document).on('click', '.call-ajax', function(e){
+		e.preventDefault();
+
+		var id = $(this).data('item-id');
+		var url = $(this).data('url');
+		var params = $(this).data('params') || null;
+
+		$.ajax({
+			method: "POST",
+			url: url,
+			data: { id: id, params: params }
+		}).done(function(result){
+
+			$(this).trigger('update-favorite-button', function(){
+				alert('test');
+			});
+
+		});
+
+	});
+
 	$(document).on('click', '.pop-modal', function(e){
 		e.preventDefault();
 

@@ -19,13 +19,17 @@ body {
 	border-right:1px solid #F0F0F0;
 }
 
-.tooltip-inner{
+.navbar-logo{
+	font-weight: bold;
+}
+
+/*.tooltip-inner{
 	max-width: 500px;
 }
 
 .tooltip-inner h4{
 	color:white;
-}
+}*/
 
 .bootsnipp-thumb > .label {
 	padding: 0px;
@@ -455,10 +459,9 @@ body {
 }
 
 .navbar-logo img{
-	margin-right: 5px;
 	display: inline-block;
-	width: 40px;
-	margin-top: -7px;
+	width: 130px;
+	margin-top: -13px;
 	user-drag: none;
 	-moz-user-select: none;
 	-webkit-user-drag: none;
@@ -507,7 +510,7 @@ body {
 
 .selling-description{
 	margin-left: 39px;
-	font-size: 18px;
+	/*font-size: 18px;*/
 }
 
 .selling-details-label {
