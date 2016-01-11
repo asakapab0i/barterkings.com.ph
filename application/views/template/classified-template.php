@@ -89,19 +89,6 @@
 				</div>
 			</div>
 
-			<div class="row item-form-input" style="margin-top: 10px;">
-				<div class="col-md-1">
-					<h4 class="item-instruction-number"></h4>
-				</div>
-				<div class="col-md-11">
-					<div class="item-form-input-body input-group">
-						<input type="hidden" name="id" value="<?php echo $item[0]['itemid']?>">
-						<input type="submit" class="btn btn-success" value="Lauch New Classified Ad">
-
-					</div>
-				</div>
-			</div>
-
 		</div>
 
 		<div class="col-md-6">
@@ -130,8 +117,34 @@
 				<div class="col-md-11">
 					<h4>Add Tags</h4>
 					<label>Manage Tags<small> (Press enter to add to tags.)</small></label><br/>
-					<select multiple name="tags[]" tags id="tags-input"></select>
+					<select multiple name="tags[]" id="tags-input"></select>
 					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
+				</div>
+			</div>
+
+			<div class="row item-form-input">
+				<div class="col-md-1">
+					<h4 class="item-instruction-number">6.</h4>
+				</div>
+
+				<div class="col-md-11">
+					<h4>Add Location</h4>
+					<label>Location</label><br/>
+					<input class="form-control" name="location"></select>
+					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
+				</div>
+			</div>
+
+			<div class="row item-form-input" style="margin-top: 10px;">
+				<div class="col-md-1">
+					<h4 class="item-instruction-number"></h4>
+				</div>
+				<div class="col-md-11">
+					<div class="item-form-input-body input-group">
+						<input type="hidden" name="id" value="<?php echo $item[0]['itemid']?>">
+						<input type="submit" class="btn btn-success" value="Lauch New Classified Ad">
+
+					</div>
 				</div>
 			</div>
 

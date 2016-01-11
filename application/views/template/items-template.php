@@ -21,7 +21,7 @@ if (isset($items)) {
 
 					<!-- <span class="pull-right glyphicon glyphicon-eye-open" aria-hidden="true"><i class="item-card-views">21K</i></span> -->
 				</div>
-				<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>">
+				<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>">
 					<img width="200" height="200" src="<?php echo base_url('asset/img/items_thumbs'); ?>/<?php echo $value->image_thumb; ?>" alt="test">
 				</a>
 				<p class="snipp-title">

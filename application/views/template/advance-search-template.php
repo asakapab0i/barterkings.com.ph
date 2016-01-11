@@ -29,7 +29,7 @@
 				<?php endif; ?>
 
 				<input class="slider" name="price_range" 
-				data-slider-id='ex1Slider' type="text" 
+				data-slider-id='ex1Slider' type="hidden" 
 				data-slider-ticks="[100, 100000]" 
 				data-slider-ticks-labels='["₱ 100", "100000"]' 
 				data-slider-min="0" 
@@ -94,7 +94,7 @@
 					<input name='price_range' value='<?php echo $this->input->get("price_range"); ?>' type='hidden' />
 			<?php endif; ?>
 				<input class="slider" name="ad_age" 
-					data-slider-id='ex1Slider' type="text" 
+					data-slider-id='ex1Slider' type="hidden" 
 					data-slider-ticks="[1, 90]" 
 					data-slider-ticks-labels='["1 Day", "90+ Days"]' 
 					data-slider-min="0" 

@@ -26,8 +26,8 @@
 			</div>
 
 			<div class="col-md-4"> 
-
-				<div class="well well-no-bg" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+				<!-- data-spy="affix" data-offset-top="60" data-offset-bottom="200" -->
+				<div class="well well-no-bg">
 					<h4>Current Price</h4>
 					<h5>
 						PHP <?php echo $data[0]['value'] ?>

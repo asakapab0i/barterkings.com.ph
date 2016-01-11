@@ -529,6 +529,14 @@ body {
 	display: block;
 }
 
+.offer-area {
+	height: 200px;
+}
+
+#submit-offer {
+	margin-top: 10px;
+}
+
 /*.selling-card-parent input[type='radio']:active {
 	color: blue;
 	}*/
