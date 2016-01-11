@@ -323,7 +323,7 @@ body {
 }
 
 .barter-now button {
-	margin-top: 9px;
+	margin-top: 12px;
 	margin-bottom: 6px;
 }
 
@@ -465,6 +465,10 @@ body {
 	user-drag: none;
 	-moz-user-select: none;
 	-webkit-user-drag: none;
+}
+
+.navbar-form {
+	padding-top: 4px;
 }
 
 .category-card-parent {
