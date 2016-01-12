@@ -8,22 +8,22 @@
       <div class="media-body">
 
         <h4 class="media-heading user_name">
-        <a href="<?php echo base_url('profile/') .'/'. $comment['username']; ?>" title=""><?php echo $comment['username']; ?></a> 
+          <a href="<?php echo base_url('profile/') .'/'. $comment['username']; ?>" title=""><?php echo $comment['username']; ?></a> 
           <small><i><?php echo $comment['title']; ?></i></small>
         </h4>
         <div class="content hideContent">
-              <?php echo nl2br($comment['comment']); ?>
-            </div>
-            <?php if(strlen($comment['comment']) > 200): ?>
-              <div class="show-more">
-                <a href="#">Show more</a>
-              </div>
-            <?php endif;?>
-          </td>
-        
-      </div>
+          <?php echo nl2br($comment['comment']); ?>
+        </div>
+        <?php if(strlen($comment['comment']) > 200): ?>
+          <div class="show-more">
+            <a href="#">Show more</a>
+          </div>
+        <?php endif;?>
+      </td>
+
     </div>
-  <?php endforeach;?>
+  </div>
+<?php endforeach;?>
 <?php else: ?>
   <div class="media">
     <p class="pull-right"><small></small></p>

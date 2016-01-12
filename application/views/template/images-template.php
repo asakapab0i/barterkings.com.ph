@@ -2,7 +2,7 @@
 	<?php foreach($images as $image): ?>
 		<?php $name = $image['image_thumb']; ?>
 		<div class="col-md-3">
-			<img src="<?php echo base_url("asset/img/items_thumbs/$name"); ?>" alt="teste" class="thumbnail img-thumbnail">
+			<img src="<?php echo base_url("asset/img/items_thumbs/$name"); ?>" alt="teste" class="thumbnail img-responsive img-thumbnail">
 		</div>	
 	<?php endforeach;?>
 <?php else: ?>

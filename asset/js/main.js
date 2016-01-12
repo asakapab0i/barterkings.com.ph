@@ -365,7 +365,7 @@ $(function(){
 	});
 
 	$('.selectpicker').selectpicker({
-		style: 'btn-primary btn-xs',
+		style: 'btn-default btn-block',
 		size: 3
 	});
 

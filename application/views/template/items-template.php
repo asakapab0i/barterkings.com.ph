@@ -14,10 +14,10 @@ if (isset($items)) {
 		<div class="thumbnail bootsnipp-thumb">
 			<div class="image-card">
 				<div class="user-info-card">
-					by <a href="<?php echo base_url('profile/' . $value->username); ?>"><?php echo $value->username; ?></a>
-					<span class="pull-right label label-default">
+					<a href="<?php echo base_url('profile/' . $value->username); ?>"><span class="label label-primary"><?php echo ucfirst($value->username); ?></span></a>
+					<!-- <span class="pull-right label label-default">
 						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 212
-					</span>
+					</span> -->
 
 					<!-- <span class="pull-right glyphicon glyphicon-eye-open" aria-hidden="true"><i class="item-card-views">21K</i></span> -->
 				</div>

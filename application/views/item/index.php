@@ -2,8 +2,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8">
-				<div class="well well-no-bg">
-					<h4><?php echo $data[0]['name']; ?>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4><?php echo $data[0]['name']; ?>
 						<?php if ($editable === TRUE):?>
 							<!-- <a href="#" class="btn btn-primary">Edit</a> -->
 						<?php endif;?>
@@ -17,27 +19,31 @@
 							<?php if ($editable === TRUE):?>
 								<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/upload/" data-method="upload" class="pop-modal btn btn-primary btn-xs">Upload</a>
 							<?php endif;?>
-						</h4><hr>
+						</h4>
 						<div data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images">
 							<?php $this->load->view('template/images-template'); ?>	
 						</div>
 					</div>
+					</div>
 				</div>
+
 			</div>
 
-			<div class="col-md-4"> 
+			<div class="col-md-4">
 
-				<div class="well well-no-bg offer-area" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
-					<h4>Current Price</h4>
-					<h5>
-						PHP <?php echo $data[0]['value'] ?>
-						<small class="pull-right">
-							<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers
-						</small> 
-					</h5>
-					<hr>
-					<div data-itemid = "<?php echo $data[0]['itemid']; ?>" class="offers-list reload-offers">
-						<?php $this->load->view('template/offer-template');?>
+				<div class="panel panel-default" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+					<div class="panel-body offer-area">
+						<h4>Current Price</h4>
+						<h5>
+							PHP <?php echo $data[0]['value'] ?>
+							<small class="pull-right">
+								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers
+							</small> 
+						</h5>
+						<hr>
+						<div data-itemid = "<?php echo $data[0]['itemid']; ?>" class="offers-list reload-offers">
+							<?php $this->load->view('template/offer-template');?>
+						</div>
 					</div>
 				</div>
 
@@ -48,22 +54,32 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-8">
-			<div class="well well-no-bg">
-				<?php $this->load->view('template/item-template');?>
-			</div> 
-			<div class="well well-no-bg">
-				<h4>The Seller</h4><hr>
-				<?php $this->load->view('template/profile-template'); ?>
-			</div>	
-			<div class="well well-no-bg">
-				<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
-					<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-primary">Make comments</a>
-				</h4><hr>
-				<div class="comments-list reload-comments">
-					<?php $this->load->view('template/comments-template');?>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<?php $this->load->view('template/item-template');?>
+					</div>
 				</div>
-			</div> 
-		</div>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4>The Seller</h4><hr>
+						<?php $this->load->view('template/profile-template'); ?>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
+						<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-primary">Make comments</a>
+						</h4><hr>
+						<div class="comments-list reload-comments">
+							<?php $this->load->view('template/comments-template');?>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </div>

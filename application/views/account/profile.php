@@ -1,8 +1,12 @@
 <div class="container">
     <div class="col-md-12">
-        <div class="reload-profile well well-no-bg">
-            <?php $this->load->view('template/profile-template'); ?> 
+        
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <?php $this->load->view('template/profile-template'); ?> 
+            </div>
         </div>
+        
     </div>
     <!--
     <div class="col-md-12">

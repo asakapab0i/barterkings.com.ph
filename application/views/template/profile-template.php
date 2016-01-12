@@ -1,4 +1,4 @@
-<div class="row">
+
     <div class="col-md-3 thumbnail">
        <div class="progress hide">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
@@ -33,4 +33,3 @@
         </small>
 
     </div>
-</div>

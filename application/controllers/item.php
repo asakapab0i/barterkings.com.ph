@@ -38,7 +38,7 @@ class Item extends MY_Controller {
 					$data['item_owner'] = true;
 				}
 			}
-			$data['user'] = $user;
+			$data['user'] = $item_info;
 			$data['data'] = $item_info;
 			$data['to_offer'] = $to_offer;
 			$data['images'] = $item_images;
