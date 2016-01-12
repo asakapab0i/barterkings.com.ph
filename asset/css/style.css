@@ -537,18 +537,12 @@ body {
 	margin-top: 10px;
 }
 
-/*.selling-card-parent input[type='radio']:active {
-	color: blue;
-	}*/
-
-/*.select-category-list label {
-	width: 150px;
-	}*/
-
-/*.profile-picture img {
-	height: 400px;
+.profile-picture img{
+	width: 100%;
+	height: 200px;
 }
-*/
+
+
 
 
 /*SEACH INPUT RESPONSIVE*/

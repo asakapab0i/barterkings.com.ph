@@ -14,40 +14,7 @@ class Offer_model extends CI_Model {
 		$data = $this->input->post();
 		$data['offer_date_inserted'] = date('Y-m-d H:i:s');
 		$this->db->insert('offers', $data);
-		$last_id = $this->db->insert_id();
-
-		//send message to the one who got the offer
-		$message['subject'] = $data['offer_name'];
-		$message['message'] = $data['offer_description'];
-		$message['is_sent'] = 1;
-		$message['is_inbox'] = 1;
-		$message['date_sent'] = date('Y-m-d H:i:s');
-		$message['to'] = $this->account_model->get_account_id_by_item_id($data['item_id']);
-		$message['account_id'] = 8;
-		$this->message_model->create_message_compose($message);
-
-
-		/*
-		$item_id = $this->input->post('item_id');
-		$offer_item_id = $this->input->post('offer_item_id');
-		$data['offer_item_id'] = $this->input->post('item_id');
-		$data['offer_name'] = "Auto offered from $item_id.";
-		$data['offer_description'] = "This offer is auto reoffered from this item $item_id.";
-		$data['item_id'] = $this->input->post('offer_item_id');
-		*/
-
-		$this->db->insert('offers', $data);
-		$last_id = $this->db->insert_id();
 		
-		//send message to the one who offered
-		$message['subject'] = $data['offer_name'];
-		$message['message'] = $data['offer_description'];
-		$message['is_sent'] = 1;
-		$message['is_inbox'] = 1;
-		$message['date_sent'] = date('Y-m-d H:i:s');
-		$message['to'] = $this->account_model->get_account_id_by_item_id($data['item_id']);
-		$message['account_id'] = 8;
-		$this->message_model->create_message_compose($message);
 		return TRUE;
 	}
 

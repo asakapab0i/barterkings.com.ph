@@ -19,24 +19,28 @@ class Item extends MY_Controller {
 
 	public function item($itemid){
 		$item_info = $this->item_model->get_item($itemid);
-		$user_data = $this->account_model->get_session();
+		$user = $this->account_model->get_session();
+		$to_offer = $this->item_model->get_items_by_account_id_v2($user[0]['id'], $itemid);
 		$item_images = $this->item_model->get_item_images($itemid);
 		$item_images_count = $this->item_model->get_items_images_count($item_images);
 		$item_offers = $this->offer_model->get_item_offers($itemid);
 		$item_offers_count = ($item_offers !== false ? count($item_offers) : 0);
 		$item_comments = $this->item_model->get_item_comments($itemid);
 		$item_comments_count = ($item_comments !== false ? count($item_comments) : 0);
-		$data['account_id'] = $user_data[0]['id'];
+		$data['account_id'] = $user[0]['id'];
 		$data['editable'] = false;
 		$data['item_owner'] = false;
+
 		if ($item_info !== false) {
-			if ($user_data !== false) {
-				if ($user_data[0]['id'] == $item_info[0]['account_id']) {
+			if ($user !== false) {
+				if ($user[0]['id'] == $item_info[0]['account_id']) {
 					$data['editable'] = true;
 					$data['item_owner'] = true;
 				}
 			}
+			$data['user'] = $user;
 			$data['data'] = $item_info;
+			$data['to_offer'] = $to_offer;
 			$data['images'] = $item_images;
 			$data['images_count'] = $item_images_count;
 			$data['offers'] = $item_offers;
@@ -44,6 +48,16 @@ class Item extends MY_Controller {
 			$data['comments'] = $item_comments;
 			$data['comments_count']  = $item_comments_count;
 			$this->_load_view('item/index', $data);
+		}else{
+			redirect('home');
+		}
+	}
+
+	public function offer(){
+		if ($this->input->post()) {
+			$this->offer_model->add_offer();
+
+			var_dump($this->uri->uri_string());
 		}else{
 			redirect('home');
 		}

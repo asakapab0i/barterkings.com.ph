@@ -26,8 +26,8 @@
 			</div>
 
 			<div class="col-md-4"> 
-				<!-- data-spy="affix" data-offset-top="60" data-offset-bottom="200" -->
-				<div class="well well-no-bg">
+
+				<div class="well well-no-bg offer-area" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
 					<h4>Current Price</h4>
 					<h5>
 						PHP <?php echo $data[0]['value'] ?>
@@ -53,7 +53,7 @@
 			</div> 
 			<div class="well well-no-bg">
 				<h4>The Seller</h4><hr>
-				<?php $this->load->view('template/seller-information'); ?>
+				<?php $this->load->view('template/profile-template'); ?>
 			</div>	
 			<div class="well well-no-bg">
 				<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 

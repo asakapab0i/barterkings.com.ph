@@ -45,7 +45,7 @@ class Item_model extends MY_Model {
 			$itemid = $this->_input_data['itemid'];
 		}
 
-		$itemdb = $this->db->select('offers.*,items_images.*, accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
+		$itemdb = $this->db->select('offers.*,items_images.*, accounts.profile_img_thumb, accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
 		->from('items')
 		->join('offers', 'offer_item_id = items.id', 'left')
 		->join('items_images', 'items_images.item_id = items.id', 'left')
@@ -104,6 +104,14 @@ class Item_model extends MY_Model {
 		$subcategory = $this->db->select('*')->from('sub_category')->get()->result_array();
 		
 		return $subcategory;
+	}
+
+	public function get_available_items_to_offer($account_id, $item_id){
+
+		$items = $this->db->select('items.id, items.name')->from('items')->join('offers', 'offers.item_id = items.id', 'left')->where("offers.offer_item_id != $item_id")->group_by('items.id')->get()->result_array();
+
+		return $items;
+
 	}
 
 	public function get_items_by_account_id($account_id = NULL, $itemid = NULL, $limit = 4){
