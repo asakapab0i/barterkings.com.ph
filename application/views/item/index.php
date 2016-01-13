@@ -13,11 +13,10 @@
 					<h5>
 						<?php echo $data[0]['location'] ?>
 					</h5><hr>
-					<?php //$this->load->view('template/item-template'); ?>
 					<div class="item-images">
 						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images-count"><?php echo $images_count; ?></span> images</small> Images
 							<?php if ($editable === TRUE):?>
-								<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/upload/" data-method="upload" class="pop-modal btn btn-primary btn-xs">Upload</a>
+								<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/upload/" data-method="upload" class="pop-modal btn btn-success btn-xs">Upload</a>
 							<?php endif;?>
 						</h4>
 						<div data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images">
@@ -41,9 +40,10 @@
 							</small> 
 						</h5>
 						<hr>
-						<div data-itemid = "<?php echo $data[0]['itemid']; ?>" class="offers-list reload-offers">
+						<!-- <div data-itemid = "<?php echo $data[0]['itemid']; ?>" class="offers-list reload-offers">
 							<?php $this->load->view('template/offer-template');?>
-						</div>
+						</div> -->
+						<a href="#" id="submit-offer" type="submit" data-url="item/offerlist" data-accountid="<?php echo $account_id; ?>" data-itemid="<?php echo $data[0]['itemid']; ?>" class="pop-modal btn btn-success btn-block">Offer my item</a>
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
-						<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-primary">Make comments</a>
+						<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-xs btn-success">Make comments</a>
 						</h4><hr>
 						<div class="comments-list reload-comments">
 							<?php $this->load->view('template/comments-template');?>

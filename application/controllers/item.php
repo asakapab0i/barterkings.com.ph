@@ -162,6 +162,13 @@ class Item extends MY_Controller {
 		}
 	}
 
+	public function offerlist(){
+		if ($this->input->post()) {
+			$data['items'] = $this->item_model->get_available_items($this->input->post('id'), $this->input->post('account_id'));
+			$this->load->view('template/items-offerlist.php', $data);
+		}	
+	}
+
 	public function delete_image(){
 		$this->item_model->delete_item_images($this->input->post());	
 	}

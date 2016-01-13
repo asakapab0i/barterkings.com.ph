@@ -1,8 +1,10 @@
 <?php if($images !== FALSE): ?>
 	<?php foreach($images as $image): ?>
-		<?php $name = $image['image_thumb']; ?>
+		<?php $name = $image['image_thumb'];  $large = $image['image']?>
 		<div class="col-md-3">
-			<img src="<?php echo base_url("asset/img/items_thumbs/$name"); ?>" alt="teste" class="thumbnail img-responsive img-thumbnail">
+			<a href="<?php echo base_url("asset/img/items/$large"); ?>" title="test" data-gallery>
+				<img src="<?php echo base_url("asset/img/items_thumbs/$name"); ?>" alt="test" class="thumbnail img-responsive img-thumbnail">
+			</a>
 		</div>	
 	<?php endforeach;?>
 <?php else: ?>

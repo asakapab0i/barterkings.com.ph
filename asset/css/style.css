@@ -324,11 +324,12 @@ body {
 
 .barter-now button {
 	margin-top: 12px;
+	height: 35px;
 	margin-bottom: 6px;
 }
 
 .barter-now .nav-icon {
-	vertical-align: -3px;
+	vertical-align: -4px;
 }
 
 .barter-now .btn:hover{
@@ -545,6 +546,44 @@ body {
 .reload-images {
 	padding-top: 10px;
 }
+
+/*Offer Box*/
+
+.offer-box > .offer-search {
+	margin-bottom: 10px;
+}
+
+.offer-box > .offer-list {
+	height: 110px;
+	overflow: auto;
+}
+
+.offer-box > .offer-list a {
+	padding: 5px 15px
+}
+
+.modal-header {
+	padding: 5px 15px;
+	margin-bottom: 20px;
+}
+
+/*Redesign Buttons*/
+
+.btn-success, .btn-info, .btn-default, .btn-primary, .btn-danger, .btn-warning {
+	border: 0;
+	border-width: 0;
+	margin: 0;
+}
+
+.btn-success:hover, .btn-info:hover, .btn-default:hover, .btn-primary:hover, .btn-danger:hover, .btn-warning:hover, .btn:hover {
+	border: 0;
+	border-width: 0;
+	margin: 0;
+	z-index: 0;
+}
+
+
+
 
 
 

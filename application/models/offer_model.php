@@ -30,6 +30,7 @@ class Offer_model extends CI_Model {
 		->get();
 
 		if ($offerdb->num_rows() > 0) {
+
 			return $offerdb->result_array();
 		}
 

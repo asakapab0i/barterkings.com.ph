@@ -618,5 +618,19 @@ class Item_model extends MY_Model {
 		return $this->db->insert('item_comments', $data);	
 	}
 
+	public function get_available_items($item, $account){
+
+		$item_query = $this->db->query("SELECT items.id as a_item_id, items.*, accounts.*, items_images.image_thumb, offers.* 
+			FROM items
+			LEFT JOIN accounts ON accounts.id = items.account_id
+			LEFT JOIN offers ON items.id = offers.item_id
+			LEFT JOIN items_images ON items_images.item_id = items.id
+			WHERE items.account_id = $account
+			AND items.id IS NOT NULL
+			AND offers.offer_id IS NULL GROUP BY items.id");
+
+		return $item_query->result();
+	}
+
 
 }

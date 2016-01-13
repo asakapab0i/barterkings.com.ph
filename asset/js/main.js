@@ -27,6 +27,7 @@ $(function(){
 		e.preventDefault();
 
 		var id = $(this).data('itemid');
+		var account_id = $(this).data('accountid');
 		var url = $(this).data('url');;
 		var that = $('#myModal');
 		that.find('.modal-content').empty();
@@ -37,7 +38,7 @@ $(function(){
 	$.ajax({
 		method: "POST",
 		url: base_url + url,
-		data: { id: id}
+		data: { id: id, account_id : account_id }
 	}).done(function( result ) {
 		that.find('.modal-content').html(result);
 	});
