@@ -63,7 +63,7 @@ class Item_model extends MY_Model {
 
 	public function get_categories(){
 		
-		$category = $this->db->select('*')->from('category_labels')->get()->result_array();
+		$category = $this->db->select('category_labels.*, COUNT(category) as category_count')->from('category_labels')->join('items', 'items.category = category_id', 'left')->group_by('category_id')->get()->result_array();
 		$sub_category = $this->db->select('*')->from('sub_category')->get()->result_array();
 
 		$categories = array();
@@ -75,11 +75,13 @@ class Item_model extends MY_Model {
 					$categories[$cat['category_name']]['icon'] = $cat['category_icon'];
 					$categories[$cat['category_name']]['color'] = $cat['category_color'];
 					$categories[$cat['category_name']]['id'] = $cat['category_id'];
+					$categories[$cat['category_name']]['count'] = $cat['category_count'];
 				}else {
 					$categories[$cat['category_name']]['sub_category'] = NULL;
 					$categories[$cat['category_name']]['icon'] = $cat['category_icon'];
 					$categories[$cat['category_name']]['color'] = $cat['category_color'];
 					$categories[$cat['category_name']]['id'] = $cat['category_id'];
+					$categories[$cat['category_name']]['count'] = $cat['category_count'];
 				}
 			}
 		}
