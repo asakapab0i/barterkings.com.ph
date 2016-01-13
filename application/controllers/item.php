@@ -56,11 +56,8 @@ class Item extends MY_Controller {
 
 	public function offer(){
 		if ($this->input->post()) {
-			$this->offer_model->add_offer();
-
-			var_dump($this->uri->uri_string());
-		}else{
-			redirect('home');
+			$data['offer_success'] = $this->offer_model->add_offer();
+			$this->load->view('template/offer-cart', $data);
 		}
 	}
 
@@ -165,7 +162,8 @@ class Item extends MY_Controller {
 
 	public function offerlist(){
 		if ($this->input->post()) {
-			$data['items'] = $this->item_model->get_available_items($this->input->post('id'), $this->input->post('account_id'));
+			$data['items'] = $this->item_model->get_items_by_account_id_v2($this->input->post('account_id'), $this->input->post('id'));
+			$data['item'] = $this->input->post('id');
 			$this->load->view('template/items-offerlist.php', $data);
 		}	
 	}
@@ -195,8 +193,10 @@ class Item extends MY_Controller {
 		echo count($data);
 	}
 
-	public function get_item($item){
-		$data['offered_item'] = $this->item_model->get_item($item);
+	public function get_offered_item(){
+
+		$data['item_offer_id'] = $this->item_model->get_item($this->input->post('offer_item_id'));
+		$data['item_id'] = $this->input->post('item_id');
 		$this->load->view('template/offer-cart', $data);
 
 	}

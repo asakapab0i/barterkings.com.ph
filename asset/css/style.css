@@ -262,6 +262,10 @@ body {
 	/*vertical-align: -2px;*/
 }
 
+.nav-right .nav-icon {
+	color: #28b62c;
+}
+
 .nav-profile-image{
 	margin-left: 10px;
 	padding-top: 7px;

@@ -12,4 +12,8 @@
 		echo base_url('profile') . '/' . $profile;
 	}
 
+	function linkify_to_add(){
+		echo base_url('item/add');
+	}
+
 ?>

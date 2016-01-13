@@ -23,7 +23,7 @@ if (isset($items)) {
 				<div class="thumbnail bootsnipp-thumb">
 					<div class="image-card">
 						<div class="user-info-card">
-							<a href="<?php linkify_to_profile($value->username); ?>"><span class="label label-primary"><?php echo ucfirst($value->username); ?></span></a>
+							<!-- <a href="<?php linkify_to_profile($value->username); ?>"><span class="label label-primary"><?php echo ucfirst($value->username); ?></span></a> -->
 				</div>
 				<a href="<?php linkify_to_item($value->a_item_id, $value->name); ?>">
 					<img width="200" height="200" src="<?php linkify_to_images($value->image_thumb); ?>" alt="<?php echo $value->name; ?>">
@@ -38,7 +38,7 @@ if (isset($items)) {
 				<div class="col-md-12">
 					<div class="btn-group btn-block">
 						<a href="<?php linkify_to_item($value->a_item_id, $value->name); ?>" class="btn col-md-6 btn-sm btn-primary">₱<?php echo $value->value; ?></a>
-						<a href="#" id="selected-offer" data-item-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-warning">Select</a>
+						<a href="#" id="selected-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-warning">Select</a>
 					</div>
 				</div>
 			</div>
@@ -48,7 +48,9 @@ if (isset($items)) {
 
 <?php endforeach;?>
 <?php else:?>
-	<!-- If no items found -->
+	<div class="col-md-12 text-center">
+		<p>No item found or it was already offered. <a class="btn btn-success btn-xs" href="<?php linkify_to_add() ?>">Add item</a> instead.</p>
+	</div>
 <?php endif;?>
 </div>
 </div>

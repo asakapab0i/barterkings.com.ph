@@ -14,6 +14,10 @@ class Offer_model extends CI_Model {
 		$data = $this->input->post();
 		$data['offer_date_inserted'] = date('Y-m-d H:i:s');
 		$this->db->insert('offers', $data);
+
+		$data['item_id'] = $this->input->post('offer_item_id');
+		$data['offer_item_id'] = $this->input->post('item_id');
+		$this->db->insert('offers', $data);
 		
 		return TRUE;
 	}

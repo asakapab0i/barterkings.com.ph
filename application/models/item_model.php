@@ -125,7 +125,7 @@ class Item_model extends MY_Model {
 			foreach ($current_item_offers as $offer) {
 				$cio[] = $offer['offer_item_id'];
 			}
-			$itemsdb = $this->db->select('*')
+			$itemsdb = $this->db->select('items.id as a_item_id, items.*, accounts.*, items_images.image_thumb, offers.* ')
 			->from('items')
 			->group_by('items.id')
 			->join('offers', 'offer_item_id = items.id', 'left')
@@ -137,7 +137,7 @@ class Item_model extends MY_Model {
 			->limit($limit)
 			->get();
 		}else{
-			$itemsdb = $this->db->select('*')
+			$itemsdb = $this->db->select('items.id as a_item_id, items.*, accounts.*, items_images.image_thumb, offers.* ')
 			->from('items')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
@@ -165,16 +165,16 @@ class Item_model extends MY_Model {
 			foreach ($current_item_offers as $offer) {
 				$cio[] = $offer['offer_item_id'];
 			}
-			$itemsdb = $this->db->select('*')
+
+			$itemsdb = $this->db->select('items.id as a_item_id, items.*, items_images.image_thumb ')
 			->from('items')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
 			->group_by('items.id')
 			->where('account_id', $account_id)
-			->where_not_in('item_id', $cio)
-			->where('items_images.item_id', $itemid)
+			->where_not_in('items.id', $cio)
 			->get();
 		}else{
-			$itemsdb = $this->db->select('*')
+			$itemsdb = $this->db->select('items.id as a_item_id, items.*, items_images.image_thumb ')
 			->from('items')
 			->join('items_images', 'items_images.item_id = items.id', 'left')
 			->group_by('items.id')
@@ -183,7 +183,7 @@ class Item_model extends MY_Model {
 		}
 
 		if ($itemsdb->num_rows() > 0) {
-			return $itemsdb->result_array();
+			return $itemsdb->result();
 		}
 		return FALSE;
 	}
@@ -237,14 +237,14 @@ class Item_model extends MY_Model {
 
 		}else if ($this->_input_data['sort'] == 'most_offers') {
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			$itemsdb = $this->db->select('COUNT(offers.offer_item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			->from('items')
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->where("value $operator", $price_range)
 			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
-			->having('COUNT(offers.item_id) >', 0, false)
+			->having('COUNT(offers.offer_item_id) >', 0, false)
 			->limit($limit, $offset)
 			->group_by('items.id')
 			->order_by('value', $order)

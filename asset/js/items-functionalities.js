@@ -33,17 +33,37 @@ $(function(){
 	$(document).on('click', '#selected-offer', function(){
 
 		var item_id = $(this).data('item-id');
+		var offer_item_id = $(this).data('item-offer-id');
 		$('#myModal').modal('hide');
 
 		$.ajax({
 			method: "POST",
-			url: base_url + 'item/get_item/' + item_id,
-			data: {id : $(this).data('id')},
+			url: base_url + 'item/get_offered_item/' + offer_item_id,
+			data: {item_id : item_id, offer_item_id: offer_item_id},
 				success: function(result){
 					$('.offers-cart').html(result);
 				}
 		});
 
 	});                                                        
+
+	$(document).on('click', '#confirm-offer', function(){
+
+		var item_id = $(this).data('item-id');
+		var offer_item_id = $(this).data('offer-item-id');
+
+		$.ajax({
+			method: "POST",
+			url: base_url + 'item/offer/' + item_id,
+			data: {item_id: item_id, offer_item_id: offer_item_id},
+				success: function(result){
+					$('.offers-cart').html(result);
+					$('.reload-offers-count').load(base_url + 'offer/get_offers_count/' + item_id);
+				}
+		});
+
+		$
+
+	});
 
 });
