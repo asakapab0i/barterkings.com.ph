@@ -9,6 +9,7 @@ class Item extends MY_Controller {
 		$this->load->model('offer_model');
 		$this->load->helper('date');
 		$this->load->helper('text');
+		$this->load->helper('links');
 
 		// $this->output->enable_profiler(true);
 	}
@@ -192,6 +193,12 @@ class Item extends MY_Controller {
 	public function get_comments_count($itemid){
 		$data = $this->item_model->get_item_comments($itemid);
 		echo count($data);
+	}
+
+	public function get_item($item){
+		$data['offered_item'] = $this->item_model->get_item($item);
+		$this->load->view('template/offer-cart', $data);
+
 	}
 
 }

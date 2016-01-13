@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+/*@import url(https://fonts.googleapis.com/css?family=Lato:300italic,400italic,600italic,700italic,400,300,600,700);*/
 
 body {
 	background-color:#F7F7F7;
@@ -579,6 +579,10 @@ body {
 	border: 0;
 	border-width: 0;
 	margin: 0;
+	z-index: 0;
+}
+
+.btn-group>.btn:hover, .btn-group-vertical>.btn:hover, .btn-group>.btn:focus, .btn-group-vertical>.btn:focus, .btn-group>.btn:active, .btn-group-vertical>.btn:active, .btn-group>.btn.active, .btn-group-vertical>.btn.active{
 	z-index: 0;
 }
 

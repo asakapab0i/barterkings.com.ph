@@ -40,10 +40,10 @@
 							</small> 
 						</h5>
 						<hr>
-						<!-- <div data-itemid = "<?php echo $data[0]['itemid']; ?>" class="offers-list reload-offers">
-							<?php $this->load->view('template/offer-template');?>
-						</div> -->
-						<a href="#" id="submit-offer" type="submit" data-url="item/offerlist" data-accountid="<?php echo $account_id; ?>" data-itemid="<?php echo $data[0]['itemid']; ?>" class="pop-modal btn btn-success btn-block">Offer my item</a>
+						<div data-itemid="<?php echo $data[0]['itemid']; ?>" class="offers-cart reload-offer-cart">
+							<?php $this->load->view('template/offer-cart');?>
+						</div>
+
 					</div>
 				</div>
 

@@ -30,4 +30,20 @@ $(function(){
 
 	});
 
+	$(document).on('click', '#selected-offer', function(){
+
+		var item_id = $(this).data('item-id');
+		$('#myModal').modal('hide');
+
+		$.ajax({
+			method: "POST",
+			url: base_url + 'item/get_item/' + item_id,
+			data: {id : $(this).data('id')},
+				success: function(result){
+					$('.offers-cart').html(result);
+				}
+		});
+
+	});                                                        
+
 });
