@@ -60,10 +60,12 @@
 
 			<?php foreach($_categories as $key => $val): ?>
 
-				<li class="list-group-item">
-					<span class="badge"><?php echo $val['count']; ?></span>
-					<?php echo $key; ?>
-				</li>
+				<a href="#" class="list-group-item">
+					<small>
+					   <span class="badge pull-right"><?php echo $val['count']; ?></span>
+						<?php echo $key; ?>
+					</small>
+				</a>
 
 			<?php endforeach; ?>
 

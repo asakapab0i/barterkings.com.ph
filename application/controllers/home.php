@@ -9,7 +9,7 @@ class Home extends MY_Controller {
 		$this->load->helper('text');
 	}
 
-	public function index(){
+	public function index($sort = 'all'){
 
 		if ($this->input->get('term')) {
 			$items = $this->item_model->get_items_search();
