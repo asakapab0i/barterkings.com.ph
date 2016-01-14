@@ -376,16 +376,18 @@ class Item_model extends MY_Model {
 		if (isset($this->_input_data['category'])) {
 
 			$categories = $this->get_categories_v2();
+			$cat_prefix = "category_id";
 				
 			foreach ($categories as $key => $value) {
 				if ($value['category_class'] = $this->_input_data['category']) {
-					$category = "category_class='" . $this->_input_data['category'] . "'";
+					$cat_value = $value['category_id'];
 					break;
 				}
 			}
 
 		}else {
-			$category = "category_class != NULL";
+			$cat_prefix = "category_class !=";
+			$cat_value = 0;
 		}
 
 
@@ -401,7 +403,7 @@ class Item_model extends MY_Model {
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('category_labels', 'category_labels.category_id = items.category')
 			->where("value $operator", $price_range)
-			->where($category, NULL, false)
+			->where($cat_prefix, $cat_value)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 			->limit($limit, $offset)
 			->group_by('items.id')
