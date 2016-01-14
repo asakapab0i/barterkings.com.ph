@@ -51,7 +51,7 @@
 							<?php if($val['id'] == $item[0]['category']):  ?>
 								<option selected value="<?php $val['id']; ?>"><?php echo $key; ?></option>
 							<?php else: ?>
-								<option value="<?php $val['id']; ?>"><?php echo $key; ?></option>
+								<option value="<?php echo $val['id']; ?>"><?php echo $key; ?></option>
 							<?php endif; ?>
 
 						<?php endforeach; ?>
@@ -82,7 +82,7 @@
 				
 				<div class="col-md-1">
 					<h4 class="item-instruction-number"></h4>
-				</div>
+			</div>
 				<div class="col-md-11">
 					<label>Description</label>
 					<textarea id="description-editor" style="height: 250px;" class="form-control" name="description"><?php echo_if_not_empty(trim($item[0]['description']))?></textarea>
@@ -114,7 +114,7 @@
 				<div class="col-md-11">
 					<h4>Add Tags</h4>
 					<label>Manage Tags<small> (Press enter or space to add more tags.)</small></label><br/>
-					<input disabled data-provide="typeahead" name="tags[]" id="tags-input" data-item-id="<?php echo_if_not_empty($item[0]['itemid'], 0); ?>" />
+					<select multiple name="tags[]" id="tags-input" data-item-id="<?php echo_if_not_empty($item[0]['itemid'], 0); ?>" /></select>
 					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
 				</div>
 			</div>

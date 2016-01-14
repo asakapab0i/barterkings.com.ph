@@ -460,7 +460,7 @@ $(function(){
 	$('#tags-input').tagsinput({
 		tagClass: 'label label-primary',
 		confirmKeys: [44, 18, 32, 13],
-		itemValue: 'label',
+		// itemValue: 'label',
 	});
 
 

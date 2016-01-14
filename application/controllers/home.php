@@ -8,6 +8,8 @@ class Home extends MY_Controller {
 		$this->load->model('message_model');
 		$this->load->helper('text');
 		$this->load->helper('links');
+
+		// $this->output->enable_profiler(1);
 	}
 
 	public function index($sort = 'all'){

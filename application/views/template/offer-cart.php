@@ -1,16 +1,20 @@
 <?php if($_is_logged_in !== false): ?>
 
-	<?php if($_is_logged_in[0]['account_id'] = $data[0]['account_id']): ?>
-
+	<?php if(isset($data[0]['account_id']) && $_is_logged_in[0]['id'] == $data[0]['account_id']): ?>
 		<a href="<?php linkify_to_edit($data[0]['itemid']); ?>" id="login-to-offer" class="btn btn-success btn-block">Edit this item</a>
-
 	<?php else: ?>
+
 		<?php if(isset($offer_success)): ?>
 
 			<div class="alert alert-success alert-dismissible fade in" role="alert"> 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> 
-				<strong>Congratulations</strong> <p>Your offer is successfully added.</p>
+				Your offer is successfully added.
 			</div>
+
+			<a href="#" id="login-to-offer" class="btn btn-warning btn-block">View Offered Items</a>
+
+			<a href="#" id="login-to-offer" class="btn btn-info btn-block">Contact Owner</a>
+			<a href="#" id="login-to-offer" class="btn btn-danger btn-block">Undo Offer</a>
 
 		<?php else:?>
 

@@ -45,10 +45,11 @@ class Item_model extends MY_Model {
 			$itemid = $this->_input_data['itemid'];
 		}
 
-		$itemdb = $this->db->select('offers.*,items_images.*, accounts.profile_img_thumb, accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
+		$itemdb = $this->db->select('category_labels.category_name,category_labels.category_class,category_labels.category_color,offers.*,items_images.*, accounts.profile_img_thumb, accounts.id, items.id as itemid, items.account_id, username, name, type, status, value, description, category, size, location')
 		->from('items')
 		->join('offers', 'offer_item_id = items.id', 'left')
 		->join('items_images', 'items_images.item_id = items.id', 'left')
+		->join('category_labels', 'category_labels.category_id = items.category', 'left')
 		->join('accounts', 'items.account_id = accounts.id', 'left')
 		->where('items.id', $itemid)
 		->group_by('items.id')
@@ -426,7 +427,7 @@ class Item_model extends MY_Model {
 			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->join('category_labels', 'category_labels.category_id = items.category')
 			->join('offers', 'offer_item_id = items.id', 'left')
-			->where("value $operator", $price_range)
+			// ->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -529,7 +530,7 @@ class Item_model extends MY_Model {
 			->join('category_labels', 'category_labels.category_id = items.category')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->like('name', $term)
-			->where("value $operator", $price_range)
+			// ->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
