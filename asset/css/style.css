@@ -590,7 +590,14 @@ body {
 	z-index: 0;
 }
 
+.btn-block+.btn-block:hover{
+	margin-top: 5px;
+}
 
+.list-group-item{
+	padding: 5px 15px;
+	border: 0;
+}
 
 
 

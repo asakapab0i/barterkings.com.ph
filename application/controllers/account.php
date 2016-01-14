@@ -28,6 +28,10 @@ class Account extends MY_Controller {
 		$this->load->view('template/login-template', array('show_or_hide' => 'hide'));
 	}
 
+	public function register_template(){
+		$this->load->view('template/register-template');
+	}
+
 	public function logout(){
 		if (!empty($this->_session_data)) {
 			$this->account_model->logout();

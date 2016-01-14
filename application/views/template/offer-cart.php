@@ -21,6 +21,7 @@
 <?php else: ?>
 
 	<a href="#" id="login-to-offer" data-url="account/login_template" class="pop-modal btn btn-success btn-block">Login to offer</a>
+	<a href="#" id="register-to-offer" data-url="account/register_template" class="pop-modal btn btn-primary btn-block">Register to offer</a>
 
 <?php endif;?>
 
