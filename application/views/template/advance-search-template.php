@@ -62,7 +62,7 @@
 
 				<a href="#" class="list-group-item">
 					<small>
-					   <span class="badge pull-right"><?php echo $val['count']; ?></span>
+					   <span class="label label-success pull-right"><?php echo $val['count']; ?></span>
 						<?php echo $key; ?>
 					</small>
 				</a>
