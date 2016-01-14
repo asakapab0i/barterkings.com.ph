@@ -61,8 +61,8 @@
 			<?php foreach($_categories as $key => $val): ?>
 
 				<a href="#" class="list-group-item">
-					<small>
 					   <span class="label label-success pull-right"><?php echo $val['count']; ?></span>
+					<small>
 						<?php echo $key; ?>
 					</small>
 				</a>
