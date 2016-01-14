@@ -467,15 +467,17 @@ class Item_model extends MY_Model {
 		if (isset($this->_input_data['category'])) {
 
 			$categories = $this->get_categories_v2();
-			$category = "category_class != NULL";
-				
+			$cat_prefix = "category_id";
 			foreach ($categories as $key => $value) {
-				if ($value['category_class'] = $this->_input_data['category']) {
-					$category = "category_class='" . $this->_input_data['category'] . "'";
+				if ($value['category_class'] == $this->_input_data['category']) {
+					$cat_value = $value['category_id'];
 					break;
 				}
 			}
 
+		}else {
+			$cat_prefix = "category_id !=";
+			$cat_value = 0;
 		}
 
 		$datenow = date('Y-m-d');		
@@ -484,18 +486,34 @@ class Item_model extends MY_Model {
 		if (isset($this->_input_data['sort'])) {
 			$itemsdb = $this->_query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
 		}else{
-			$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			// $itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			// ->from('items')
+			// ->join('items_images', 'item_id = items.id', 'left')
+			// ->join('accounts', 'accounts.id = items.account_id')
+			// ->like('name', $term)
+			// ->where("value $operator", $price_range)
+			// ->where($category, NULL, false)
+			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
+			// ->limit($limit, $offset)
+			// ->group_by('items.id')
+			// ->order_by('value', $order)
+			// ->get();
+
+			$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			->from('items')
 			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
+			->join('accounts', 'accounts.id = items.account_id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category')
+			->join('offers', 'offer_item_id = items.id', 'left')
 			->like('name', $term)
 			->where("value $operator", $price_range)
-			->where($category, NULL, false)
-			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
+			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
 			->order_by('value', $order)
+			->order_by('date_posted', 'desc')
 			->get();
+
 		}
 
 
