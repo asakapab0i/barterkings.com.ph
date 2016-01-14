@@ -8,16 +8,16 @@
 		</div>	
 	<?php endforeach;?>
 <?php else: ?>
-	<!-- <div class="col-md-3 col-sm-3">
-		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.JPG"); ?>" alt="teste" class="img-thumbnail">
+	<div class="col-md-3 col-sm-3">
+		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.png"); ?>" alt="teste" class="img-thumbnail">
 	</div>
 	<div class="col-md-3 col-sm-3">
-		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.JPG"); ?>" alt="teste" class="img-thumbnail">
+		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.png"); ?>" alt="teste" class="img-thumbnail">
 	</div>	
 	<div class="col-md-3 col-sm-3">
-		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.JPG"); ?>" alt="teste" class="img-thumbnail">
+		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.png"); ?>" alt="teste" class="img-thumbnail">
 	</div>	
 	<div class="col-md-3 col-sm-3">
-		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.JPG"); ?>" alt="teste" class="img-thumbnail">
-	</div>		 -->
+		<img src="<?php echo base_url("asset/img/items_thumbs/default_thumb.png"); ?>" alt="teste" class="img-thumbnail">
+	</div>		
 <?php endif;?>

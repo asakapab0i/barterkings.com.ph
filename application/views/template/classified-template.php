@@ -3,7 +3,7 @@
 		<h3 class="panel-title">List your item for free!</h3>
 	</div>
 	<div class="panel-body">
-		<div class="col-md-6">
+		<div class="col-md-8">
 		<form method="POST" action="<?php echo base_url('item/edit'); ?>">
 			<div class="row item-form-input">
 				<div class="col-xs-1">
@@ -30,7 +30,7 @@
 						<span class="input-group-btn">
 							<button type="submit" class="btn btn-default">₱</button>
 						</span>
-						<input class="form-control" type="text" name="value" value="100">
+						<input class="form-control" type="text" name="value" value="<?php echo_if_not_empty($item[0]['value'], 100); ?>">
 
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 					<h4>Item Details</h4>
 					<label>Category</label>
 
-					<select disabled name="category" class="form-control">
+					<select name="category" class="form-control">
 						
 						<?php foreach($categories as $key => $val): ?>
 
@@ -61,7 +61,7 @@
 					<!-- <input class="form-control" type="text" name="name" value=""> -->
 				</div>
 
-				<?php if($categories_v2[0]['category_id'] == $item[0]['category']): ?>
+				<?php if( false ): //$categories_v2[0]['category_id'] = $item[0]['category'] ?>
 					<div class="col-md-1">
 					<h4 class="item-instruction-number"></h4>
 					</div>
@@ -85,15 +85,12 @@
 				</div>
 				<div class="col-md-11">
 					<label>Description</label>
-					<textarea id="description-editor" style="height: 250px;" class="form-control" name="description"></textarea>
+					<textarea id="description-editor" style="height: 250px;" class="form-control" name="description"><?php echo_if_not_empty(trim($item[0]['description']))?></textarea>
 				</div>
 			</div>
 
-		</div>
 
-		<div class="col-md-6">
-
-			<div class="row item-form-input">
+			<div class="row item-form-input" style="margin-top: 10px;">
 				<div class="col-md-1">
 					<h4 class="item-instruction-number">4.</h4>
 				</div>
@@ -116,8 +113,8 @@
 
 				<div class="col-md-11">
 					<h4>Add Tags</h4>
-					<label>Manage Tags<small> (Press enter to add to tags.)</small></label><br/>
-					<select multiple name="tags[]" id="tags-input"></select>
+					<label>Manage Tags<small> (Press enter or space to add more tags.)</small></label><br/>
+					<input disabled data-provide="typeahead" name="tags[]" id="tags-input" data-item-id="<?php echo_if_not_empty($item[0]['itemid'], 0); ?>" />
 					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
 				</div>
 			</div>
@@ -130,7 +127,7 @@
 				<div class="col-md-11">
 					<h4>Add Location</h4>
 					<label>Location</label><br/>
-					<input class="form-control" name="location"></select>
+					<input class="form-control" name="location" value="<?php echo_if_not_empty($item[0]['location']); ?>" />
 					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
 				</div>
 			</div>
@@ -147,6 +144,11 @@
 					</div>
 				</div>
 			</div>
+
+		</div>
+
+		<div class="col-md-4">
+
 
 		</div>
 

@@ -7,7 +7,7 @@ if (isset($items)) {
 
 	<?php foreach ($data as $value): 
 	if ($value->image_thumb === NULL):
-		$value->image_thumb = 'default_thumb.JPG';
+		$value->image_thumb = 'default_thumb.png';
 	endif;
 	?>
 	<div class="item-card-parent col-sm-12 col-xs-12 col-md-3 col-lg-3">

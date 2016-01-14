@@ -458,7 +458,19 @@ $(function(){
 	});
 
 	$('#tags-input').tagsinput({
-		tagClass: 'label label-primary'
+		tagClass: 'label label-primary',
+		confirmKeys: [44, 18, 32, 13],
+		itemValue: 'label',
+	});
+
+
+	var item_id = $('#tags-input').data('item-id')	
+
+	$.get(base_url + 'item/get_tags_json/' + item_id, function(data){
+		$.each(data, function(k, v){
+			console.log(k, v.tag_term);
+			$('#tags-input').tagsinput('add', { label: $.trim(v.tag_term) });
+		});
 	});
 
 });

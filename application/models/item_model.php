@@ -61,6 +61,17 @@ class Item_model extends MY_Model {
 		return FALSE;
 	}
 
+	public function get_tags($item_id){
+		$itemdb  = $this->db->select('tags.tag_term')->from('tags')->where('tag_parent', $item_id)->get();
+
+		if ($itemdb->num_rows() > 0) {
+			return $itemdb->result_array();
+		}
+
+		return FALSE;
+
+	}
+
 	public function get_categories(){
 		
 		$category = $this->db->select('category_labels.*, COUNT(category) as category_count')->from('category_labels')->join('items', 'items.category = category_id', 'left')->group_by('category_id')->get()->result_array();
@@ -637,7 +648,7 @@ class Item_model extends MY_Model {
 				if (count($images) == 4) {
 					return $images;
 				}
-				array_push($images, array('itemid' => $itemid, 'image' => 'default.JPG', 'image_thumb' => 'default_thumb.JPG'));
+				array_push($images, array('itemid' => $itemid, 'image' => 'default.png', 'image_thumb' => 'default_thumb.png'));
 			}
 			return $images;
 		}
@@ -698,20 +709,6 @@ class Item_model extends MY_Model {
 		$data = $this->input->post();
 		$data['comment_date_inserted'] = date('Y-m-d H:i:s');
 		return $this->db->insert('item_comments', $data);	
-	}
-
-	public function get_available_items($item, $account){
-
-		$item_query = $this->db->query("SELECT items.id as a_item_id, items.*, accounts.*, items_images.image_thumb, offers.* 
-			FROM items
-			LEFT JOIN accounts ON accounts.id = items.account_id
-			LEFT JOIN offers ON items.id = offers.item_id
-			LEFT JOIN items_images ON items_images.item_id = items.id
-			WHERE items.account_id = $account
-			AND items.id IS NOT NULL
-			AND offers.offer_id IS NULL GROUP BY items.id");
-
-		return $item_query->result();
 	}
 
 

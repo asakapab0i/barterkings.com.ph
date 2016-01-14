@@ -20,11 +20,13 @@ class Item extends MY_Controller {
 
 	public function item($itemid){
 		$item_info = $this->item_model->get_item($itemid);
+
 		$user = $this->account_model->get_session();
 		$to_offer = $this->item_model->get_items_by_account_id_v2($user[0]['id'], $itemid);
 		$item_images = $this->item_model->get_item_images($itemid);
 		$item_images_count = $this->item_model->get_items_images_count($item_images);
 		$item_offers = $this->offer_model->get_item_offers($itemid);
+		$item_tags = $this->item_model->get_tags($itemid);
 		$item_offers_count = ($item_offers !== false ? count($item_offers) : 0);
 		$item_comments = $this->item_model->get_item_comments($itemid);
 		$item_comments_count = ($item_comments !== false ? count($item_comments) : 0);
@@ -42,12 +44,14 @@ class Item extends MY_Controller {
 			$data['user'] = $item_info;
 			$data['data'] = $item_info;
 			$data['to_offer'] = $to_offer;
+			$data['tags'] = $item_tags;
 			$data['images'] = $item_images;
 			$data['images_count'] = $item_images_count;
 			$data['offers'] = $item_offers;
 			$data['offers_count'] = $item_offers_count;
 			$data['comments'] = $item_comments;
 			$data['comments_count']  = $item_comments_count;
+
 			$this->_load_view('item/index', $data);
 		}else{
 			redirect('home');
@@ -83,7 +87,7 @@ class Item extends MY_Controller {
 		}
 	}
 
-	public function edit(){
+	public function edit($id){
 		if ($this->input->post()) {
 			$data = $this->input->post();
 			$item_id = $data['id'];
@@ -95,6 +99,19 @@ class Item extends MY_Controller {
 			$this->item_model->edit_item($item_id, $data);
 			$this->item_model->add_tags($item_id, $tags);
 			redirect("item/{$item_id}/{$name}");
+		}else{
+
+			if ($this->account_model->get_session()) {
+				$data['item'] = $this->item_model->get_item($id);
+				$data['images'] = $this->item_model->get_item_images($id);
+				$data['categories'] = $this->item_model->get_categories();
+				$data['categories_v2'] = $this->item_model->get_categories_v2();
+				$data['sub_categories'] = $this->item_model->get_sub_categories();
+				$this->_load_view('item/classified', $data);
+			} else {
+				redirect('home');
+			}
+			
 		}
 	}
 
@@ -201,6 +218,11 @@ class Item extends MY_Controller {
 		$data['_is_logged_in'] = $this->_get_account_info();
 		$this->load->view('template/offer-cart', $data);
 
+	}
+
+	public function get_tags_json($item_id){
+		header('Content-type: application/json');
+		echo json_encode($this->item_model->get_tags($item_id));
 	}
 
 }
