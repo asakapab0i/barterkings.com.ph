@@ -220,7 +220,7 @@ class Item_model extends MY_Model {
 
 	}
 
-	public function _query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange){
+	public function _query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange, $cat_prefix, $cat_value){
 
 		if ($this->_input_data['sort'] == 'most_recent') {
 
@@ -229,8 +229,10 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
 			->where("value $operator", $price_range)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
 			->order_by('value', $order)
@@ -246,6 +248,8 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
+			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
 			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->having('COUNT(offers.offer_item_id) >', 0, false)
@@ -265,6 +269,8 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
+			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -280,7 +286,7 @@ class Item_model extends MY_Model {
 
 	}
 
-	public function _query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange){
+	public function _query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange, $cat_prefix, $cat_value){
 
 		if ($this->_input_data['sort'] == 'most_recent') {
 
@@ -289,6 +295,8 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
+			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->like("name", $term)
@@ -307,6 +315,8 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
+			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->having('COUNT(offers.item_id) >', 0, false)
@@ -327,6 +337,8 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
 			->join('offers', 'offer_item_id = items.id', 'left')
+			->join('category_labels', 'category_labels.category_id = items.category', 'left')
+			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
 			->like("name", $term)
 			->limit($limit, $offset)
@@ -394,7 +406,7 @@ class Item_model extends MY_Model {
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		if (isset($this->_input_data['sort'])) {
-			$itemsdb = $this->_query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
+			$itemsdb = $this->_query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange, $cat_prefix, $cat_value);
 		}else{
 
 			$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
@@ -484,7 +496,7 @@ class Item_model extends MY_Model {
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		if (isset($this->_input_data['sort'])) {
-			$itemsdb = $this->_query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
+			$itemsdb = $this->_query_sort_search_term($term, $limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange, $cat_prefix, $cat_value);
 		}else{
 			// $itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			// ->from('items')
@@ -504,7 +516,7 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->join('category_labels', 'category_labels.category_id = items.category')
-			->join('offers', 'offer_item_id = items.id', 'left')
+			// ->join('offers', 'offer_item_id = items.id', 'left')
 			->like('name', $term)
 			->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)
