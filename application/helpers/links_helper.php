@@ -16,8 +16,16 @@
 		echo base_url('item/add');
 	}
 
-	function linkify_to_category($category){
-		echo base_url('home') . "?category=$category"; 
+	function linkify_to_category($category, $_get = NULL){
+
+		if ($_get !== NULL && is_array($_get)) {
+			unset($_get['category']);
+			$url = '?' . http_build_query($_get) . '&';
+		}else{
+			$url = '?';
+		}
+
+		echo base_url('home') . $url ."category=$category"; 
 	}
 
 ?>

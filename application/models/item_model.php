@@ -516,7 +516,7 @@ class Item_model extends MY_Model {
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->join('category_labels', 'category_labels.category_id = items.category')
-			// ->join('offers', 'offer_item_id = items.id', 'left')
+			->join('offers', 'offer_item_id = items.id', 'left')
 			->like('name', $term)
 			->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)

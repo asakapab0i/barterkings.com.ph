@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
 
 		parent::__contruct();
 		$this->_session_data = NULL;
+		$this->load->view('links');
 
 	}
 

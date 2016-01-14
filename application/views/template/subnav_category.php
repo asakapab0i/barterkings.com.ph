@@ -32,14 +32,14 @@
        <li class="">
 
         <div class="dropdown">
-          <a href="#" class="category-each dropdown-toggle" type="button" id="cat1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $cat; ?></a>
+          <a href="<?php linkify_to_category($_categories[$cat]['link'], NULL); ?>" class="category-each" type="button" id="cat1" aria-haspopup="true" aria-expanded="true"><?php echo $cat; ?></a>
           <?php if ($subcat['sub_category'] !== NULL): ?>
 
-          <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
+         <!--  <ul class="category-dropdown dropdown-menu clear" aria-labelledby="cat1">
               <?php foreach($subcat['sub_category'] as $subname): ?>
                 <li><a href="#"><?php echo $subname; ?></a></li>
               <?php endforeach; ?>
-          </ul>
+          </ul> -->
           
           <?php endif; ?>
         </div>

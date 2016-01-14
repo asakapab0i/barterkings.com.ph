@@ -7,6 +7,7 @@ class Account extends MY_Controller {
 		$this->load->model('account_model');
 		$this->load->model('item_model');
 		$this->load->model('offer_model');
+		$this->load->helper('links');
 		$this->_session_data = $this->account_model->get_session();
 	}
 

@@ -40,6 +40,10 @@ if ($this->input->get()) {
 				<?php if ($this->input->get('ad_age')): ?>
 					<input name='ad_age' value='<?php echo $this->input->get("ad_age"); ?>' type='hidden' />
 				<?php endif; ?>
+				<?php if ($this->input->get('category')): ?>
+					<input name='category' value='<?php echo $this->input->get("category"); ?>' type='hidden' />
+				<?php endif; ?>
+
 			<select name="order" class="form-control input-sm">
 				<option <?php echo ($this->input->get('order') == 'desc' ? 'selected':'' ); ?> value="desc">Highest to lowest</option>	
 				<option <?php echo ($this->input->get('order') == 'asc' ? 'selected':'' ); ?> value="asc">Lowest to highest</option>	

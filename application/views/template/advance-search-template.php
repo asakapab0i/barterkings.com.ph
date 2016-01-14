@@ -40,6 +40,11 @@
 				<?php if ($this->input->get('ad_age')): ?>
 					<input name='ad_age' value='<?php echo $this->input->get("ad_age"); ?>' type='hidden' />
 				<?php endif; ?>
+
+				<?php if ($this->input->get('category')): ?>
+					<input name='category' value='<?php echo $this->input->get("category"); ?>' type='hidden' />
+				<?php endif; ?>
+
 			</div>
 			<div class="col-md-12" style="margin-top: 5px;">
 				<input class="pull-right btn-block btn btn-xs btn-success" value="update" type="submit" />
@@ -57,10 +62,10 @@
 	</div>
 	<div class="panel-body">
 		<ul class="list-group">
-
+			<?php $urls = $this->input->get(); ?>
 			<?php foreach($_categories as $key => $val): ?>
 
-				<a href="<?php linkify_to_category($val['link']); ?>" class="list-group-item">
+				<a href="<?php linkify_to_category($val['link'], $urls); ?>" class="list-group-item">
 					   <span class="label label-success pull-right"><?php echo $val['count']; ?></span>
 					<small>
 						<?php echo $key; ?>
@@ -87,12 +92,15 @@
 				<?php if ($this->input->get('term')): ?>
 					<input name='term' value='<?php echo $this->input->get("term"); ?>' type='hidden' />
 				<?php endif; ?>
+				
 				<?php if ($this->input->get('sort')): ?>
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 				<?php endif; ?>
+
 				<?php if ($this->input->get('order')): ?>
 					<input name='order' value='<?php echo $this->input->get("order"); ?>' type='hidden' />
 				<?php endif; ?>
+
 				<?php if ($this->input->get('price_range')): ?>
 					<input name='price_range' value='<?php echo $this->input->get("price_range"); ?>' type='hidden' />
 				<?php endif; ?>
@@ -104,6 +112,10 @@
 				data-slider-max="20" 
 				data-slider-step="1" 
 				data-slider-value="<?php echo $this->input->get('ad_age') ? $this->input->get('ad_age') : 0; ?>" />
+
+				<?php if ($this->input->get('category')): ?>
+					<input name='category' value='<?php echo $this->input->get("category"); ?>' type='hidden' />
+				<?php endif; ?>
 			</div>
 			
 			<div class="col-md-12" style="margin-top: 5px;">
