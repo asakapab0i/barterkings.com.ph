@@ -76,12 +76,14 @@ class Item_model extends MY_Model {
 					$categories[$cat['category_name']]['color'] = $cat['category_color'];
 					$categories[$cat['category_name']]['id'] = $cat['category_id'];
 					$categories[$cat['category_name']]['count'] = $cat['category_count'];
+					$categories[$cat['category_name']]['link'] = $cat['category_class'];
 				}else {
 					$categories[$cat['category_name']]['sub_category'] = NULL;
 					$categories[$cat['category_name']]['icon'] = $cat['category_icon'];
 					$categories[$cat['category_name']]['color'] = $cat['category_color'];
 					$categories[$cat['category_name']]['id'] = $cat['category_id'];
 					$categories[$cat['category_name']]['count'] = $cat['category_count'];
+					$categories[$cat['category_name']]['link'] = $cat['category_class'];
 				}
 			}
 		}
@@ -367,10 +369,25 @@ class Item_model extends MY_Model {
 			$ad_age = $this->_input_data['ad_age'];
 		}
 
-
 		if (isset($this->_input_data['order'])) {
 			$order = $this->_input_data['order'];
 		}
+
+		if (isset($this->_input_data['category'])) {
+
+			$categories = $this->get_categories_v2();
+				
+			foreach ($categories as $key => $value) {
+				if ($value['category_class'] = $this->_input_data['category']) {
+					$category = "category_class='" . $this->_input_data['category'] . "'";
+					break;
+				}
+			}
+
+		}else {
+			$category = "category_class != NULL";
+		}
+
 
 		$datenow = date('Y-m-d');		
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
@@ -378,11 +395,13 @@ class Item_model extends MY_Model {
 		if (isset($this->_input_data['sort'])) {
 			$itemsdb = $this->_query_sort_search($limit, $offset, $price_range, $ad_age, $sort, $operator, $order, $datenow, $daterange);
 		}else{
-			$itemsdb = $this->db->select('username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+			$itemsdb = $this->db->select('category_labels.*, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			->from('items')
 			->join('items_images', 'item_id = items.id', 'left')
 			->join('accounts', 'accounts.id = items.account_id')
+			->join('category_labels', 'category_labels.category_id = items.category')
 			->where("value $operator", $price_range)
+			->where($category, NULL, false)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -429,6 +448,20 @@ class Item_model extends MY_Model {
 			$order = $this->_input_data['order'];
 		}
 
+		if (isset($this->_input_data['category'])) {
+
+			$categories = $this->get_categories_v2();
+			$category = "category_class != NULL";
+				
+			foreach ($categories as $key => $value) {
+				if ($value['category_class'] = $this->_input_data['category']) {
+					$category = "category_class='" . $this->_input_data['category'] . "'";
+					break;
+				}
+			}
+
+		}
+
 		$datenow = date('Y-m-d');		
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
@@ -441,6 +474,7 @@ class Item_model extends MY_Model {
 			->join('accounts', 'accounts.id = items.account_id')
 			->like('name', $term)
 			->where("value $operator", $price_range)
+			->where($category, NULL, false)
 			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age, false)
 			->limit($limit, $offset)
 			->group_by('items.id')

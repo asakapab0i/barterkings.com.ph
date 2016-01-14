@@ -60,7 +60,7 @@
 
 			<?php foreach($_categories as $key => $val): ?>
 
-				<a href="#" class="list-group-item">
+				<a href="<?php linkify_to_category($val['link']); ?>" class="list-group-item">
 					   <span class="label label-success pull-right"><?php echo $val['count']; ?></span>
 					<small>
 						<?php echo $key; ?>

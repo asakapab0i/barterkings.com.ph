@@ -16,4 +16,8 @@
 		echo base_url('item/add');
 	}
 
+	function linkify_to_category($category){
+		echo base_url('home') . "?category=$category"; 
+	}
+
 ?>

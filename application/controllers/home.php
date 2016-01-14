@@ -7,6 +7,7 @@ class Home extends MY_Controller {
 		$this->load->model('item_model');
 		$this->load->model('message_model');
 		$this->load->helper('text');
+		$this->load->helper('links');
 	}
 
 	public function index($sort = 'all'){

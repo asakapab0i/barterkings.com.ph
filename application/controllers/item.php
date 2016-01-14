@@ -56,6 +56,7 @@ class Item extends MY_Controller {
 
 	public function offer(){
 		if ($this->input->post()) {
+			$data['_is_logged_in'] = $this->_get_account_info();
 			$data['offer_success'] = $this->offer_model->add_offer();
 			$this->load->view('template/offer-cart', $data);
 		}
@@ -197,6 +198,7 @@ class Item extends MY_Controller {
 
 		$data['item_offer_id'] = $this->item_model->get_item($this->input->post('offer_item_id'));
 		$data['item_id'] = $this->input->post('item_id');
+		$data['_is_logged_in'] = $this->_get_account_info();
 		$this->load->view('template/offer-cart', $data);
 
 	}
