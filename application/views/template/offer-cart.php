@@ -12,8 +12,8 @@
 			</div>
 
 			<a href="#" id="login-to-offer" class="btn btn-warning btn-block">View Offered Items</a>
-
-			<a href="#" id="login-to-offer" class="btn btn-info btn-block">Contact Owner</a>
+			<!-- <a href="#" id="login-to-offer" class="btn btn-info btn-block">Contact Owner</a> -->
+			<a href="#" id="login-to-offer" class="btn btn-success btn-block">Offer Another Item</a>
 			<a href="#" id="login-to-offer" class="btn btn-danger btn-block">Undo Offer</a>
 
 		<?php else:?>

@@ -56,6 +56,9 @@
 			<div class="col-md-8">
 
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title"><h4>Description</h4></div>
+					</div>
 					<div class="panel-body">
 						<?php $this->load->view('template/item-template');?>
 					</div>
