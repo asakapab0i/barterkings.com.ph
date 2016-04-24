@@ -130,6 +130,19 @@ class Item_model extends MY_Model {
 
 	}
 
+	public function get_offered_items_from_item_id($account_id, $item_id){
+
+		$items = $this->db->select('items.id as a_item_id, items.*, accounts.*, items_images.image_thumb')
+		->from('items')->join('offers', 'offers.item_id = items.id', 'left')
+		->join('accounts', 'accounts.id = items.account_id', 'left')
+		->join('items_images', 'items_images.item_id = items.id', 'left')
+		->where("offers.offer_item_id = $item_id")->group_by('items.id')
+		->get()->result();
+
+		return $items;
+
+	}
+
 	public function get_items_by_account_id($account_id = NULL, $itemid = NULL, $limit = 4){
 		if ($itemid !== NULL) {
 			$current_item_offers = $this->offer_model->get_item_offers($itemid);
@@ -711,6 +724,5 @@ class Item_model extends MY_Model {
 		$data['comment_date_inserted'] = date('Y-m-d H:i:s');
 		return $this->db->insert('item_comments', $data);	
 	}
-
 
 }

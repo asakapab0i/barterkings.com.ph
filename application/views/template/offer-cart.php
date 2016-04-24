@@ -11,11 +11,9 @@
 				Your offer is successfully added.
 			</div>
 
-			<a href="#" id="login-to-offer" class="btn btn-warning btn-block">View Offered Items</a>
-			<!-- <a href="#" id="login-to-offer" class="btn btn-info btn-block">Contact Owner</a> -->
-			<a href="#" id="login-to-offer" class="btn btn-success btn-block">Offer Another Item</a>
-			<a href="#" id="login-to-offer" class="btn btn-danger btn-block">Undo Offer</a>
-
+			<a href="#" id="view-offered-items" data-url="item/offeredlist" data-accountid="<?php echo $account[0]['id']; ?>" data-itemid="<?php echo $item['item_id']; ?>" class="pop-modal btn btn-warning btn-block">View Offered Items</a>
+			<a href="#" id="submit-offer" data-url="item/offerlist" data-accountid="<?php echo $account[0]['id']; ?>" data-itemid="<?php echo $item['item_id']; ?>" class="pop-modal btn btn-success btn-block">Offer item</a>
+			
 		<?php else:?>
 
 			<?php if(isset($item_offer_id)): ?>

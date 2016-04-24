@@ -69,7 +69,7 @@
   </div>
   <div class="panel-body">
 
-  <?php echo form_open('item/add', array('class' => 'selling-item-form', 'class' => 'selling-item-form')) ?>
+  <form class="selling-item-form" id="selling-item-form" method="POST" action="">
       <div class="row">
         <div class="col-md-4">
         <label class="pull-right selling-details-label"><b>Name of your item</b></label>
@@ -80,42 +80,7 @@
           <div class="pull-right selling-submit-button"><input id="selling-button" type="submit" class="btn btn-success" value="Get Started"></div>
         </div>
       </div>
-    <?php echo form_close(); ?>
+   </form>
     
   </div>
 </div>
-
-
-<!-- <div class="text-center select-category-list"></div>
--->
-<!-- 
-<form id="Add item" method="POST" action="<?php echo base_url('item/add'); ?>">
-    <div class="form-group">
-        <label for="name" class="control-label">Item Name</label>
-        <input required type="text" class="form-control" id="name" name="name" value="" required data-placement="right" title="<h4>Please enter item name</h4>" data-toggle="tooltip">
-    </div>
-    <div class="form-group">
-        <label for="category" class="control-label">Item Category</label>
-        <select class="selectpicker form-control" id="category" name="category" data-placement="right" title="<h4>Please select a category</h4>" data-toggle="tooltip">
-            <option></option>
-            <option>Computer Electronics</option>
-            <option>Animals And Pet</option>
-            <option>Goods And Services</option>
-            <option>Food Package</option>
-            <option>Coupons</option>
-        </select>
-    </div>
-    <div class="form-group">
-       <label for="Description" class="control-label">Description</label>
-       <textarea name="description" class="form-control" id="description" title="<h4>Write a short description</h4>" data-placement="right" data-toggle="tooltip"></textarea> 
-   </div>
-    <div class="form-group">
-        <label for="name" class="control-label">Location</label>
-        <input required type="text" class="form-control" id="location" name="location" required title="<h4>Please enter location</h4>" data-placement="right" data-toggle="tooltip">
-    </div>
-   <div class="form-group">
-       <div class="input-group"> <span class="input-group-addon">PHP</span> <input type="number" id="value" name="value" class="form-control" aria-label="Amount (to the nearest dollar)" title="<h4>Please enter the approximate price</h4>" data-placement="right" data-toggle="tooltip"> <span class="input-group-addon">.00</span> </div>
-   </div>
-   <input type="submit" class="btn btn-primary btn-block" value="Add item">
-</form>
- -->
