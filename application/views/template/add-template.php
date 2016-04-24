@@ -69,7 +69,7 @@
   </div>
   <div class="panel-body">
 
-    <form class="selling-item-form" id="selling-item-form" method="POST" action="">
+  <?php echo form_open('item/add', array('class' => 'selling-item-form', 'class' => 'selling-item-form')) ?>
       <div class="row">
         <div class="col-md-4">
         <label class="pull-right selling-details-label"><b>Name of your item</b></label>
@@ -80,7 +80,7 @@
           <div class="pull-right selling-submit-button"><input id="selling-button" type="submit" class="btn btn-success" value="Get Started"></div>
         </div>
       </div>
-    </form>
+    <?php echo form_close(); ?>
     
   </div>
 </div>

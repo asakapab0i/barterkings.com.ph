@@ -21,6 +21,7 @@
     </div> 
         -->
         <!-- <h1><small class="pull-right"><span data-itemid="" class="reload-offers-count"><?php echo $items_count; ?></span> items</small> Items</h1><hr> -->
+        <!-- 
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -31,7 +32,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        -->
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">Listings</h4>

@@ -4,7 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-md-8">
-		<form method="POST" action="<?php echo base_url('item/edit'); ?>">
+		<?php echo form_open('item/edit'); ?>
 			<div class="row item-form-input">
 				<div class="col-xs-1">
 					<h4 class="item-instruction-number">1.</h4>
@@ -144,6 +144,7 @@
 					</div>
 				</div>
 			</div>
+			<?php echo form_close(); ?>
 
 		</div>
 
