@@ -194,13 +194,17 @@ class Item extends MY_Controller {
 			$data['items'] = $this->item_model->get_offered_items_from_item_id($this->input->post('account_id'), $this->input->post('id'));
 			$data['item'] = $this->input->post('id');
 			$data['offered_items'] = true;
-			var_dump($data['offered_items']);
 			$this->load->view('template/items-offerlist', $data);
 		}
 	}
 
 	public function delete_image(){
 		$this->item_model->delete_item_images($this->input->post());	
+	}
+
+	public function remove_offered_item($itemid, $offerid){
+		$data = $this->item_model->delete_offered_item($itemid, $offerid);
+		echo $data == true ? 'Success' : 'Failed';
 	}
 
 	public function get_images($itemid){
@@ -225,12 +229,10 @@ class Item extends MY_Controller {
 	}
 
 	public function get_offered_item(){
-
 		$data['item_offer_id'] = $this->item_model->get_item($this->input->post('offer_item_id'));
 		$data['item_id'] = $this->input->post('item_id');
 		$data['_is_logged_in'] = $this->_get_account_info();
 		$this->load->view('template/offer-cart', $data);
-
 	}
 
 	public function get_tags_json($item_id){

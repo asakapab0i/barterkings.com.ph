@@ -132,7 +132,7 @@ class Item_model extends MY_Model {
 
 	public function get_offered_items_from_item_id($account_id, $item_id){
 
-		$items = $this->db->select('items.id as a_item_id, items.*, accounts.*, items_images.image_thumb')
+		$items = $this->db->select('offer_id, items.id as a_item_id, items.*, accounts.*, items_images.image_thumb')
 		->from('items')->join('offers', 'offers.item_id = items.id', 'left')
 		->join('accounts', 'accounts.id = items.account_id', 'left')
 		->join('items_images', 'items_images.item_id = items.id', 'left')
@@ -723,6 +723,20 @@ class Item_model extends MY_Model {
 		$data = $this->input->post();
 		$data['comment_date_inserted'] = date('Y-m-d H:i:s');
 		return $this->db->insert('item_comments', $data);	
+	}
+
+	public function delete_offered_item($item_id, $item_offer_id){
+		$where['item_id'] =  $item_id;
+		$where['offer_item_id'] = $item_offer_id;
+		$this->db->where($where);
+		$this->db->delete('offers');
+
+		$where['item_id'] =  $item_offer_id;
+		$where['offer_item_id'] = $item_id;
+		$this->db->where($where);
+		$this->db->delete('offers');
+			
+		return true;
 	}
 
 }

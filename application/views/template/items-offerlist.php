@@ -2,14 +2,13 @@
 if (isset($items)) {
 	$data = $items;
 }
-
 ?>
 
 
 <div class="row">
 	<div class="col-md-12">
 		<div class="modal-header">
-			<?php if($offered_items): ?>
+			<?php if(isset($offered_items) && $offered_items != true): ?>
 				<h4>Select item to barter</h4>
 			<?php else:?>
 				<h4>Offered items</h4>
@@ -42,7 +41,7 @@ if (isset($items)) {
 								<?php if(isset($offered_items) && $offered_items != true): ?>
 									<a href="#" id="selected-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-warning">Select</a>
 								<?php else:?>
-									<a href="#" id="selected-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-danger">Remove</a>
+									<a href="#" id="remove-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-danger">Remove</a>
 								<?php endif; ?>
 							</div>
 						</div>

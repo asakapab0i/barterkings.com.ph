@@ -400,3 +400,7 @@ p {
     padding: 10px 0;
     text-align: center;
 }
+
+#confirm-offer {
+   margin-top: 5px; 
+}

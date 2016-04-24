@@ -47,6 +47,25 @@ $(function(){
 
 	});                                                        
 
+	$(document).on('click', '#remove-offer', function(event){
+		event.preventDefault();
+
+		var that = $(this).parent().parent().parent().parent().parent();
+		console.log(that);
+
+		var offer_id = $(this).data('item-offer-id');
+		var item_id = $(this).data('item-id');
+		$.ajax({
+			method: "GET",
+			url: base_url + 'item/remove_offered_item/' + item_id + '/' + offer_id,
+			success: function(data){
+				that.remove();
+			}
+		});
+
+
+	});
+
 	$(document).on('click', '#confirm-offer', function(){
 
 		var item_id = $(this).data('item-id');
