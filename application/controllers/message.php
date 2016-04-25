@@ -6,6 +6,8 @@ class Message extends MY_Controller {
 		parent::__construct();
 
 		$this->load->model('message_model');
+		$this->load->helper('text');
+		$this->load->helper('links');
 	}
 
 	public function index(){

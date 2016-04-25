@@ -28,21 +28,29 @@ $(function(){
 
 		var id = $(this).data('itemid');
 		var account_id = $(this).data('accountid');
-		var url = $(this).data('url');;
+		var search = $(this).data('term');
+		var url = $(this).data('url');
+
+		var data = {
+			id: id,
+			account_id: account_id,
+			search : search
+		}
+
 		var that = $('#myModal');
 		that.find('.modal-content').empty();
 
-	//pop the modal
-	that.modal('show');
+		//pop the modal
+		that.modal('show');
 
-	$.ajax({
-		method: "POST",
-		url: base_url + url,
-		data: { id: id, account_id : account_id }
-	}).done(function( result ) {
-		that.find('.modal-content').html(result);
+		$.ajax({
+			method: "POST",
+			url: base_url + url,
+			data: data
+		}).done(function( result ) {
+			that.find('.modal-content').html(result);
+		});
 	});
-});
 
 	$(document).on('click', '#upload-profile-img-btn', function(event){
 		event.preventDefault();

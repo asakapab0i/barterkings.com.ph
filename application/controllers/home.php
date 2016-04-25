@@ -21,7 +21,7 @@ class Home extends MY_Controller {
 		}
 
 		$data['data'] = $items;
-		// var_dump($items);
+		$data['search'] = $this->input->get('term');
 		$data['total_results'] = $items != false ? count($items) : 0;
 		$this->_load_view('home/index', $data);
 

@@ -7,7 +7,6 @@
 					<div class="panel-body">
 						<h4><?php echo $data[0]['name']; ?>
 						<?php if ($editable === TRUE):?>
-							<!-- <a href="#" class="btn btn-primary">Edit</a> -->
 						<?php endif;?>
 					</h4>
 					<h5>

@@ -15,11 +15,6 @@ if (isset($items)) {
 			<div class="image-card">
 				<div class="user-info-card">
 					<a href="<?php echo base_url('profile/' . $value->username); ?>"><span class="label label-primary"><?php echo ucfirst($value->username); ?></span></a>
-					<!-- <span class="pull-right label label-default">
-						<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 212
-					</span> -->
-
-					<!-- <span class="pull-right glyphicon glyphicon-eye-open" aria-hidden="true"><i class="item-card-views">21K</i></span> -->
 				</div>
 				<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>">
 					<img width="200" height="200" src="<?php echo base_url('asset/img/items_thumbs'); ?>/<?php echo $value->image_thumb; ?>" alt="test">
@@ -39,23 +34,11 @@ if (isset($items)) {
 				</div>
 			</div>
 			</div>
-			<!-- <div class="caption text-center">
-				
-				<div class="row">
-					<div class="btn-group" role="group">
-						<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn btn-primary">PHP <?php echo $value->value; ?></a>
-						
-					</div>
-					<div class="btn-group extra-cart-links" role="group" aria-label="#">
-						
-					</div>
-				</div>
-			</div> -->
+
 		</div>
 	</div>	
 <?php endforeach;?>
 <?php else:?>
-	<!-- If no items found -->
 <?php endif;?>
 
 

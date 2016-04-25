@@ -75,12 +75,12 @@
                       <li><a data-placement="bottom" data-toggle="tooltip" title="Notification" href="<?php echo base_url('notification'); ?>">
                         <span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span><span class="visible-xs-inline nav-xs-label"> Notifications</span> </a>
                       </li>
+                        -->
                       <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>">
                         <span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
                           <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> <span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <?php endif;?><span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
-                        -->
                         <li class="dropdown nav-profile-image">
                          <div class="pull-right">
                            <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 

@@ -18,7 +18,7 @@
                 <button id="upload-profile-img-btn" class="form-control btn btn-success btn-sm btn-block">Upload Profile</button>
             </form>
         <?php else: ?>
-         <button style="margin-top: 10px;" class="form-control btn btn-success btn-sm btn-block">Send Message</button> 
+         <button style="margin-top: 10px;" data-url="message/send" data-account-id="<?php echo $user[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button> 
         <?php endif; ?>
 
     </div>

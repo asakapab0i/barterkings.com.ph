@@ -71,7 +71,6 @@
 </script>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
@@ -79,7 +78,6 @@
 <script src="<?php echo base_url('asset/js/vendor/bootstrap3-wysihtml5.all.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-tagsinput.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-image-gallery.main.min.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap-image-gallery.js')?>"></script>
 <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>

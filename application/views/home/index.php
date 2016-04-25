@@ -10,12 +10,18 @@
 					<h3 class="panel-title clearfix"><span class="panel-text"><?php echo $total_results ? $total_results : 0; ?> Ads Found</span>
 						<span class="pull-right">
 							<div class="btn-group" data-toggle="buttons">
-								<label class="btn btn-xs btn-success">
-									<input type="checkbox" autocomplete="off"> Save this search 
-								</label>
-								<label class="btn btn-xs btn-success">
+								<?php if($search !== false): ?>
+									<button data-url="/item/save_searches" data-term="<?php echo $search; ?>" class="pop-modal btn btn-xs btn-success">Save this search</button>
+								<?php else: ?>
+									<button class="btn disabled btn-xs btn-success">Save this search</button>
+								<?php endif;?>
+								<!-- <label class="btn btn-xs btn-success"> -->
+									<!-- <input type="checkbox" autocomplete="off"> Save this search  -->
+									<!-- <button class="btn disabled btn-xs btn-success">Save this search</button> -->
+								<!-- </label> -->
+								<!-- <label class="btn btn-xs btn-success">
 									<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-								</label>
+								</label> -->
 							</div>
 						</span>
 					</h3>	
