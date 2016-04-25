@@ -11,14 +11,14 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Listings</h4>
+                    <h4 class="panel-title">My listings</h4>
                 </div>
                 <div class="panel-body">
                     <?php $this->load->view('template/items-template'); ?>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">My offers</h4>
@@ -31,11 +31,11 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Other offer to my item</h4>
+                    <h4 class="panel-title">Offers to my item</h4>
                 </div>
                 <div class="panel-body">
                     <?php $this->load->view('template/items-template'); ?>
                 </div>
             </div>
-        </div>
+        </div> -->
 </div>

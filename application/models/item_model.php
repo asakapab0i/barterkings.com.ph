@@ -176,7 +176,7 @@ class Item_model extends MY_Model {
 			->limit($limit)
 			->get();
 		}
-
+		
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
 		}

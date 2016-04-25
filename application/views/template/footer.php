@@ -16,7 +16,7 @@
         <a href="#">API</a>
         .
         <a href="#">Contact</a>
-        <a href="#"><span class="pull-right footer-company-name">Company Name &copy; 2015</span></a>
+        <a href="#"><span class="pull-right footer-company-name">BarterKings &copy; 2015</span></a>
       </p>
 
 

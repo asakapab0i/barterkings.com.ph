@@ -72,10 +72,10 @@
                           <span class="visible-xs-inline nav-xs-label">My Profile</span>
                         </a>
                       </li>
-                      <li><a data-placement="bottom" data-toggle="tooltip" title="Notification" href="<?php echo base_url('notification'); ?>">
-                        <span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span><span class="visible-xs-inline nav-xs-label"> Notifications</span> </a>
+                      <li><a data-placement="bottom" data-toggle="tooltip" title="Manage Searches" href="<?php echo base_url('manage_searches'); ?>">
+                        <span class="nav-icon glyphicon glyphicon-comment" aria-hidden="true"></span><span class="visible-xs-inline nav-xs-label"> Manage Searches</span> </a>
                       </li>
-                        -->
+                      -->
                       <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>">
                         <span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
@@ -100,6 +100,7 @@
                             <li role="separator" class="divider"></li>
                             -->
                             <li><a title="Logout" href="<?php echo base_url('profile'); ?>"> Profile</a></li>
+                            <li><a title="Logout" href="<?php echo base_url('searches'); ?>"> Searches</a></li>
                             <li><a title="Logout" href="<?php echo base_url('account/logout'); ?>"> Logout</a></li>
                           </ul>
 

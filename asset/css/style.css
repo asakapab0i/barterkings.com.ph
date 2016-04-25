@@ -603,6 +603,34 @@ body {
     border-bottom-width: 3px;
 }
 
+#send-message {
+	height: 350px;
+}
+
+.content-body{
+	min-height: 500px;
+}
+
+.mail-subject{
+
+}
+
+.mail-sender{
+
+}
+
+.mail-subject{
+
+}
+
+.mail-message-preview{
+
+}
+
+.btn-send {
+	margin-top: 5px;
+}
+
 /*SEACH INPUT RESPONSIVE*/
 
 @media (min-width : 320px) {
