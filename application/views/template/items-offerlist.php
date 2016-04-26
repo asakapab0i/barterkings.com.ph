@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (isset($items)) {
 	$data = $items;
 }
@@ -37,18 +37,25 @@ if (isset($items)) {
 					<div class="row">
 						<div class="col-md-12">
 							<div class="btn-group btn-block">
-								<a href="<?php linkify_to_item($value->a_item_id, $value->name); ?>" class="btn col-md-6 btn-sm btn-primary">₱<?php echo $value->value; ?></a>
 								<?php if(isset($offered_items) && $offered_items != true): ?>
+								  <a href="<?php linkify_to_item($value->a_item_id, $value->name); ?>" class="btn col-md-6 btn-sm btn-primary">₱<?php echo $value->value; ?></a>
 									<a href="#" id="selected-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-warning">Select</a>
 								<?php else:?>
-									<a href="#" id="remove-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-danger">Remove</a>
+									<a href="<?php linkify_to_compare($item, $value->a_item_id)?>" id="compare-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-warning">Compare</a>
+
+									<?php if (isset($user) && $user !== false ): ?>
+										<a href="#" id="remove-offer" data-item-id="<?php echo $item; ?>" data-item-offer-id="<?php echo $value->a_item_id; ?>" class="btn col-md-6 btn-sm btn-danger">Remove</a>
+									<?php else: ?>
+								  	<a href="<?php linkify_to_item($value->a_item_id, $value->name); ?>" class="btn col-md-6 btn-sm btn-primary">₱<?php echo $value->value; ?></a>
+									<?php endif; ?>
+
 								<?php endif; ?>
 							</div>
 						</div>
 					</div>
 
 				</div>
-			</div>	
+			</div>
 
 		<?php endforeach;?>
 	<?php else:?>
@@ -58,6 +65,3 @@ if (isset($items)) {
 	<?php endif;?>
 </div>
 </div>
-
-
-

@@ -18,7 +18,7 @@
                 <button id="upload-profile-img-btn" class="form-control btn btn-success btn-sm btn-block">Upload Profile</button>
             </form>
         <?php else: ?>
-         <button style="margin-top: 10px;" data-url="message/send" data-account-id="<?php echo $user[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button> 
+         <button style="margin-top: 10px;" data-url="message/create" data-account-id="<?php echo $user[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button> 
         <?php endif; ?>
 
     </div>
@@ -26,7 +26,7 @@
     <div class="col-md-9">
         <h3><?php echo $user[0]['username']; ?></h3><hr>
         <small>
-            <cite title="San Francisco, USA">San Francisco, USA 
+            <cite title="San Francisco, USA">San Francisco, USA
                 <i class="glyphicon glyphicon-map-marker">
                 </i>
             </cite>

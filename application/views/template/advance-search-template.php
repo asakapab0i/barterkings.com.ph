@@ -28,13 +28,13 @@
 					<input name='order' value='<?php echo $this->input->get("order"); ?>' type='hidden' />
 				<?php endif; ?>
 
-				<input class="slider" name="price_range" 
-				data-slider-id='ex1Slider' type="hidden" 
-				data-slider-ticks="[100, 100000]" 
-				data-slider-ticks-labels='["₱ 100", "100000"]' 
-				data-slider-min="0" 
-				data-slider-max="20" 
-				data-slider-step="1" 
+				<input class="slider" name="price_range"
+				data-slider-id='ex1Slider' type="hidden"
+				data-slider-ticks="[100, 100000]"
+				data-slider-ticks-labels='["₱ 100", "100000"]'
+				data-slider-min="0"
+				data-slider-max="20"
+				data-slider-step="1"
 				data-slider-value="<?php echo $this->input->get('price_range') ? $this->input->get('price_range') : 0; ?>" />
 
 				<?php if ($this->input->get('ad_age')): ?>
@@ -65,8 +65,8 @@
 			<?php $urls = $this->input->get(); ?>
 			<?php foreach($_categories as $key => $val): ?>
 
-				<a href="<?php linkify_to_category($val['link'], $urls); ?>" class="list-group-item">
-					   <span class="label label-success pull-right"><?php echo $val['count']; ?></span>
+				<a href="<?php linkify_to_category($val['link'], $urls); ?>" class="list-group-item <?php echo (isset($urls['category']) && $urls['category'] == $val['link']) ? 'active' : '' ?>">
+					   <span class="label label-success pull-right" style="background-color: <?php echo $val['color']?>"><?php echo $val['count']; ?></span>
 					<small>
 						<?php echo $key; ?>
 					</small>
@@ -92,7 +92,7 @@
 				<?php if ($this->input->get('term')): ?>
 					<input name='term' value='<?php echo $this->input->get("term"); ?>' type='hidden' />
 				<?php endif; ?>
-				
+
 				<?php if ($this->input->get('sort')): ?>
 					<input name='sort' value='<?php echo $this->input->get("sort"); ?>' type='hidden' />
 				<?php endif; ?>
@@ -104,20 +104,20 @@
 				<?php if ($this->input->get('price_range')): ?>
 					<input name='price_range' value='<?php echo $this->input->get("price_range"); ?>' type='hidden' />
 				<?php endif; ?>
-				<input class="slider" name="ad_age" 
-				data-slider-id='ex1Slider' type="hidden" 
-				data-slider-ticks="[1, 90]" 
-				data-slider-ticks-labels='["1 Day", "90+ Days"]' 
-				data-slider-min="0" 
-				data-slider-max="20" 
-				data-slider-step="1" 
+				<input class="slider" name="ad_age"
+				data-slider-id='ex1Slider' type="hidden"
+				data-slider-ticks="[1, 90]"
+				data-slider-ticks-labels='["1 Day", "90+ Days"]'
+				data-slider-min="0"
+				data-slider-max="20"
+				data-slider-step="1"
 				data-slider-value="<?php echo $this->input->get('ad_age') ? $this->input->get('ad_age') : 0; ?>" />
 
 				<?php if ($this->input->get('category')): ?>
 					<input name='category' value='<?php echo $this->input->get("category"); ?>' type='hidden' />
 				<?php endif; ?>
 			</div>
-			
+
 			<div class="col-md-12" style="margin-top: 5px;">
 				<input class="pull-right btn-block btn btn-xs btn-success" value="update" type="submit" />
 			</div>
@@ -125,8 +125,3 @@
 	</div>
 
 </div>
-
-
-
-
-

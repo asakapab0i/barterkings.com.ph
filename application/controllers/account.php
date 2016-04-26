@@ -54,7 +54,7 @@ class Account extends MY_Controller {
 
 	public function profile($username = NULL){
 		if ($username != NULL) {
-			$account_id = $this->account_model->get_account_id_by_username($username);		
+			$account_id = $this->account_model->get_account_id_by_username($username);
 			$data['is_logged_in'] = false;
 		}else{
 			$account_id = $this->account_model->get_session();

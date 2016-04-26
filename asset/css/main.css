@@ -373,7 +373,7 @@ ul.footer-nav {
 
 div.text-container {
     margin: 0 auto;
-    width: 75%;    
+    width: 75%;
 }
 
 .hideContent {
@@ -391,7 +391,7 @@ div.text-container {
 }
 
 h1 {
-    font-size: 24px;        
+    font-size: 24px;
 }
 p {
     padding: 10px 0;
@@ -402,5 +402,36 @@ p {
 }
 
 #confirm-offer {
-   margin-top: 5px; 
+   margin-top: 5px;
+}
+
+.page-details {
+  min-height: 150px;
+}
+.item-images{
+  min-height: 159px;
+}
+.item-general {
+  min-height: 273px;
+}
+
+.page-tags {
+  min-height: 30px;
+}
+
+.page-category {
+  min-height: 10px;
+}
+
+.list-group-item.active, .list-group-item:hover{
+  background-color: #28b62c;
+}
+
+
+.list-group-item:first-child{
+  border-radius: 0px;
+}
+
+span.price-value {
+  font-size: 100%;
 }

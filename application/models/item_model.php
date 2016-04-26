@@ -36,7 +36,7 @@ class Item_model extends MY_Model {
 			$file_name = $image['name'] . $image['ext'];
 
 			$this->db->insert('items_images', array('image_thumb' => $file_thumb, 'image' => $file_name, 'item_id' => $itemid));
-		}	
+		}
 	}
 
 	public function get_item($itemid){
@@ -74,7 +74,7 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_categories(){
-		
+
 		$category = $this->db->select('category_labels.*, COUNT(category) as category_count')->from('category_labels')->join('items', 'items.category = category_id', 'left')->group_by('category_id')->get()->result_array();
 		$sub_category = $this->db->select('*')->from('sub_category')->get()->result_array();
 
@@ -112,13 +112,13 @@ class Item_model extends MY_Model {
 
 	public function get_categories_v2(){
 		$category = $this->db->select('*')->from('category_labels')->get()->result_array();
-		
+
 		return $category;
 	}
 
 	public function get_sub_categories(){
 		$subcategory = $this->db->select('*')->from('sub_category')->get()->result_array();
-		
+
 		return $subcategory;
 	}
 
@@ -130,13 +130,27 @@ class Item_model extends MY_Model {
 
 	}
 
-	public function get_offered_items_from_item_id($account_id, $item_id){
+	public function get_offered_items_from_item_id($item_id){
 
 		$items = $this->db->select('offer_id, items.id as a_item_id, items.*, accounts.*, items_images.image_thumb')
 		->from('items')->join('offers', 'offers.item_id = items.id', 'left')
 		->join('accounts', 'accounts.id = items.account_id', 'left')
 		->join('items_images', 'items_images.item_id = items.id', 'left')
 		->where("offers.offer_item_id = $item_id")->group_by('items.id')
+		->get()->result();
+
+		return $items;
+
+	}
+
+	public function get_offered_items_from_item_id_and_account_id($account_id, $item_id){
+
+		$items = $this->db->select('offer_id, items.id as a_item_id, items.*, accounts.*, items_images.image_thumb')
+		->from('items')->join('offers', 'offers.item_id = items.id', 'left')
+		->join('accounts', 'accounts.id = items.account_id', 'left')
+		->join('items_images', 'items_images.item_id = items.id', 'left')
+		->where("offers.offer_item_id = $item_id")->group_by('items.id')
+		->where("accounts.id = $account_id")
 		->get()->result();
 
 		return $items;
@@ -176,7 +190,7 @@ class Item_model extends MY_Model {
 			->limit($limit)
 			->get();
 		}
-		
+
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
 		}
@@ -427,7 +441,7 @@ class Item_model extends MY_Model {
 		}
 
 
-		$datenow = date('Y-m-d');		
+		$datenow = date('Y-m-d');
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		if (isset($this->_input_data['sort'])) {
@@ -517,7 +531,7 @@ class Item_model extends MY_Model {
 			$cat_value = 0;
 		}
 
-		$datenow = date('Y-m-d');		
+		$datenow = date('Y-m-d');
 		$daterange = date('Y-m-d', strtotime($datenow . "- $ad_age  day"));
 
 		if (isset($this->_input_data['sort'])) {
@@ -650,15 +664,15 @@ class Item_model extends MY_Model {
 	public function get_item_images($itemid){
 		$img = $this->db->select('*')
 		->from('items_images')
-		->where('item_id', $itemid)->get();	
+		->where('item_id', $itemid)->get();
 
 		if ($img->num_rows() > 0) {
 			if ($img->num_rows() == 4) {
 				return $img->result_array();
 			}
 
-			$images = $img->result_array();	
-			for ($i=0; $i < 3; $i++) { 
+			$images = $img->result_array();
+			for ($i=0; $i < 3; $i++) {
 				if (count($images) == 4) {
 					return $images;
 				}
@@ -712,7 +726,7 @@ class Item_model extends MY_Model {
 			if (empty($data[0]['profile_img_thumb'])) {
 				$data[0]['profile_img_thumb'] = 'default_thumb.JPG';
 			}
-			
+
 			return $data;
 		}
 
@@ -722,7 +736,7 @@ class Item_model extends MY_Model {
 	public function add_item_comment(){
 		$data = $this->input->post();
 		$data['comment_date_inserted'] = date('Y-m-d H:i:s');
-		return $this->db->insert('item_comments', $data);	
+		return $this->db->insert('item_comments', $data);
 	}
 
 	public function delete_offered_item($item_id, $item_offer_id){
@@ -735,7 +749,7 @@ class Item_model extends MY_Model {
 		$where['offer_item_id'] = $item_id;
 		$this->db->where($where);
 		$this->db->delete('offers');
-			
+
 		return true;
 	}
 

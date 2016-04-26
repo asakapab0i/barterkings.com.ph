@@ -17,11 +17,11 @@ $(function(){
 			url: base_url + $(this).data('url'),
 			data: {id : $(this).data('id')},
 			success: function(result){
-				
+
 				if (result == 'true') {
 					$(this).removeClass('btn-warning');
 					$(this).addClass('btn-default');
-				};				
+				};
 
 			}
 		})).done(function(){
@@ -45,7 +45,7 @@ $(function(){
 				}
 		});
 
-	});                                                        
+	});
 
 	$(document).on('click', '#remove-offer', function(event){
 		event.preventDefault();
@@ -62,8 +62,6 @@ $(function(){
 				that.remove();
 			}
 		});
-
-
 	});
 
 	$(document).on('click', '#confirm-offer', function(){

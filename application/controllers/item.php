@@ -18,7 +18,7 @@ class Item extends MY_Controller {
 		$this->item($itemid);
 	}
 
-	public function item($itemid){
+	public function item($itemid, $get_data = false){
 		$item_info = $this->item_model->get_item($itemid);
 
 		$user = $this->account_model->get_session();
@@ -51,6 +51,10 @@ class Item extends MY_Controller {
 			$data['offers_count'] = $item_offers_count;
 			$data['comments'] = $item_comments;
 			$data['comments_count']  = $item_comments_count;
+
+			if ($get_data !== false) {
+				return $data;
+			}
 
 			$this->_load_view('item/index', $data);
 		}else{
@@ -113,8 +117,15 @@ class Item extends MY_Controller {
 			} else {
 				redirect('home');
 			}
-			
+
 		}
+	}
+
+	public function compare($item_id, $item_offer_id){
+			$data['item']	= $this->item($item_id, true);
+			$data['item_offer'] = $this->item($item_offer_id, true);
+
+			$this->_load_view('item/compare', $data);
 	}
 
 	public function favorite(){
@@ -140,7 +151,7 @@ class Item extends MY_Controller {
 			}else{
 				redirect('account/login');
 			}
-			
+
 		}else{
 			redirect('item/add');
 		}
@@ -186,20 +197,30 @@ class Item extends MY_Controller {
 			$data['item'] = $this->input->post('id');
 			$data['offered_items'] = false;
 			$this->load->view('template/items-offerlist', $data);
-		}	
+		}
 	}
 
 	public function offeredlist(){
 		if ($this->input->post()) {
-			$data['items'] = $this->item_model->get_offered_items_from_item_id($this->input->post('account_id'), $this->input->post('id'));
+			$data['items'] = $this->item_model->get_offered_items_from_item_id($this->input->post('id'));
 			$data['item'] = $this->input->post('id');
 			$data['offered_items'] = true;
 			$this->load->view('template/items-offerlist', $data);
 		}
 	}
 
+	public function offeredlist_by_account(){
+		if ($this->input->post()) {
+			$data['items'] = $this->item_model->get_offered_items_from_item_id_and_account_id($this->input->post('account_id'), $this->input->post('id'));
+			$data['item'] = $this->input->post('id');
+			$data['offered_items'] = true;
+			$data['user'] = true;
+			$this->load->view('template/items-offerlist', $data);
+		}
+	}
+
 	public function delete_image(){
-		$this->item_model->delete_item_images($this->input->post());	
+		$this->item_model->delete_item_images($this->input->post());
 	}
 
 	public function remove_offered_item($itemid, $offerid){

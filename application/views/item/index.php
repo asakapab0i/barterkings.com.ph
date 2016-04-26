@@ -19,7 +19,7 @@
 							<?php endif;?>
 						</h4>
 						<div data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images">
-							<?php $this->load->view('template/images-template'); ?>	
+							<?php $this->load->view('template/images-template'); ?>
 						</div>
 					</div>
 					</div>
@@ -33,10 +33,10 @@
 					<div class="panel-body offer-area">
 						<h4>Current Price</h4>
 						<h5>
-							PHP <?php echo $data[0]['value'] ?>
-							<small class="pull-right">
-								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers
-							</small> 
+							<span class="label price-value label-danger">₱ <?php echo $data[0]['value'] ?></span>
+							<small class="pull-right ">
+								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offer(s)
+							</small>
 						</h5>
 						<hr>
 						<div data-itemid="<?php echo $data[0]['itemid']; ?>" class="offers-cart reload-offer-cart">
@@ -72,7 +72,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments 
+						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments
 						<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-xs btn-success">Make comments</a>
 						</h4><hr>
 						<div class="comments-list reload-comments">

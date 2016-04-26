@@ -45,11 +45,11 @@
 					<label>Category</label>
 
 					<select name="category" class="form-control">
-						
+
 						<?php foreach($categories as $key => $val): ?>
 
 							<?php if($val['id'] == $item[0]['category']):  ?>
-								<option selected value="<?php $val['id']; ?>"><?php echo $key; ?></option>
+								<option selected value="<?php echo $val['id']; ?>"><?php echo $key; ?></option>
 							<?php else: ?>
 								<option value="<?php echo $val['id']; ?>"><?php echo $key; ?></option>
 							<?php endif; ?>
@@ -69,17 +69,17 @@
 					<div class="col-md-11">
 						<label>Sub Category</label>
 						<select name="sub_category" class="form-control">
-							
+
 							<?php foreach($sub_categories as $key => $val): ?>
 								<?php if($val['sub_category_parent'] == $item[0]['category']): ?>
-									<option value="<?php echo $val['sub_category_id']; ?>"><?php echo $val['sub_category_name']; ?></option>	
+									<option value="<?php echo $val['sub_category_id']; ?>"><?php echo $val['sub_category_name']; ?></option>
 								<?php endif;?>
 							<?php endforeach; ?>
 
 						</select>
 					</div>
 				<?php endif;?>
-				
+
 				<div class="col-md-1">
 					<h4 class="item-instruction-number"></h4>
 			</div>
@@ -101,7 +101,7 @@
 					</h4><hr>
 
 					<div data-itemid="<?php echo $item[0]['itemid']; ?>" class="reload-images">
-							<?php $this->load->view('template/images-template'); ?>	
+							<?php $this->load->view('template/images-template'); ?>
 					</div>
 				</div>
 			</div>

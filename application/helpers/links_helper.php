@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function echo_if_not_empty($var, $default = ''){
 		if ($var) {
@@ -12,6 +12,10 @@
 		echo base_url('item') . '/' . $id . '/' . url_title($name);
 	}
 
+	function linkify_to_compare($item, $item_offer){
+		echo base_url('item') . '/' . 'compare/' . $item . '/' . $item_offer;
+	}
+
 	function linkify_to_tags($tag_term, $tag_id, $_get = NULL){
 		if ($_get !== NULL && is_array($_get)) {
 			unset($_get['tag']);
@@ -20,7 +24,7 @@
 			$url = '?';
 		}
 
-		echo base_url('home') . $url ."tag=" . urlencode($tag_term) . '&id=' . $tag_id; 
+		echo base_url('home') . $url ."tag=" . urlencode($tag_term) . '&id=' . $tag_id;
 	}
 
 	function linkify_to_images($image_thumb){
@@ -48,7 +52,7 @@
 			$url = '?';
 		}
 
-		echo base_url('home') . $url ."category=$category"; 
+		echo base_url('home') . $url ."category=$category";
 	}
 
 ?>

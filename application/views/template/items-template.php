@@ -1,11 +1,11 @@
-<?php 
+<?php
 if (isset($items)) {
 	$data = $items;
 }
 ?>
 <?php if($data !== FALSE): ?>
 
-	<?php foreach ($data as $value): 
+	<?php foreach ($data as $value):
 	if ($value->image_thumb === NULL):
 		$value->image_thumb = 'default_thumb.png';
 	endif;
@@ -36,11 +36,7 @@ if (isset($items)) {
 			</div>
 
 		</div>
-	</div>	
+	</div>
 <?php endforeach;?>
 <?php else:?>
 <?php endif;?>
-
-
-
-

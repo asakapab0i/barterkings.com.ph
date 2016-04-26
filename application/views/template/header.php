@@ -48,7 +48,7 @@
                    <ul class="nav navbar-nav">
                     <li class="barter-now">
                       <button data-placement="bottom" data-toggle="tooltip" title="Barter Now" title="Barter Now" href="<?php echo base_url('item/add'); ?>" class="btn btn-success btn-sm">
-                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> 
+                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span>
                         Start Trading
                       </button>
                     </li>
@@ -65,7 +65,7 @@
 
                   <ul class="nav navbar-nav navbar-right">
                     <?php if (isset($_is_logged_in) && $_is_logged_in !== FALSE): ?>
-                      <!-- 
+                      <!--
                       <li>
                         <a data-placement="bottom" data-toggle="tooltip" title="Profile" href="<?php echo base_url('profile'); ?>">
                           <span class="nav-icon glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -77,21 +77,21 @@
                       </li>
                       -->
                       <li><a data-placement="bottom" data-toggle="tooltip" title="Messages" href="<?php echo base_url('message'); ?>">
-                        <span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>  
+                        <span class="nav-icon glyphicon glyphicon-envelope" aria-hidden="true"></span>
                         <?php if(isset($_inbox_count) && $_inbox_count > 0): ?>
                           <span class="nav-label label label-danger"><?php echo $_inbox_count; ?></span> <span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <?php endif;?><span class="visible-xs-inline nav-xs-label"> Conversations</span></a></li>
                         <li class="dropdown nav-profile-image">
                          <div class="pull-right">
-                           <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail"> 
+                           <span data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="thumbnail">
                           <img src="<?php echo base_url('asset/img/profiles_thumbs/' . $_is_logged_in[0]['profile_img_thumb']);?>">
                           </span>
                          </div>
-                         
 
-                         <span class="pull-right text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+
+                         <span class="pull-right text-capitalize nav-username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           <?php echo $_is_logged_in[0]['username'] ?>
-                         </span> 
+                         </span>
 
                           <ul class="dropdown-menu nav-profile-dropdown">
                             <!--
@@ -100,6 +100,7 @@
                             <li role="separator" class="divider"></li>
                             -->
                             <li><a title="Logout" href="<?php echo base_url('profile'); ?>"> Profile</a></li>
+                            <li><a title="Logout" href="<?php echo base_url('profile'); ?>"> Activity Logs</a></li>
                             <li><a title="Logout" href="<?php echo base_url('searches'); ?>"> Searches</a></li>
                             <li><a title="Logout" href="<?php echo base_url('account/logout'); ?>"> Logout</a></li>
                           </ul>
@@ -113,11 +114,9 @@
 
                   </div>
                   <hr class="nav-hr">
-                </div> 
+                </div>
 
                 <?php $this->load->view('template/subnav_category'); ?>
 
               </div>
             </nav>
-
-            
