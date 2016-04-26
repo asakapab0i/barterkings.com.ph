@@ -45,10 +45,16 @@ class Message extends MY_Controller {
 	}
 
 	public function create(){
-		if ($this->input->post()) {
-			$this->message_model->create_message_compose();
+		if ($this->input->post('options')) {
+			$data['options'] = $this->input->post('options');
+			$data['reply'] = $this->message_model->get_username_create_compose_by_account_id($this->input->post('account_id'));
+			$this->load->view('template/message-compose-template', $data);
 		}else{
-			$this->load->view('template/message-compose-template');
+			if ($this->input->post()) {
+				$this->message_model->create_message_compose();
+			}else{
+				$this->load->view('template/message-compose-template');
+			}
 		}
 	}
 

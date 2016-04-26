@@ -9,8 +9,8 @@ body {
 	background-color:#fff;
 	border-bottom-color:#E3E3E3;
 }
-.navbar-default .navbar-nav>.active>a, 
-.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus{
 	background-color:transparent!important;
 }
@@ -480,7 +480,7 @@ body {
 }
 
 .category-card-parent:hover{
-	border: 
+	border:
 }
 
 .category-name{
@@ -604,7 +604,7 @@ body {
 }
 
 #send-message {
-	height: 350px;
+	min-height: 250px;
 }
 
 .content-body{

@@ -1,10 +1,10 @@
 <div class="container">
 
 				<div class="col-md-6">
-					<?php $this->load->view('template/compare-template', $item_offer); ?>
+					<?php $this->load->view('template/compare-template', $item); ?>
 				</div>
 
 				<div class="col-md-6">
-					<?php $this->load->view('template/compare-template', $item); ?>
+					<?php $this->load->view('template/compare-template', $item_offer); ?>
 				</div>
 </div>

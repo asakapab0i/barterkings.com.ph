@@ -7,7 +7,18 @@ if (isset($forward) && $forward !== FALSE) {
 }
 ?>
 
+<?php if (isset($options) && $options == 'from-profile'): ?>
+  <div class="modal-header">
+  	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  	<h4 class="modal-title" id="myModalLabel">Compose Message</h4>
+  </div>
+<?php endif; ?>
+
+<div class="row">
+  <div class="container-fluid">
+
     <div class="col-md-12">
+
       <form id="message-create-form" action="message/create" method="POST" accept-charset="utf-8">
         <div class="form-group">
           <input value="<?php echo (isset($reply[0]['username']) ? $reply[0]['username'] : ''); ?>" id="send-to" type="text" name="recepient" class="form-control" placeholder="To" />
@@ -22,4 +33,13 @@ if (isset($forward) && $forward !== FALSE) {
           <button class="form-control btn btn-success">Send</button>
         </div>
       </form>
+    </div>
+
   </div>
+
+</div>
+
+<?php if (isset($options) && $options == 'from-profile'): ?>
+  <div class="modal-footer">
+  	</div>
+<?php endif; ?>

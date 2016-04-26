@@ -5,14 +5,14 @@ class Message_model extends CI_Model {
 	private $_data;
 
 	public function __construct(){
-		parent::__construct();	
+		parent::__construct();
 		$this->load->model('account_model');
 		$this->_data = $this->input->post();
 	}
 
 	public function _return_false_or_data($query_object){
 		if ($query_object->num_rows() > 0) {
-			return $query_object->result_array();	
+			return $query_object->result_array();
 		}
 		return FALSE;
 	}
@@ -131,12 +131,17 @@ class Message_model extends CI_Model {
 		return $this->_return_false_or_data($sendto);
 	}
 
+	public function get_username_create_compose_by_account_id($account_id){
+			$get_recepient = $this->db->select('username')->from('accounts')->where('id', $account_id)->get();
+			return $this->_return_false_or_data($get_recepient);
+	}
+
 	public function update_message_is_read($message_id){
 		$data = $this->get_message_by_message_id($message_id);
 
 		if ($data[0]['is_read'] == 0) {
 			$this->db->where('message_id', $message_id);
-			$this->db->update('messages', array('is_read' => 1));		
+			$this->db->update('messages', array('is_read' => 1));
 			return true;
 		}
 		return false;

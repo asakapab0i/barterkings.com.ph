@@ -432,6 +432,10 @@ p {
   border-radius: 0px;
 }
 
+.list-group-item:last-child{
+  border-radius: 0px;
+}
+
 span.price-value {
   font-size: 100%;
 }

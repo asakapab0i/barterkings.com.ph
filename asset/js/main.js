@@ -30,11 +30,13 @@ $(function(){
 		var account_id = $(this).data('accountid');
 		var search = $(this).data('term');
 		var url = $(this).data('url');
+		var options = $(this).data('options');
 
 		var data = {
 			id: id,
 			account_id: account_id,
-			search : search
+			search : search,
+			options : options
 		}
 
 		var that = $('#myModal');
@@ -83,9 +85,9 @@ $(function(){
 						.attr('aria-valuenow', event.loaded)
 						.attr('aria-valuemax', event.total);
 						if(percentage == 100) {
-							$('.progress').fadeOut();	
+							$('.progress').fadeOut();
 						}
-					}	
+					}
 				},
 				reader.readAsDataURL(file);
 			}
@@ -117,7 +119,7 @@ $(document).on('click', '.add-comment-btn', function(event){
 		var that_comments_count = $('.reload-comments-count');
 		that_comments.load(base_url + 'item/get_comments/' + itemid);
 		that_comments_count.load(base_url + 'item/get_comments_count/' + itemid);
-		$(this).remove();	
+		$(this).remove();
 	});
 });
 
@@ -233,9 +235,9 @@ $(document).on('upload-images-event', '.userfile', function(e, reload_images){
 					.attr('aria-valuenow', event.loaded)
 					.attr('aria-valuemax', event.total);
 					if(percentage == 100) {
-						$('.progress').fadeOut();	
+						$('.progress').fadeOut();
 					}
-				}	
+				}
 			},
 			reader.readAsDataURL(file);
 		}
@@ -271,9 +273,9 @@ $(document).on('upload-images-event', '.userfile', function(e, reload_images){
 $(function(){
 	$(document).on("click", ".show-more a", function(e) {
 		e.preventDefault();
-		var $this = $(this); 
+		var $this = $(this);
 		var $content = $this.parent().prev("div.content");
-		var linkText = $this.text().toUpperCase();    
+		var linkText = $this.text().toUpperCase();
 
 		if(linkText === "SHOW MORE"){
 			linkText = "Show less";
@@ -311,6 +313,7 @@ $(function(){
 			contentType: false,
 			success : function(result){
 				console.log('Message sent.');
+				$('.modal-content').html('<div class="alert alert-success">'+result+'</div>');
 				$('.content-container').html('<div class="alert alert-success">'+result+'</div>');
 			}
 		});
@@ -358,7 +361,7 @@ if (url.match('#')) {
 	});
 }
 
-//ACTIVATION OF PLUGIN 
+//ACTIVATION OF PLUGIN
 
 $(function(){
 	$('.nav-tabs a').on('shown.bs.tab', function (e) {
@@ -426,7 +429,7 @@ $(function(){
 
 	$('.nav-sub-category').click(function() {
 		$('#navbar-open').toggleClass('hidden');
-		$('#navbar-close').toggleClass('hidden');  
+		$('#navbar-close').toggleClass('hidden');
 	});
 
 	$('.barter-now button').click(function(){
@@ -452,7 +455,7 @@ $(function(){
 			color: 'white'
 		});
 	});
-	
+
 	$('#description-editor').wysihtml5({
 		"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
 	    "emphasis": true, //Italics, bold, etc. Default true
@@ -460,8 +463,8 @@ $(function(){
 	    "html": false, //Button which allows you to edit the generated HTML. Default false
 	    "link": true, //Button to insert a link. Default true
 	    "image": true, //Button to insert an image. Default true,
-	    "color": false, //Button to change color of font  
-	    "blockquote": true, //Blockquote  
+	    "color": false, //Button to change color of font
+	    "blockquote": true, //Blockquote
   		"size": '12' //default: none, other options are xs, sm, lg
 	});
 
@@ -472,7 +475,7 @@ $(function(){
 	});
 
 
-	var item_id = $('#tags-input').data('item-id')	
+	var item_id = $('#tags-input').data('item-id')
 
 	$.get(base_url + 'item/get_tags_json/' + item_id, function(data){
 		$.each(data, function(k, v){
@@ -482,4 +485,3 @@ $(function(){
 	});
 
 });
-
