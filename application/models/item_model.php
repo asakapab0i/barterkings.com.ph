@@ -454,7 +454,7 @@ class Item_model extends MY_Model {
 			->join('accounts', 'accounts.id = items.account_id', 'left')
 			->join('category_labels', 'category_labels.category_id = items.category')
 			->join('offers', 'offer_item_id = items.id', 'left')
-			// ->where("value $operator", $price_range)
+			->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -557,7 +557,7 @@ class Item_model extends MY_Model {
 			->join('category_labels', 'category_labels.category_id = items.category')
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->like('name', $term)
-			// ->where("value $operator", $price_range)
+			->where("value $operator", $price_range)
 			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -573,6 +573,14 @@ class Item_model extends MY_Model {
 		}
 
 		return FALSE;
+	}
+
+	public function get_item_names_by_term($name){
+			$db = $this->db->select('name')->from('items')->like('name', $name)->get();
+			if ($db->num_rows() > 0) {
+				return $db->result_array();
+			}
+			return false;
 	}
 
 	public function add_item($session_id){

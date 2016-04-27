@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
+<link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/typehead.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/font-awesome.min.css">
@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-tagsinput.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.css">
+
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/style.css">
   <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
@@ -56,7 +58,7 @@
 
                   <form method="GET" action="<?php echo base_url('home')?>" class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                      <input id="nav-search" type="text" value="<?php echo $this->input->get('term'); ?>" name="term" class="form-control" placeholder="Looking for something?">
+                      <input style="float:none;" id="nav-search" type="text" value="<?php echo $this->input->get('term'); ?>" name="term" class="form-control typehead" placeholder="Looking for something?">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>
@@ -99,9 +101,10 @@
                             <li><a title="Settings" href="<?php echo base_url('settings'); ?>"> Settings</a></li>
                             <li role="separator" class="divider"></li>
                             -->
-                            <li><a title="Logout" href="<?php echo base_url('profile'); ?>"> Profile</a></li>
-                            <li><a title="Logout" href="<?php echo base_url('profile'); ?>"> Activity Logs</a></li>
-                            <li><a title="Logout" href="<?php echo base_url('searches'); ?>"> Searches</a></li>
+                            <li><a title="Profile" href="<?php echo base_url('profile'); ?>"> Profile</a></li>
+                            <li><a title="Dashboard" href="<?php echo base_url('profile'); ?>"> Dashboard</a></li>
+                            <li><a title="Activity Logs" href="<?php echo base_url('profile'); ?>"> Activity Logs</a></li>
+                            <li><a title="Searches" href="<?php echo base_url('searches'); ?>"> Searches</a></li>
                             <li><a title="Logout" href="<?php echo base_url('account/logout'); ?>"> Logout</a></li>
                           </ul>
 

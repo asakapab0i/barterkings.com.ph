@@ -33,14 +33,18 @@
   </div>
 </div>
 
-<!-- <div id="blueimp-gallery" class="blueimp-gallery">
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
     <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
     <h3 class="title"></h3>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
     <div class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -62,7 +66,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
 <!-- FOOTER -->
@@ -78,6 +82,7 @@
 <script src="<?php echo base_url('asset/js/vendor/bootstrap3-wysihtml5.all.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-tagsinput.js')?>"></script>
 <script src="<?php echo base_url('asset/js/vendor/bootstrap-image-gallery.main.min.js')?>"></script>
+<script src="<?php echo base_url('asset/js/vendor/typehead.min.js')?>"></script>
 <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
 <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>

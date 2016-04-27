@@ -19,7 +19,7 @@
           </div>
 
         </div>
-      </div>   
+      </div>
     <?php endforeach;?>
 
   </div>
@@ -29,7 +29,7 @@
   <div class="panel-heading">
     <h3 class="panel-title">2. How do you want to trade your item?</h3>
   </div>
-  <div class="panel-body"> 
+  <div class="panel-body">
 
     <div id="selling-form-warning-sell-type" style="display:none;" class="alert alert-warning">
       <p>Please choose the following options. </p>
@@ -38,10 +38,10 @@
     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
       <div class="selling-card-parent thumbnail bootsnipp-thumb">
         <div class="selling-form-auction">
-          <input class="selling-input" type="radio" name="sell-type" value="item/auction"> <label class="selling-type">Auction - Free</label>
+          <input disabled class="selling-input" type="radio" name="sell-type" value="item/auction"> <label class="selling-type">Auction - Free</label>
         </div>
         <div class="selling-description">
-          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting.<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p> 
+          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting.<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
           <input class="selling-input" type="radio" name="sell-type" value="item/classified"> <label class="selling-type">Classified Listing - Free</label>
         </div>
         <div class="selling-description">
-          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p> 
+          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p>
           <p></p>
         </div>
       </div>
@@ -81,6 +81,6 @@
         </div>
       </div>
    </form>
-    
+
   </div>
 </div>

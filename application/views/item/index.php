@@ -35,7 +35,7 @@
 						<h5>
 							<span class="label price-value label-danger">₱ <?php echo $data[0]['value'] ?></span>
 							<small class="pull-right ">
-								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offer(s)
+								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers
 							</small>
 						</h5>
 						<hr>
@@ -72,10 +72,10 @@
 
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count"><?php echo $comments_count; ?></span> comments</small> Comments
+						<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-comments-count-<?php echo $data[0]['itemid']; ?>"><?php echo $comments_count; ?></span> comments</small> Comments
 						<a href="#" data-itemid = "<?php echo $data[0]['itemid']; ?>" data-url="item/comment" data-method="upload" class="pop-modal btn btn-xs btn-success">Make comments</a>
 						</h4><hr>
-						<div class="comments-list reload-comments">
+						<div class="reload-comments-<?php echo $data[0]['itemid']; ?> comments-list reload-comments">
 							<?php $this->load->view('template/comments-template');?>
 						</div>
 					</div>

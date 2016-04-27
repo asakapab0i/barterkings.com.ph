@@ -261,4 +261,17 @@ class Item extends MY_Controller {
 		echo json_encode($this->item_model->get_tags($item_id));
 	}
 
+	public function get_item_names_json($term){
+		header('Content-type: application/json');
+		$data = $this->item_model->get_item_names_by_term($term);
+		$dataset = [];
+		if (is_array($data) && count($data) > 0) {
+			foreach($data as $k => $v){
+				$dataset[] = $v['name'];
+			}
+
+			echo json_encode($dataset);
+		}
+	}
+
 }

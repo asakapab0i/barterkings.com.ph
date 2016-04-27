@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Bryan Bojorque -- Web Developer @bbojorque
 
 # THANKS
 
-    <name>
+    Family & friends
 
 # TECHNOLOGY COLOPHON
 
