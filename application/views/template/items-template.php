@@ -30,13 +30,14 @@ if (isset($items)) {
 				<div class="btn-group btn-block">
 					<a href="<?php echo base_url('item')?>/<?php echo $value->item_id; ?>/<?php echo url_title($value->name); ?>" class="btn col-md-6 btn-sm btn-primary">₱<?php echo $value->value; ?></a>
 					<?php if(isset($user) && $user !== false): ?>
+						
 						<?php
 							$data = $this->item_model->fetch_favorite($value->item_id, $user[0]['id']);
 							$is_star = ($data[0]['account_id'] == $user[0]['id']) ? true : false;
 							$data = $this->item_model->fetch_wishlist($value->item_id, $user[0]['id']);
 							$is_wishlist = ($data[0]['account_id'] == $user[0]['id']) ? true : false;
-
 						?>
+
 						<button id="favorite-btn" data-url="item/favorite" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Favorite" type="button" class="update-ajax col-md-3 btn-sm btn btn-<?php echo ($is_star) ? 'inverse' : 'warning'?>">
 							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</button>
