@@ -16,6 +16,11 @@
         <span class="help-block"></span>
       </div>
       <div class="form-group">
+        <label for="contact_number" class="control-label">Contact Number</label>
+        <input required type="text" class="form-control" id="contact_number" name="contact_number" value="" required="" title="Please enter you contact number">
+        <span class="help-block"></span>
+      </div>
+      <div class="form-group">
         <label for="password" class="control-label">Password</label>
         <input required type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
         <span class="help-block"></span>

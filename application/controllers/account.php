@@ -62,6 +62,7 @@ class Account extends MY_Controller {
 
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[accounts.email]');
 			$this->form_validation->set_rules('username', 'Nickname', 'required|is_unique[accounts.username]');
+			$this->form_validation->set_rules('contact_number', 'Contact Number', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required|matches[confirm_password]');
 			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
@@ -70,7 +71,8 @@ class Account extends MY_Controller {
 				$this->_load_view('account/register');
 			}else{
 				$account_id = $this->account_model->register();
-				$this->login($account_id);
+				$this->account_model->login($account_id);
+				redirect('home');
 			}
 
 		}else if($this->_session_data == false){
