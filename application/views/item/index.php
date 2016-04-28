@@ -35,7 +35,7 @@
 						<h5>
 							<span class="label price-value label-danger">₱ <?php echo $data[0]['value'] ?></span>
 							<small class="pull-right ">
-								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offers
+								<span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-offers-count"><?php echo $offers_count; ?></span> offer(s)
 							</small>
 						</h5>
 						<hr>

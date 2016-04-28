@@ -7,8 +7,6 @@ class Item_model extends MY_Model {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('offer_model');
-
-		//$this->output->enable_profiler(true);
 	}
 
 	public function _upload_create_thumbnail($images, $itemid, $imageid){
@@ -270,7 +268,7 @@ class Item_model extends MY_Model {
 			->join('offers', 'offer_item_id = items.id', 'left')
 			->join('category_labels', 'category_labels.category_id = items.category', 'left')
 			->where("value $operator", $price_range)
-			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->where($cat_prefix, $cat_value)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -337,7 +335,7 @@ class Item_model extends MY_Model {
 			->join('category_labels', 'category_labels.category_id = items.category', 'left')
 			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
-			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->like("name", $term)
 			->limit($limit, $offset)
 			->group_by('items.id')
@@ -357,7 +355,7 @@ class Item_model extends MY_Model {
 			->join('category_labels', 'category_labels.category_id = items.category', 'left')
 			->where($cat_prefix, $cat_value)
 			->where("value $operator", $price_range)
-			->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
 			->having('COUNT(offers.item_id) >', 0, false)
 			->like("name", $term)
 			->limit($limit, $offset)
@@ -599,6 +597,25 @@ class Item_model extends MY_Model {
 		return true;
 	}
 
+	public function update_wishlist($item_id){
+		$account_id = $this->_get_session_data()[0]['id'];
+		$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
+
+		if ($data->num_rows() == 0) {
+			$this->db->insert('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
+			return 'true';
+		}
+
+		return 'false';
+	}
+
+	public function fetch_wishlist($item_id, $account_id){
+			$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
+			if ($data->num_rows() > 0) {
+				return $data->result_array();
+			}
+	}
+
 	public function update_favorite($item_id, $account_id){
 		$account_id = $account_id[0]['id'];
 		$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
@@ -609,7 +626,13 @@ class Item_model extends MY_Model {
 		}
 
 		return 'false';
+	}
 
+	public function fetch_favorite($item_id, $account_id){
+			$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
+			if ($data->num_rows() > 0) {
+				return $data->result_array();
+			}
 	}
 
 	public function edit_item($itemid, $data){

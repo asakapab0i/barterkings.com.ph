@@ -20,6 +20,7 @@ class Home extends MY_Controller {
 			$items = $this->item_model->get_items();
 		}
 
+		$data['user'] = $this->_get_session_data();
 		$data['data'] = $items;
 		$data['search'] = $this->input->get('term');
 		$data['total_results'] = $items != false ? count($items) : 0;

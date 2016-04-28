@@ -1,28 +1,29 @@
 $(function(){
 
-	$(document).on('click', '#favorite-btn', function(event){
-
-		alert('yeah!');
-
+	$(document).on('click', '.update-ajax', function(event){
 		$(this).trigger('favorite-btn-update', function(event){
-			alert('yeah!');
 		});
-
 	});
 
-	$(document).on('favorite-btn-update', '#favorite-btn', function(event, check_favorite_btn){
+	$(document).on('favorite-btn-update', '.update-ajax', function(event, check_favorite_btn){
+		console.log($(this));
+		var that = $(this);
+		console.log(that.data('url'));
 
 		$.when($.ajax({
 			method: "POST",
 			url: base_url + $(this).data('url'),
-			data: {id : $(this).data('id')},
+			data: {itemid : $(this).data('item-id')},
 			success: function(result){
+				if (result != 'failed') {
 
-				if (result == 'true') {
-					$(this).removeClass('btn-warning');
-					$(this).addClass('btn-default');
-				};
+					if (that.hasClass('btn-warning') || that.hasClass('btn-danger')) {
+						that.removeClass('btn-warning');
+						that.removeClass('btn-danger');
+						that.addClass('btn-default');
+					}
 
+				}
 			}
 		})).done(function(){
 			check_favorite_btn();

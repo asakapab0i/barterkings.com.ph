@@ -132,10 +132,30 @@ class Item extends MY_Controller {
 		if ($this->input->post()) {
 
 			if ($this->account_model->get_session()) {
-				echo $this->item_model->update_favorite($this->input->post('id'), $this->account_model->get_session());
+				echo $this->item_model->update_favorite($this->input->post('itemid'), $this->account_model->get_session());
+			}else{
+				echo 'failed';
 			}
 
 		}
+	}
+
+	public function fetch_favorite($item_id, $account_id){
+			return $this->item_model->fetch_favorite($item_id, $account_id);
+	}
+
+	public function wishlist(){
+		if ($this->input->post()) {
+			if ($this->_get_session_data()) {
+				echo $this->item_model->update_wishlist($this->input->post('itemid'));
+			}else{
+				echo 'failed';
+			}
+		}
+	}
+
+	public function fetch_wishlist(){
+		return $this->item_model->fetch_wishlist($item_id, $account_id);
 	}
 
 	public function classified(){

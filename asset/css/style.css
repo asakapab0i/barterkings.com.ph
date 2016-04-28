@@ -579,7 +579,7 @@ body {
 }
 
 .btn-success:hover, .btn-info:hover, .btn-default:hover, .btn-primary:hover, .btn-danger:hover, .btn-warning:hover, .btn:hover {
-	border: 0;
+	border: 0
 	border-width: 0;
 	margin: 0;
 	z-index: 0;
@@ -587,6 +587,14 @@ body {
 
 .btn-group>.btn:hover, .btn-group-vertical>.btn:hover, .btn-group>.btn:focus, .btn-group-vertical>.btn:focus, .btn-group>.btn:active, .btn-group-vertical>.btn:active, .btn-group>.btn.active, .btn-group-vertical>.btn.active{
 	z-index: 0;
+}
+
+.btn-group>.btn{
+	z-index: 0;
+}
+
+.btn {
+	border-width: 0 1px 0px 1px;
 }
 
 .btn-block+.btn-block:hover{
