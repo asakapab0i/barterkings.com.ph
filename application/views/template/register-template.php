@@ -2,15 +2,17 @@
   <div class="panel-heading"> <h4>Register</h4> </div>
   <div class="panel-body">
 
+    <?php echo validation_errors(); ?>
+
     <form id="loginForm" method="POST" action="<?php echo base_url('account/register'); ?>">
-      <div class="form-group">
-        <label for="username" class="control-label">Username</label>
-        <input required type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username">
-        <span class="help-block"></span>
-      </div>
       <div class="form-group">
         <label for="email" class="control-label">Email</label>
         <input required type="text" class="form-control" id="email" name="email" value="" required="" title="Please enter you email" placeholder="example@gmail.com">
+        <span class="help-block"></span>
+      </div>
+      <div class="form-group">
+        <label for="username" class="control-label">Nickname</label>
+        <input required type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username">
         <span class="help-block"></span>
       </div>
       <div class="form-group">

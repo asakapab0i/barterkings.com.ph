@@ -6,10 +6,12 @@
     <div class="panel-heading"><h4>Login</h4></div>
     <div class="panel-body">
 
+        <?php echo validation_errors(); ?>
+
         <form id="loginForm" method="POST" action="<?php echo base_url('account/login'); ?>">
             <div class="form-group">
-                <label for="username" class="control-label">Username / Email</label>
-                <input required type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="">
+                <label for="email" class="control-label">Email</label>
+                <input required type="text" class="form-control" id="username" name="email" value="" required="" title="Please enter you username" placeholder="">
                 <span class="help-block"></span>
             </div>
             <div class="form-group">
@@ -18,10 +20,10 @@
                 <span class="help-block"></span>
             </div>
 
-            <div id="loginErrorMsg" class="alert alert-danger alert-dismissable <?php echo $show_or_hide; ?>">
+            <!-- <div id="loginErrorMsg" class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 Wrong Username or Password.
-            </div>
+            </div> -->
 
             <!-- <div class="checkbox">
                 <label>

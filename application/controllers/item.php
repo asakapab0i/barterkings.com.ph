@@ -75,17 +75,29 @@ class Item extends MY_Controller {
 	public function add(){
 		if ($this->input->post()) {
 
-			if ($this->account_model->get_session()) {
-				if ($id = $this->item_model->add_item($this->account_model->get_session())) {
-				$name = url_title($this->input->post('name'));
-				redirect("item/$id/$name");
-				}else{
-					$data['categories'] = $this->item_model->get_categories();
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('name', 'Item Name', 'required');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+			$data['categories'] = $this->item_model->get_categories();
+
+			if ($this->form_validation->run() == false ) {
 					$this->_load_view('item/add', $data);
+			}else{
+				if ($this->account_model->get_session()) {
+					if ($id = $this->item_model->add_item($this->account_model->get_session())) {
+						$name = url_title($this->input->post('name'));
+						redirect('item/edit/' . $id);
+						//redirect("item/$id/$name");
+					}else{
+						$this->_load_view('item/add', $data);
+					}
+				}else {
+					redirect('account/login');
 				}
-			}else {
-				redirect('account/login');
+
 			}
+
+
 
 		}else{
 			$data['categories'] = $this->item_model->get_categories();
@@ -98,15 +110,30 @@ class Item extends MY_Controller {
 			$data = $this->input->post();
 			$item_id = $data['id'];
 			$name = url_title($data['name']);
-			$tags = $data['tags'];
-			unset($data['tags']);
-			unset($data['id']);
-			unset($data['_wysihtml5_mode']);
-			$this->item_model->edit_item($item_id, $data);
-			$this->item_model->add_tags($item_id, $tags);
-			redirect("item/{$item_id}/{$name}");
-		}else{
+			$tags = (isset($data['tags'])) ? $data['tags'] : false;
+			unset($data['tags']); unset($data['id']); unset($data['_wysihtml5_mode']);
 
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('name', 'Item Name', 'required');
+			$this->form_validation->set_rules('value', 'Price', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('location', 'Location', 'required');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			if ($this->form_validation->run() == false) {
+				$data['item'] = $this->item_model->get_item($id);
+				$data['images'] = $this->item_model->get_item_images($id);
+				$data['categories'] = $this->item_model->get_categories();
+				$data['categories_v2'] = $this->item_model->get_categories_v2();
+				$data['sub_categories'] = $this->item_model->get_sub_categories();
+				$this->_load_view('item/classified', $data);
+			}else{
+				$this->item_model->edit_item($item_id, $data);
+				$this->item_model->add_tags($item_id, $tags);
+				redirect("item/{$item_id}/{$name}");
+			}
+
+		}else{
 			if ($this->account_model->get_session()) {
 				$data['item'] = $this->item_model->get_item($id);
 				$data['images'] = $this->item_model->get_item_images($id);
@@ -117,7 +144,6 @@ class Item extends MY_Controller {
 			} else {
 				redirect('home');
 			}
-
 		}
 	}
 

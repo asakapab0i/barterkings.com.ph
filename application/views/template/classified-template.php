@@ -3,8 +3,11 @@
 		<h3 class="panel-title">List your item for free!</h3>
 	</div>
 	<div class="panel-body">
+		<?php echo validation_errors(); ?>
 		<div class="col-md-8">
-		<?php echo form_open('item/edit'); ?>
+			
+		<?php echo form_open('item/edit/' . $item[0]['itemid']); ?>
+
 			<div class="row item-form-input">
 				<div class="col-xs-1">
 					<h4 class="item-instruction-number">1.</h4>

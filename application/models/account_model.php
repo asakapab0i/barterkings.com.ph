@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Account_model extends MY_Model {			
+class Account_model extends MY_Model {
 
 	public function __construct(){
 
-		parent::__construct();		
+		parent::__construct();
 
 	}
 
@@ -39,13 +39,18 @@ class Account_model extends MY_Model {
 		return false;
 	}
 
-	public function login($account_id = NULL){
+	public function login($account_id = NULL, $form_data = false){
 
 		if ( $this->_get_session_data() === false ) {
 
+			if ($form_data) {
+				$this->_input_data['email'] = $form_data['email'];
+				$this->_input_data['password'] = $form_data['password'];
+			}
+
 			$login_db = $this->db->select('*')
 			->from('accounts')
-			->where('username', $this->_input_data['username'])
+			->where('email', $this->_input_data['email'])
 			->where('password', md5($this->_input_data['password']))
 			->or_where('id', $account_id)->get();
 
@@ -140,6 +145,7 @@ class Account_model extends MY_Model {
 	public function register(){
 		$data = $this->input->post();
 		$data['password'] = md5($data['password']);
+		unset($data['confirm_password']);
 		$this->db->insert('accounts', $data);
 
 		return $this->db->insert_id();

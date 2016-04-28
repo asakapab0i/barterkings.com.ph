@@ -8,21 +8,36 @@ class Account extends MY_Controller {
 		$this->load->model('item_model');
 		$this->load->model('offer_model');
 		$this->load->helper('links');
+		$this->load->library('form_validation');
 		$this->_session_data = $this->account_model->get_session();
 	}
 
 	public function login($account_id = NULL){
 		if ($this->_session_data == false && ($this->input->post() !== FALSE || $account_id != NULL) ) {
-			if($this->account_model->login($account_id)){
-				redirect('home');
+
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('password', 'Password', 'required|callback_check_login[' . $this->input->post('email') .']');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			if($this->form_validation->run() == FALSE) {
+				$this->_load_view('account/login');
 			}else{
-				$this->_load_view('account/login', array('error' => 'Wrong username or password.', 'show_or_hide' => 'open'));
+				redirect('home');
 			}
+
 		}else if($this->_session_data == false){
-			$this->_load_view('account/login', array('show_or_hide' => 'hide'));
+			$this->_load_view('account/login');
 		}else{
 			redirect('home');
 		}
+	}
+
+	public function check_login($pass, $user){
+		$data['email'] = $user;
+		$data['password'] = $pass;
+		$login_check = $this->account_model->login(NULL, $data);
+		$this->form_validation->set_message('check_login', 'Email or password is incorrect.');
+		return ($login_check) ? true : false;
 	}
 
 	public function login_template(){
@@ -43,8 +58,21 @@ class Account extends MY_Controller {
 
 	public function register(){
 		if ($this->input->post()) {
-			$account_id = $this->account_model->register();
-			$this->login($account_id);
+
+
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[accounts.email]');
+			$this->form_validation->set_rules('username', 'Nickname', 'required|is_unique[accounts.username]');
+			$this->form_validation->set_rules('password', 'Password', 'required|matches[confirm_password]');
+			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+
+			if ($this->form_validation->run() == false ) {
+				$this->_load_view('account/register');
+			}else{
+				$account_id = $this->account_model->register();
+				$this->login($account_id);
+			}
+
 		}else if($this->_session_data == false){
 			$this->_load_view('account/register');
 		}else{

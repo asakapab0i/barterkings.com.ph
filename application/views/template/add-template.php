@@ -1,6 +1,42 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">1. What are you trading?</h3>
+    <h3 class="panel-title">1. How do you want to trade your item?</h3>
+  </div>
+  <div class="panel-body">
+
+    <div id="selling-form-warning-sell-type" style="display:none;" class="alert alert-warning">
+      <p>Please choose the following options. </p>
+    </div>
+
+    <!-- <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+      <div class="selling-card-parent thumbnail bootsnipp-thumb">
+        <div class="selling-form-auction">
+          <input disabled class="selling-input" type="radio" name="sell-type" value="item/auction"> <label class="selling-type">Auction - Free</label>
+        </div>
+        <div class="selling-description">
+          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting.<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+      <div class="selling-card-parent thumbnail bootsnipp-thumb">
+        <div class="selling-form-auction">
+          <input checked class="selling-input" type="radio" name="sell-type" value="item/classified"> <label class="selling-type">Classified Listing - Free</label>
+        </div>
+        <div class="selling-description">
+          <!-- <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p> -->
+            <p> Note: all listings that are successfully sold will are absolutely free of charge! </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">2. What are you trading?</h3>
   </div>
   <div class="panel-body">
 
@@ -25,43 +61,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">2. How do you want to trade your item?</h3>
-  </div>
-  <div class="panel-body">
 
-    <div id="selling-form-warning-sell-type" style="display:none;" class="alert alert-warning">
-      <p>Please choose the following options. </p>
-    </div>
-
-    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-      <div class="selling-card-parent thumbnail bootsnipp-thumb">
-        <div class="selling-form-auction">
-          <input disabled class="selling-input" type="radio" name="sell-type" value="item/auction"> <label class="selling-type">Auction - Free</label>
-        </div>
-        <div class="selling-description">
-          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting.<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-      <div class="selling-card-parent thumbnail bootsnipp-thumb">
-        <div class="selling-form-auction">
-          <input class="selling-input" type="radio" name="sell-type" value="item/classified"> <label class="selling-type">Classified Listing - Free</label>
-        </div>
-        <div class="selling-description">
-          <p>An auction will get you the highest price and the most bids. Includes free escrow + 1 free relisting<br/>Use this if you want more buyers and a quick, successful sale. Learn more.</p>
-          <p></p>
-        </div>
-      </div>
-    </div>
-
-    <small>Note: all listings that are successfully sold will are absolutely free of charge!</small>
-
-  </div>
-</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -71,8 +71,11 @@
 
   <form class="selling-item-form" id="selling-item-form" method="POST" action="">
       <div class="row">
+        <div class="col-md-12">
+          <?php echo form_error('name'); ?>
+        </div>
         <div class="col-md-4">
-        <label class="pull-right selling-details-label"><b>Name of your item</b></label>
+          <label class="pull-right selling-details-label"><b>Name of your item</b></label>
         </div>
         <div class="col-md-8">
           <input type="text" name="name" class="form-control" placeholder="Nike Jordan Shoes XL">
