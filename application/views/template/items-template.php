@@ -32,22 +32,15 @@ if (isset($items)) {
 					<?php if(isset($user) && $user !== false): ?>
 						<?php
 							$data = $this->item_model->fetch_favorite($value->item_id, $user[0]['id']);
-							if ($data[0]['account_id'] == $user[0]['id']) {
-								$is_star = true;
-							}else{
-								$is_star = false;
-							}
+							$is_star = ($data[0]['account_id'] == $user[0]['id']) ? true : false;
 							$data = $this->item_model->fetch_wishlist($value->item_id, $user[0]['id']);
-							if ($data[0]['account_id'] == $user[0]['id']) {
-								$is_love = true;
-							}else{
-								$is_love = false;
-							}
+							$is_wishlist = ($data[0]['account_id'] == $user[0]['id']) ? true : false;
+
 						?>
 						<button id="favorite-btn" data-url="item/favorite" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Favorite" type="button" class="update-ajax col-md-3 btn-sm btn btn-<?php echo ($is_star) ? 'inverse' : 'warning'?>">
 							<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 						</button>
-						<button id="love-btn" data-url="item/wishlist" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Wishlist" type="button" class="update-ajax col-md-3 btn btn-sm btn-<?php echo ($is_love) ? 'inverse' : 'danger'?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+						<button id="love-btn" data-url="item/wishlist" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Wishlist" type="button" class="update-ajax col-md-3 btn btn-sm btn-<?php echo ($is_wishlist) ? 'inverse' : 'danger'?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
 					<?php else: ?>
 						<button id="favorite-btn" data-url="item/favorite" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Favorite" type="button" class="update-ajax col-md-3 btn-sm btn btn-warning"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
 						<button id="love-btn" data-url="item/wishlist" data-item-id="<?php echo $value->item_id; ?>" data-toggle="tooltip" data-placement="top" title="Wishlist" type="button" class="update-ajax col-md-3 btn btn-sm btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
