@@ -456,3 +456,7 @@ span.price-value {
     float: none;
     margin: 0 auto;
 }
+
+.body-height{
+  min-height: 600px;
+}

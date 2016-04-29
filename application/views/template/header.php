@@ -50,8 +50,9 @@
                    <ul class="nav navbar-nav">
                     <li class="barter-now">
                       <button data-placement="bottom" data-toggle="tooltip" title="Barter Now" title="Barter Now" href="<?php echo base_url('item/add'); ?>" class="btn btn-success btn-sm">
-                        <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span>
-                        Start Trading
+                        <!-- <span class="nav-icon glyphicon glyphicon-refresh icon-flipped" aria-hidden="true"></span> -->
+                        <span class="nav-icon fa fa-refresh fa-spin" aria-hidden="true"></span>
+                        &nbsp; Start Trading
                       </button>
                     </li>
                   </ul>
