@@ -13,6 +13,8 @@ class Account extends MY_Controller {
 	}
 
 	public function login($account_id = NULL){
+		$this->_data['title'] = 'BarterKings PH - Login account';
+
 		if ($this->_session_data == false && ($this->input->post() !== FALSE || $account_id != NULL) ) {
 
 			$this->form_validation->set_rules('email', 'Email', 'required');
@@ -57,9 +59,9 @@ class Account extends MY_Controller {
 	}
 
 	public function register(){
+		$this->_data['title'] = 'BarterKings PH - Register account';
+
 		if ($this->input->post()) {
-
-
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[accounts.email]');
 			$this->form_validation->set_rules('username', 'Nickname', 'required|is_unique[accounts.username]');
 			$this->form_validation->set_rules('contact_number', 'Contact Number', 'required');
@@ -83,6 +85,9 @@ class Account extends MY_Controller {
 	}
 
 	public function profile($username = NULL){
+
+		$this->_data['title'] = 'BarterKings PH - My profile';
+
 		if ($username != NULL) {
 			$account_id = $this->account_model->get_account_id_by_username($username);
 			$data['is_logged_in'] = false;
@@ -114,6 +119,9 @@ class Account extends MY_Controller {
 	}
 
 	public function inbox(){
+
+		$this->_data['title'] = 'BarterKings PH - Messages';
+
 		if ($this->input->post()) {
 			$this->account_model->send($this->input->post());
 			$this->_load_view('account/message');

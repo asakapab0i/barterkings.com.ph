@@ -11,6 +11,7 @@ class Message extends MY_Controller {
 	}
 
 	public function index(){
+		$this->_data['title'] = 'BarterKings PH - Messages';
 		$count_messages = $this->message_model->get_messages_inbox_unread();
 		$data['count_inbox'] = ($count_messages != FALSE ? count($count_messages) : 0);
 		$data['messages'] = $this->message_model->get_messages_inbox();

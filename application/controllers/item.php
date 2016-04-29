@@ -41,6 +41,7 @@ class Item extends MY_Controller {
 					$data['item_owner'] = true;
 				}
 			}
+			$this->_data['title'] = "BarterKings PH - " . $item_info[0]['name'];
 			$data['user'] = $item_info;
 			$data['data'] = $item_info;
 			$data['to_offer'] = $to_offer;
@@ -73,6 +74,8 @@ class Item extends MY_Controller {
 	}
 
 	public function add(){
+		$this->_data['title'] = 'BarterKings PH - Add an item';
+
 		if ($this->input->post()) {
 
 			$this->load->library('form_validation');
@@ -106,6 +109,8 @@ class Item extends MY_Controller {
 	}
 
 	public function edit($id){
+		$this->_data['title'] = 'BarterKings PH - Edit an item';
+
 		if ($this->input->post()) {
 			$data = $this->input->post();
 			$item_id = $data['id'];
@@ -148,6 +153,8 @@ class Item extends MY_Controller {
 	}
 
 	public function compare($item_id, $item_offer_id){
+			$this->_data['title'] = 'BarterKings PH - Compare items';
+
 			$data['item']	= $this->item($item_id, true);
 			$data['item_offer'] = $this->item($item_offer_id, true);
 
@@ -185,6 +192,8 @@ class Item extends MY_Controller {
 	}
 
 	public function classified(){
+		$this->_data['title'] = 'BarterKings PH - Classified item';
+
 		if ($this->input->post()) {
 			if ($this->account_model->get_session()) {
 				$id = $this->item_model->add_item($this->account_model->get_session());

@@ -15,9 +15,11 @@ class Home extends MY_Controller {
 	public function index(){
 
 		if ($this->input->get('term')) {
+			$this->_data['title'] = 'BarterKings PH - Search ' . $this->input->get('term');
 			$items = $this->item_model->get_items_search();
 			$total_rows = $this->item_model->get_total_items_search();
 		}else{
+			$this->_data['title'] = 'BarterKings PH - Home';
 			$items = $this->item_model->get_items();
 			$total_rows = $this->item_model->get_total_items();
 		}
@@ -60,6 +62,7 @@ class Home extends MY_Controller {
 		$config['total_rows'] = $total_rows;
 		$this->pagination->initialize($config);
 
+		$this->_data['title'] = 'BarterKings PH - Home';
 		$data['pagination'] = $this->pagination->create_links($get_query);
 		$data['user'] = $this->_get_session_data();
 		$data['data'] = $items;
