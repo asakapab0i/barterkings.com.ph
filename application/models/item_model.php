@@ -261,59 +261,108 @@ class Item_model extends MY_Model {
 
 		if ($this->_input_data['sort'] == 'most_recent') {
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where("value $operator", $price_range)
-			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
-			->where($cat_prefix, $cat_value)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->where($cat_prefix, $cat_value)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}else{
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->where($cat_prefix, $cat_value)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
-		}else if ($this->_input_data['sort'] == 'most_offers') {
+		}else if ($this->_input_data['sort'] == 'most_offers'){
 
-			$itemsdb = $this->db->select('COUNT(offers.offer_item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where($cat_prefix, $cat_value)
-			->where("value $operator", $price_range)
-			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
-			->having('COUNT(offers.offer_item_id) >', 0, false)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->order_by('COUNT(offers.item_id)', 'desc')
-			->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('COUNT(offers.offer_item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->having('COUNT(offers.offer_item_id) >', 0, false)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->order_by('COUNT(offers.item_id)', 'desc')
+				->get();
+			}else{
+				$itemsdb = $this->db->select('COUNT(offers.offer_item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->having('COUNT(offers.offer_item_id) >', 0, false)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->order_by('COUNT(offers.item_id)', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
-		}else if ($this->_input_data['sort'] == 'all') {
+		}else if ($this->_input_data['sort'] == 'all'){
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where($cat_prefix, $cat_value)
-			->where("value $operator", $price_range)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}else {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
@@ -327,62 +376,108 @@ class Item_model extends MY_Model {
 
 		if ($this->_input_data['sort'] == 'most_recent') {
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where($cat_prefix, $cat_value)
-			->where("value $operator", $price_range)
-			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
-			->like("name", $term)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->get();
+			if ($this->_input_data['get_total_rows']) {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}else{
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->like("name", $term)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
 		}else if ($this->_input_data['sort'] == 'most_offers') {
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where($cat_prefix, $cat_value)
-			->where("value $operator", $price_range)
-			// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
-			->having('COUNT(offers.item_id) >', 0, false)
-			->like("name", $term)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->order_by('COUNT(offers.item_id)', 'desc')
-			->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->like("name", $term)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}else{
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				// ->where("DATEDIFF(CURDATE(), date_posted) <=", $ad_age == 1 ? 7 : $ad_age , false)
+				->like("name", $term)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
 		}else if ($this->_input_data['sort'] == 'all') {
 
-			$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category', 'left')
-			->where($cat_prefix, $cat_value)
-			->where("value $operator", $price_range)
-			->like("name", $term)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				->like("name", $term)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}else{
+				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category', 'left')
+				->where($cat_prefix, $cat_value)
+				->where("value $operator", $price_range)
+				->like("name", $term)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 			return $itemsdb;
 
@@ -392,19 +487,31 @@ class Item_model extends MY_Model {
 
 	}
 
+	public function get_total_items(){
 
+		$this->_input_data['get_total_rows'] = true;
+		$total_rows = $this->get_items();
+		return $total_rows;
 
-	public function get_items($limit = 12, $offset = '', $price_range = 100, $ad_age = 1, $sort = ''){
+	}
+
+	public function get_total_items_search(){
+		$this->_input_data['get_total_rows'] = true;
+		$total_rows = $this->get_items_search();
+		return $total_rows;
+	}
+
+	public function get_items($limit = 10, $offset = '', $price_range = 100, $ad_age = 1, $sort = ''){
 
 		$operator = '<=';
 		$order = "desc";
 
-		if (isset($this->_input_data['limit'])) {
-			$limit = $this->_input_data['limit'];
+		if ($this->uri->segment(3)) {
+			$offset = $this->uri->segment(3);
 		}
 
-		if (isset($this->_input_data['offset'])) {
-			$offset = $this->_input_data['offset'];
+		if (isset($this->_input_data['limit'])) {
+			$limit = $this->_input_data['limit'];
 		}
 
 		if (isset($this->_input_data['price_range'])) {
@@ -420,6 +527,12 @@ class Item_model extends MY_Model {
 
 		if (isset($this->_input_data['order'])) {
 			$order = $this->_input_data['order'];
+		}
+
+		if (isset($this->_input_data['page'])) {
+			$page = $this->_input_data['page'];
+		}else{
+			$page = 1;
 		}
 
 		if (isset($this->_input_data['category'])) {
@@ -460,6 +573,24 @@ class Item_model extends MY_Model {
 			->order_by('date_posted', 'desc')
 			->get();
 
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->where("value $operator", $price_range)
+				->where($cat_prefix, $cat_value)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+
+				return $itemsdb->num_rows();
+
+			}
+
 			// $itemsdb = $this->db->select('category_labels.*, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			// ->from('items')
 			// ->join('items_images', 'item_id = items.id', 'left')
@@ -474,6 +605,10 @@ class Item_model extends MY_Model {
 			// ->get();
 		}
 
+		if (isset($this->_input_data['get_total_rows'])) {
+			return $itemsdb->num_rows();
+		}
+
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
 		}
@@ -481,10 +616,14 @@ class Item_model extends MY_Model {
 		return FALSE;
 	}
 
-	public function get_items_search($limit = 12, $offset = '', $price_range = 100, $ad_age = 1, $sort = 'desc'){
+	public function get_items_search($limit = 10, $offset = '', $price_range = 100, $ad_age = 1, $sort = 'desc'){
 
 		$operator = '<=';
 		$order = 'desc';
+
+		if ($this->uri->segment(3)) {
+			$offset = $this->uri->segment(3);
+		}
 
 		if (isset($this->_input_data['limit'])) {
 			$limit = $this->_input_data['limit'];
@@ -548,6 +687,24 @@ class Item_model extends MY_Model {
 			// ->order_by('value', $order)
 			// ->get();
 
+				if (isset($this->_input_data['get_total_rows'])) {
+					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+					->from('items')
+					->join('items_images', 'item_id = items.id', 'left')
+					->join('accounts', 'accounts.id = items.account_id', 'left')
+					->join('category_labels', 'category_labels.category_id = items.category')
+					->join('offers', 'offer_item_id = items.id', 'left')
+					->like('name', $term)
+					->where("value $operator", $price_range)
+					->where($cat_prefix, $cat_value)
+					->group_by('items.id')
+					->order_by('value', $order)
+					->order_by('date_posted', 'desc')
+					->get();
+
+					return $itemsdb->num_rows();
+				}
+
 			$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
 			->from('items')
 			->join('items_images', 'item_id = items.id', 'left')
@@ -565,6 +722,9 @@ class Item_model extends MY_Model {
 
 		}
 
+		if (isset($this->_input_data['get_total_rows'])) {
+			return $itemdb->num_rows();
+		}
 
 		if ($itemsdb->num_rows() > 0) {
 			return $itemsdb->result();
