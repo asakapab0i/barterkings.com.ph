@@ -24,7 +24,7 @@
 								</label> -->
 							</div>
 						</span>
-					</h3>	
+					</h3>
 				</div>
 
 				<div class="panel-divider listing-sort-by">
@@ -34,7 +34,7 @@
 					<?php $this->load->view('template/items-template'); ?>
 				</div>
 
-			</div>			
+			</div>
 		</div>
-		
+
 </div>

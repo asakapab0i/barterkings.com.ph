@@ -52,7 +52,7 @@ if (isset($items)) {
 	</div>
 <?php endforeach;?>
 <div class="col-md-12">
-		<?php echo $pagination; ?>
+		<?php echo (isset($pagination)) ? $pagination : ''; ?>
 </div>
 <?php else:?>
 <?php endif;?>
