@@ -9,6 +9,7 @@ class Home extends MY_Controller {
 		$this->load->helper('text');
 		$this->load->helper('links');
 		$this->load->library('pagination');
+		$this->load->library('user_agent');
 		// $this->output->enable_profiler(1);
 	}
 
@@ -76,4 +77,5 @@ class Home extends MY_Controller {
 		$data['search'] = $this->input->get();
 		$this->_load_view('home/index', $data);
 	}
+
 }

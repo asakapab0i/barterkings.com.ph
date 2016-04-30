@@ -1,5 +1,19 @@
 $(function(){
 
+	$(document).on('click', '.auto-save-search', function(){
+		$.ajax({
+			method: 'POST',
+			url: base_url + 'item/post_saved_searches',
+			data : {
+					term: $(this).data('term'),
+					url_query: $(this).data('query-url')
+			},
+			success : function(data){
+					console.log(data);
+			}
+		});
+	});
+
 	$(document).on('click', '.update-ajax', function(event){
 		$(this).trigger('favorite-btn-update', function(event){
 		});

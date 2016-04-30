@@ -602,6 +602,11 @@ body {
 }
 
 .list-group-item{
+	/*padding: 5px 15px;
+	border: 0;*/
+}
+
+.list-category .list-group-item {
 	padding: 5px 15px;
 	border: 0;
 }

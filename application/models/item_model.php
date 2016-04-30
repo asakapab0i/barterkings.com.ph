@@ -7,6 +7,7 @@ class Item_model extends MY_Model {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('offer_model');
+		$this->load->helper('url');
 	}
 
 	public function _upload_create_thumbnail($images, $itemid, $imageid){
@@ -970,6 +971,32 @@ class Item_model extends MY_Model {
 		$this->db->delete('offers');
 
 		return true;
+	}
+
+	public function get_saved_searches(){
+			if($this->_get_session_data()){
+					$saved_searches = $this->db->select('*')->from('saved_searches')->where('account_id', $this->_get_session_data()[0]['id'])->get();
+					if ($saved_searches->num_rows() > 0) {
+						return $saved_searches->result_array();
+					}
+			}else{
+				return false;
+			}
+	}
+
+	public function post_saved_searches(){
+			if ($this->_get_session_data() && $this->input->post()) {
+				$data = $this->input->post();
+				return $this->db->insert('saved_searches',
+					array(
+						'keyword' => $data['term'],
+						'url_query' => $data['url_query'],
+						'is_favorite' => 1,
+						'account_id' => $this->_get_session_data()[0]['id'],
+						'date_created' => date('Y-m-d H:i:s')
+						)
+				);
+			}
 	}
 
 }

@@ -60,7 +60,7 @@
                     <div class="input-group">
                       <input style="float:none;" id="nav-search" type="text" value="<?php echo $this->input->get('term'); ?>" name="term" class="form-control typehead" placeholder="Looking for something?">
                       <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                       </span>
                     </div>
                   </form>

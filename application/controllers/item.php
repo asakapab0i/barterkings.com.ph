@@ -342,9 +342,17 @@ class Item extends MY_Controller {
 			foreach($data as $k => $v){
 				$dataset[] = $v['name'];
 			}
-
 			echo json_encode($dataset);
 		}
+	}
+
+	public function saved_searches(){
+		$data['searches'] = $this->item_model->get_saved_searches();
+		$this->load->view('template/saved_searches-template', $data);
+	}
+
+	public function post_saved_searches(){
+		echo $this->item_model->post_saved_searches();
 	}
 
 }

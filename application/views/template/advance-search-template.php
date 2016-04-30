@@ -61,7 +61,7 @@
 		<h4 class="panel-title">Categories</h4>
 	</div>
 	<div class="panel-body">
-		<ul class="list-group">
+		<ul class="list-group list-category">
 			<?php $urls = $this->input->get(); ?>
 			<?php foreach($_categories as $key => $val): ?>
 
