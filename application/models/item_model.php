@@ -777,34 +777,39 @@ class Item_model extends MY_Model {
 		return true;
 	}
 
-	public function update_wishlist($item_id){
+	public function update_wishlist($item_id, $unwishlist = false){
 		$account_id = $this->_get_session_data()[0]['id'];
 		$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
-
-		if ($data->num_rows() == 0) {
+		if ($unwishlist) {
+			$this->db->where(array('item_id' => $item_id, 'account_id' => $account_id));
+			$this->db->delete('wishlist');
+			return 'true unwishlist';
+		}else if($data->num_rows() == 0) {
 			$this->db->insert('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
-			return 'true';
+			return 'true wishlist';
 		}
-
 		return 'false';
 	}
 
-	public function fetch_wishlist($item_id, $account_id){
+	public function fetch_wishlist($item_id, $account_id, $unfavorite = false){
 			$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
 			if ($data->num_rows() > 0) {
 				return $data->result_array();
 			}
 	}
 
-	public function update_favorite($item_id, $account_id){
+	public function update_favorite($item_id, $account_id, $unfavorite = false){
 		$account_id = $account_id[0]['id'];
 		$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
 
-		if ($data->num_rows() == 0) {
+		if ($unfavorite) {
+			$this->db->where(array('item_id' => $item_id, 'account_id' => $account_id));
+			$this->db->delete('favorites');
+			return 'true unfavorite';
+		}else if($data->num_rows() == 0) {
 			$this->db->insert('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
-			return 'true';
+			return 'true favorite';
 		}
-
 		return 'false';
 	}
 

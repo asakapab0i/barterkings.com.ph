@@ -5,10 +5,8 @@ $(function(){
 		});
 	});
 
-	$(document).on('favorite-btn-update', '.update-ajax', function(event, check_favorite_btn){
-		console.log($(this));
+	$(document).on('favorite-btn-update', '.update-ajax', function(event, item_tool){
 		var that = $(this);
-		console.log(that.data('url'));
 
 		$.when($.ajax({
 			method: "POST",
@@ -16,17 +14,36 @@ $(function(){
 			data: {itemid : $(this).data('item-id')},
 			success: function(result){
 				if (result != 'failed') {
-
-					if (that.hasClass('btn-warning') || that.hasClass('btn-danger')) {
-						that.removeClass('btn-warning');
-						that.removeClass('btn-danger');
-						that.addClass('btn-default');
+					console.log(that.data());
+					if (that.hasClass('btn-inverse')) {
+						that.removeClass('btn-inverse');
+						if(that.is('#love-btn')){
+								that.addClass('btn-danger');
+								that.attr('data-url', 'item/wishlist');
+								that.data('url', 'item/wishlist');
+						}else if(that.is('#favorite-btn')){
+								that.addClass('btn-warning');
+								that.attr('data-url', 'item/favorite');
+								that.data('url', 'item/favorite');
+						}
+					}else{
+							if (that.hasClass('btn-warning')) {
+								that.removeClass('btn-warning');
+								that.addClass('btn-inverse');
+								that.attr('data-url', 'item/unfavorite')
+								that.data('url', 'item/unfavorite');
+							}
+							if (that.hasClass('btn-danger')) {
+								that.removeClass('btn-danger');
+								that.addClass('btn-inverse');
+								that.attr('data-url', 'item/unwishlist')
+								that.data('url', 'item/unwishlist');
+							}
 					}
-
 				}
 			}
 		})).done(function(){
-			check_favorite_btn();
+			item_tool();
 		});
 
 	});

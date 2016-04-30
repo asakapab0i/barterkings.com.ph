@@ -163,14 +163,22 @@ class Item extends MY_Controller {
 
 	public function favorite(){
 		if ($this->input->post()) {
-
 			if ($this->account_model->get_session()) {
 				echo $this->item_model->update_favorite($this->input->post('itemid'), $this->account_model->get_session());
 			}else{
 				echo 'failed';
 			}
-
 		}
+	}
+
+	public function unfavorite(){
+			if ($this->input->post()) {
+				if ($this->account_model->get_session()) {
+					echo $this->item_model->update_favorite($this->input->post('itemid'), $this->account_model->get_session(), true);
+				}else{
+					echo 'failed';
+				}
+			}
 	}
 
 	public function fetch_favorite($item_id, $account_id){
@@ -185,6 +193,16 @@ class Item extends MY_Controller {
 				echo 'failed';
 			}
 		}
+	}
+
+	public function unwishlist(){
+			if ($this->input->post()) {
+				if ($this->_get_session_data()) {
+					echo $this->item_model->update_wishlist($this->input->post('itemid'), true);
+				}else{
+					echo 'failed';
+				}
+			}
 	}
 
 	public function fetch_wishlist(){
