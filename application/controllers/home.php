@@ -9,8 +9,6 @@ class Home extends MY_Controller {
 		$this->load->helper('text');
 		$this->load->helper('links');
 		$this->load->library('pagination');
-		$this->load->library('user_agent');
-		// $this->output->enable_profiler(1);
 	}
 
 	public function index(){

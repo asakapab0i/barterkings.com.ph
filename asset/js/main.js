@@ -23,6 +23,20 @@ $(function(){
 
 	});
 
+	$(document).on('click', '.auto-save-search', function(){
+		$.ajax({
+			method: 'POST',
+			url: base_url + 'item/post_saved_searches',
+			data : {
+					term: $(this).data('term'),
+					url_query: $(this).data('query-url')
+			},
+			success : function(data){
+					console.log(data);
+			}
+		});
+	});
+
 	$(document).on('click', '.pop-modal', function(e){
 		e.preventDefault();
 
@@ -505,6 +519,11 @@ $(function(){
 	{
 		name: 'name',
 		source: names
+	});
+
+	$('#searches-tabs').click(function(e){
+		e.preventDefault();
+		$(this).tab('show');
 	});
 
 });

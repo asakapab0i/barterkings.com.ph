@@ -392,6 +392,7 @@ class Item_model extends MY_Model {
 				->join('category_labels', 'category_labels.category_id = items.category', 'left')
 				->where($cat_prefix, $cat_value)
 				->where("value $operator", $price_range)
+				->like("name", $term)
 				->group_by('items.id')
 				->order_by('value', $order)
 				->order_by('date_posted', 'desc')
@@ -724,27 +725,27 @@ class Item_model extends MY_Model {
 					->get();
 
 					return $itemsdb->num_rows();
+				}else{
+					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+					->from('items')
+					->join('items_images', 'item_id = items.id', 'left')
+					->join('accounts', 'accounts.id = items.account_id', 'left')
+					->join('category_labels', 'category_labels.category_id = items.category')
+					->join('offers', 'offer_item_id = items.id', 'left')
+					->like('name', $term)
+					->where("value $operator", $price_range)
+					->where($cat_prefix, $cat_value)
+					->limit($limit, $offset)
+					->group_by('items.id')
+					->order_by('value', $order)
+					->order_by('date_posted', 'desc')
+					->get();
 				}
-
-			$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-			->from('items')
-			->join('items_images', 'item_id = items.id', 'left')
-			->join('accounts', 'accounts.id = items.account_id', 'left')
-			->join('category_labels', 'category_labels.category_id = items.category')
-			->join('offers', 'offer_item_id = items.id', 'left')
-			->like('name', $term)
-			->where("value $operator", $price_range)
-			->where($cat_prefix, $cat_value)
-			->limit($limit, $offset)
-			->group_by('items.id')
-			->order_by('value', $order)
-			->order_by('date_posted', 'desc')
-			->get();
 
 		}
 
 		if (isset($this->_input_data['get_total_rows'])) {
-			return $itemdb->num_rows();
+			return $itemsdb->num_rows();
 		}
 
 		if ($itemsdb->num_rows() > 0) {
