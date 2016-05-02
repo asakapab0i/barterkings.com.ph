@@ -1,17 +1,26 @@
 $(function(){
 
 	$(document).on('click', '.auto-save-search', function(){
-		$.ajax({
-			method: 'POST',
-			url: base_url + 'item/post_saved_searches',
-			data : {
-					term: $(this).data('term'),
-					url_query: $(this).data('query-url')
-			},
-			success : function(data){
-					console.log(data);
-			}
-		});
+
+		var that = $(this);
+		var url = (that.text() == 'View saved searches' ? base_url + that.data('url') : base_url + 'item/post_saved_searches');
+
+		console.log(url);
+
+		// $.ajax({
+		// 	method: 'POST',
+		// 	url: url,
+		// 	data : {
+		// 			term: that.data('term'),
+		// 			url_query: that.data('query-url')
+		// 	},
+		// 	success : function(data){
+		// 		if (data == 1) {
+		// 				that.text('View saved searches');
+		// 		}
+		//
+		// 	}
+		// });
 	});
 
 	$(document).on('click', '.update-ajax', function(event){

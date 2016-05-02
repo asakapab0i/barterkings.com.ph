@@ -1,26 +1,51 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h4>Saved Searches</h4></div>
   <div class="panel-body">
-    <ul class="nav nav-tabs" id="searches-tabs">
-      <li role="presentation" class="active"><a href="#recent">Recent Searches</a></li>
-      <li role="presentation"><a href="#favorite">Favorite Searches</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="#recent">
-        <ul class="list-group">
-          <?php if (is_array($searches)):?>
-            <?php foreach ($searches as $search): ?>
-              <li class="list-group-item"><?php echo $search['keyword']; ?><!-- <span class="badge">14 results</span> --></li>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <li class="list-group-item" style="text-align: center;"> <span>No recent searches found</span></li>
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent Searches</a></li>
+        <li role="presentation"><a href="#unfavorite" aria-controls="favorite" role="tab" data-toggle="tab">Favorite Searches</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="recent">
+          <ul class="list-group list-height-limit">
+            <?php if (is_array($searches)):?>
+              <?php foreach ($searches as $search): ?>
+                <?php if ($search['is_favorite'] == 0): ?>
+                  <li class="list-group-item">
+                    <a href="<?php $search["url_query"]; ?>">
+                      <?php echo $search['keyword']; ?>
+                    </a>
+                    <span class="badge"><?php echo $search['result']; ?> result(s)</span>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <li class="list-group-item" style="text-align: center;"> <span>No recent searches found</span></li>
+            <?php endif;?>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="unfavorite">
+          <ul class="list-group list-height-limit">
+            <?php if( is_array($searches) ): ?>
+              <?php foreach($searches as $search): ?>
+                <?php if ($search['is_favorite'] == 1): ?>
+                  <li class="list-group-item">
+                    <a href="<?php $search["url_query"]; ?>">
+                      <?php echo $search['keyword']; ?>
+                    </a>
+                    <span class="badge"><?php echo $search['result']; ?> result(s)</span>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php else: ?>
+            <li class="list-group-item" style="text-align: center;">No favorites saved</li>
           <?php endif;?>
         </ul>
       </div>
-      <div class="tab-pane" id="#favorite">
-      </div>
-    </div>
-
     </div>
   </div>
+</div>
 </div>

@@ -16,25 +16,10 @@ $(function(){
 		}).done(function(result){
 
 			$(this).trigger('update-favorite-button', function(){
-				alert('test');
 			});
 
 		});
 
-	});
-
-	$(document).on('click', '.auto-save-search', function(){
-		$.ajax({
-			method: 'POST',
-			url: base_url + 'item/post_saved_searches',
-			data : {
-					term: $(this).data('term'),
-					url_query: $(this).data('query-url')
-			},
-			success : function(data){
-					console.log(data);
-			}
-		});
 	});
 
 	$(document).on('click', '.pop-modal', function(e){
@@ -369,8 +354,10 @@ if (url.match('#')) {
 		type : 'GET',
 		url : base_url + 'message/' + href,
 		success : function(result){
-			$('.content-title').html(href[0].toUpperCase() + href.substr(1));
-			$('.content-body').html(result);
+			if(href.typeof !== undefined){
+				$('.content-title').html(href[0].toUpperCase() + href.substr(1));
+				$('.content-body').html(result);
+			}
 		}
 	});
 }

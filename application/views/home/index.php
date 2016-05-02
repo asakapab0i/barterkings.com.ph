@@ -12,9 +12,7 @@
 							<div class="btn-group" data-toggle="buttons">
 								<?php if($search !== false): ?>
 									<button data-query-url="<?php echo $_SERVER['QUERY_STRING']; ?>" data-url="item/saved_searches" data-term="<?php echo $search; ?>" class="pop-modal auto-save-search btn btn-xs btn-success">Save this search</button>
-								<?php else: ?>
-									<button class="btn disabled btn-xs btn-success">Save this search</button>
-								<?php endif;?>
+								<?php endif; ?>
 								<!-- <label class="btn btn-xs btn-success"> -->
 									<!-- <input type="checkbox" autocomplete="off"> Save this search  -->
 									<!-- <button class="btn disabled btn-xs btn-success">Save this search</button> -->

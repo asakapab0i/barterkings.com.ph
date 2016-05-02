@@ -709,38 +709,38 @@ class Item_model extends MY_Model {
 			// ->order_by('value', $order)
 			// ->get();
 
-				if (isset($this->_input_data['get_total_rows'])) {
-					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-					->from('items')
-					->join('items_images', 'item_id = items.id', 'left')
-					->join('accounts', 'accounts.id = items.account_id', 'left')
-					->join('category_labels', 'category_labels.category_id = items.category')
-					->join('offers', 'offer_item_id = items.id', 'left')
-					->like('name', $term)
-					->where("value $operator", $price_range)
-					->where($cat_prefix, $cat_value)
-					->group_by('items.id')
-					->order_by('value', $order)
-					->order_by('date_posted', 'desc')
-					->get();
+			if (isset($this->_input_data['get_total_rows'])) {
+				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->like('name', $term)
+				->where("value $operator", $price_range)
+				->where($cat_prefix, $cat_value)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
 
-					return $itemsdb->num_rows();
-				}else{
-					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-					->from('items')
-					->join('items_images', 'item_id = items.id', 'left')
-					->join('accounts', 'accounts.id = items.account_id', 'left')
-					->join('category_labels', 'category_labels.category_id = items.category')
-					->join('offers', 'offer_item_id = items.id', 'left')
-					->like('name', $term)
-					->where("value $operator", $price_range)
-					->where($cat_prefix, $cat_value)
-					->limit($limit, $offset)
-					->group_by('items.id')
-					->order_by('value', $order)
-					->order_by('date_posted', 'desc')
-					->get();
-				}
+				return $itemsdb->num_rows();
+			}else{
+				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				->from('items')
+				->join('items_images', 'item_id = items.id', 'left')
+				->join('accounts', 'accounts.id = items.account_id', 'left')
+				->join('category_labels', 'category_labels.category_id = items.category')
+				->join('offers', 'offer_item_id = items.id', 'left')
+				->like('name', $term)
+				->where("value $operator", $price_range)
+				->where($cat_prefix, $cat_value)
+				->limit($limit, $offset)
+				->group_by('items.id')
+				->order_by('value', $order)
+				->order_by('date_posted', 'desc')
+				->get();
+			}
 
 		}
 
@@ -756,11 +756,11 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_item_names_by_term($name){
-			$db = $this->db->select('name')->from('items')->like('name', $name)->get();
-			if ($db->num_rows() > 0) {
-				return $db->result_array();
-			}
-			return false;
+		$db = $this->db->select('name')->from('items')->like('name', $name)->get();
+		if ($db->num_rows() > 0) {
+			return $db->result_array();
+		}
+		return false;
 	}
 
 	public function add_item($session_id){
@@ -794,10 +794,10 @@ class Item_model extends MY_Model {
 	}
 
 	public function fetch_wishlist($item_id, $account_id, $unfavorite = false){
-			$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
-			if ($data->num_rows() > 0) {
-				return $data->result_array();
-			}
+		$data = $this->db->get_where('wishlist', array('item_id' => $item_id, 'account_id' => $account_id));
+		if ($data->num_rows() > 0) {
+			return $data->result_array();
+		}
 	}
 
 	public function update_favorite($item_id, $account_id, $unfavorite = false){
@@ -816,10 +816,10 @@ class Item_model extends MY_Model {
 	}
 
 	public function fetch_favorite($item_id, $account_id){
-			$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
-			if ($data->num_rows() > 0) {
-				return $data->result_array();
-			}
+		$data = $this->db->get_where('favorites', array('item_id' => $item_id, 'account_id' => $account_id));
+		if ($data->num_rows() > 0) {
+			return $data->result_array();
+		}
 	}
 
 	public function edit_item($itemid, $data){
@@ -975,29 +975,30 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_saved_searches(){
-			if($this->_get_session_data()){
-					$saved_searches = $this->db->select('*')->from('saved_searches')->where('account_id', $this->_get_session_data()[0]['id'])->get();
-					if ($saved_searches->num_rows() > 0) {
-						return $saved_searches->result_array();
-					}
-			}else{
-				return false;
+		if($this->_get_session_data()){
+			$account_id = $this->_get_session_data()[0]['id'];
+			$saved_searches = $this->db->query("SELECT saved_searches.*, COUNT(items.id) as result FROM saved_searches LEFT JOIN items ON INSTR(UPPER(items.name), UPPER(saved_searches.keyword)) > 0 WHERE saved_searches.account_id =".$account_id." GROUP BY saved_searches.keyword");
+			if ($saved_searches->num_rows() > 0) {
+				return $saved_searches->result_array();
 			}
+		}else{
+			return false;
+		}
 	}
 
 	public function post_saved_searches(){
-			if ($this->_get_session_data() && $this->input->post()) {
-				$data = $this->input->post();
-				return $this->db->insert('saved_searches',
-					array(
-						'keyword' => $data['term'],
-						'url_query' => $data['url_query'],
-						'is_favorite' => 1,
-						'account_id' => $this->_get_session_data()[0]['id'],
-						'date_created' => date('Y-m-d H:i:s')
-						)
-				);
-			}
+		if ($this->_get_session_data() && $this->input->post()) {
+			$data = $this->input->post();
+			return $this->db->insert('saved_searches',
+			array(
+				'keyword' => $data['term'],
+				'url_query' => $data['url_query'],
+				'is_favorite' => 0,
+				'account_id' => $this->_get_session_data()[0]['id'],
+				'date_created' => date('Y-m-d H:i:s')
+				)
+			);
+		}
 	}
 
 }

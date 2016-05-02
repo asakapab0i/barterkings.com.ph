@@ -460,3 +460,9 @@ span.price-value {
 .body-height{
   min-height: 600px;
 }
+
+.list-height-limit{
+  height: 300px;
+  overflow: auto;
+  min-height: 300px;
+}
