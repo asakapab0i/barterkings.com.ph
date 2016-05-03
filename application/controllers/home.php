@@ -20,6 +20,8 @@ class Home extends MY_Controller {
 
 			$save_search['keyword'] = $this->input->get('term');
 			$save_search['url_query'] = $_SERVER['QUERY_STRING'];
+			$save_search['is_favorite'] = 0;
+			$save_search['account_id'] = $this->_get_session_data()[0]['id'];
 			$this->item_model->post_saved_searches($save_search);
 		}else{
 			$this->_data['title'] = 'BarterKings PH - Home';

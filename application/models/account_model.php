@@ -3,9 +3,8 @@
 class Account_model extends MY_Model {
 
 	public function __construct(){
-
 		parent::__construct();
-
+		$this->load->helper('string');
 	}
 
 	public function _upload_create_thumbnail($filename, $account_id){
@@ -181,4 +180,65 @@ class Account_model extends MY_Model {
 			return FALSE;
 		}
 	}
+
+	public function update_account_hash(){
+			$hash = random_string('sha1');
+			$account = $this->db->select('id, email')->from('accounts')->where('email', $this->input->post('email'))->get();
+
+			if ($account->num_rows() > 0) {
+				$data = $account->result_array();
+				$this->db->where('id', $data[0]['id']);
+				$this->db->update('accounts', array('forgot_password_hash' => $hash));
+
+				$this->email->from('no-reply@pvp5.com', 'PVP5');
+				$this->email->to($this->input->post('email'));
+				$this->email->subject('Forgot password verification');
+				$this->email->message('Your verification key is '. $hash);
+				$this->email->send();
+
+				return true;
+			}else{
+				return false;
+			}
+	}
+
+	public function verify_forgot_password(){
+			$account = $this->db->select('*')
+				->from('accounts')
+				->where('email', $this->input->get('email'))
+				->where('forgot_password_hash', $this->input->get('hash'))
+				->get();
+
+				if ($account->num_rows() > 0) {
+					// $this->db->where('email', $this->input->get('email'));
+					// $this->db->update('accounts', array('forgot_password_hash' => ''));
+					return $account->result_array();
+				}
+
+				return false;
+	}
+
+	public function change_password(){
+
+		if ($this->_get_session_data()) {
+			if($this->input->post('password') == $this->input->post('confirm_password')){
+				$this->db->where('email', $this->input->post('email'));
+				$this->db->update('accounts', array('password' => md5($this->input->post('password'))));
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if ($this->input->post('password') == $this->input->post('confirm_password')) {
+				$where['forgot_password_hash'] = $this->input->post('hash');
+				$where['email'] = $this->input->post('email');
+				$update['password'] = md5($this->input->post('password'));
+				$update['forgot_password_hash'] = '';
+				$this->db->where($where);
+				$this->db->update('accounts', $update);
+			}
+		}
+		echo $this->db->last_query();
+	}
+
 }

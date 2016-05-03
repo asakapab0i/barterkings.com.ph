@@ -9,11 +9,13 @@
 				<h3 class="panel-title clearfix"><span class="panel-text"><?php echo $total_results ? $total_results : 0; ?> Ads Found</span>
 					<span class="pull-right">
 						<div class="btn-group" data-toggle="buttons">
-							<?php if($search !== false): ?>
-								<button data-query-url="<?php echo $_SERVER['QUERY_STRING']; ?>" data-url="item/saved_searches" data-term="<?php echo $search; ?>" class="pop-modal auto-save-search btn btn-xs btn-success">Save this search</button>
-							<?php else: ?>
-								<button data-url="item/saved_searches" class="btn btn-xs btn-success pop-modal">View save searches</button>
-							<?php endif;?>
+							<?php if($user):  ?>
+								<?php if($search !== false): ?>
+									<button data-query-url="<?php echo $_SERVER['QUERY_STRING']; ?>" data-url="item/saved_searches" data-term="<?php echo $search; ?>" class="pop-modal auto-save-search btn btn-xs btn-success">Save this search</button>
+								<?php else: ?>
+									<button data-url="item/saved_searches" class="btn btn-xs btn-success pop-modal">View saved searches</button>
+								<?php endif;?>
+							<?php endif; ?>
 						</div>
 					</span>
 				</h3>

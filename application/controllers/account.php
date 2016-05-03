@@ -9,6 +9,7 @@ class Account extends MY_Controller {
 		$this->load->model('offer_model');
 		$this->load->helper('links');
 		$this->load->library('form_validation');
+		$this->load->library('email');
 		$this->_session_data = $this->account_model->get_session();
 	}
 
@@ -84,8 +85,42 @@ class Account extends MY_Controller {
 		}
 	}
 
-	public function profile($username = NULL){
+	public function forgot_password(){
+		$this->_data['title'] = 'BarterKings PH - Forgot Password';
+		$data['sent'] = false;
+		if ($this->input->post()) {
+			$data['sent'] = $this->account_model->update_account_hash();
+		}
+		$this->_load_view('account/forgot_password', $data);
+	}
 
+	public function verification(){
+			$this->_data['title'] = 'BarterKings PH - Verify Forgot Password';
+			$data['verified'] = false;
+
+			if ($this->input->get()) {
+				$verified = $this->account_model->verify_forgot_password();
+				if ($verified !== false) {
+					$this->change_password($verified);
+				}else{
+					$this->_load_view('account/verification', $data);
+				}
+
+			}else{
+				$this->_load_view('account/verification', $data);
+			}
+	}
+
+	public function change_password($verified = false){
+		if ($this->input->post()) {
+			$this->account_model->change_password();
+		}
+
+		$data['user'] = $verified;
+		$this->_load_view('account/change_password', $data);
+	}
+
+	public function profile($username = NULL){
 		$this->_data['title'] = 'BarterKings PH - My profile';
 
 		if ($username != NULL) {
@@ -119,7 +154,6 @@ class Account extends MY_Controller {
 	}
 
 	public function inbox(){
-
 		$this->_data['title'] = 'BarterKings PH - Messages';
 
 		if ($this->input->post()) {
