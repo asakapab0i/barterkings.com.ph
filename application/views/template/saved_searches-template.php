@@ -15,7 +15,7 @@
               <?php foreach ($searches as $search): ?>
                 <?php if ($search['is_favorite'] == 0): ?>
                   <li class="list-group-item">
-                    <a href="<?php $search["url_query"]; ?>">
+                    <a href="<?php echo base_url('home?' . $search['url_query']); ?>">
                       <?php echo $search['keyword']; ?>
                     </a>
                     <span class="badge"><?php echo $search['result']; ?> result(s)</span>
@@ -33,7 +33,7 @@
               <?php foreach($searches as $search): ?>
                 <?php if ($search['is_favorite'] == 1): ?>
                   <li class="list-group-item">
-                    <a href="<?php $search["url_query"]; ?>">
+                    <a href="<?php echo base_url('home?'.$search['url_query']); ?>">
                       <?php echo $search['keyword']; ?>
                     </a>
                     <span class="badge"><?php echo $search['result']; ?> result(s)</span>

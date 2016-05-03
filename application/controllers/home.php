@@ -17,6 +17,10 @@ class Home extends MY_Controller {
 			$this->_data['title'] = 'BarterKings PH - Search ' . $this->input->get('term');
 			$items = $this->item_model->get_items_search();
 			$total_rows = $this->item_model->get_total_items_search();
+
+			$save_search['keyword'] = $this->input->get('term');
+			$save_search['url_query'] = $_SERVER['QUERY_STRING'];
+			$this->item_model->post_saved_searches($save_search);
 		}else{
 			$this->_data['title'] = 'BarterKings PH - Home';
 			$items = $this->item_model->get_items();

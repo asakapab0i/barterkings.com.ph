@@ -355,4 +355,16 @@ class Item extends MY_Controller {
 		echo $this->item_model->post_saved_searches();
 	}
 
+	public function delete_saved_searches(){
+		if ($this->input->post()) {
+			echo $this->item_model->delete_saved_searches();
+		}
+	}
+
+	public function update_saved_searches(){
+		if ($this->input->post()) {
+			echo $this->item_model->update_saved_searches();
+		}
+	}
+
 }

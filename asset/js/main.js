@@ -22,6 +22,26 @@ $(function(){
 
 	});
 
+	$(document).on('click', '.auto-save-search', function(){
+		var that = $(this);
+		var url = (that.text() == 'View saved searches' ? base_url + that.data('url') : base_url + 'item/post_saved_searches');
+
+		$.ajax({
+			method: 'POST',
+			url: url,
+			data : {
+					term: that.data('term'),
+					url_query: that.data('query-url')
+			},
+			success : function(data){
+				if (data == 1) {
+						that.text('View saved searches');
+				}
+
+			}
+		});
+	});
+
 	$(document).on('click', '.pop-modal', function(e){
 		e.preventDefault();
 

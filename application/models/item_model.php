@@ -977,7 +977,8 @@ class Item_model extends MY_Model {
 	public function get_saved_searches(){
 		if($this->_get_session_data()){
 			$account_id = $this->_get_session_data()[0]['id'];
-			$saved_searches = $this->db->query("SELECT saved_searches.*, COUNT(items.id) as result FROM saved_searches LEFT JOIN items ON INSTR(UPPER(items.name), UPPER(saved_searches.keyword)) > 0 WHERE saved_searches.account_id =".$account_id." GROUP BY saved_searches.keyword");
+			$saved_searches = $this->db->query("SELECT saved_searches.*, COUNT(items.id) as result FROM saved_searches LEFT JOIN items ON INSTR(UPPER(items.name), UPPER(saved_searches.keyword)) > 0 WHERE saved_searches.account_id =".$account_id." GROUP BY saved_searches.keyword, saved_searches.id, saved_searches.url_query, saved_searches.keyword");
+			// echo $this->db->last_query();
 			if ($saved_searches->num_rows() > 0) {
 				return $saved_searches->result_array();
 			}
@@ -986,18 +987,23 @@ class Item_model extends MY_Model {
 		}
 	}
 
-	public function post_saved_searches(){
-		if ($this->_get_session_data() && $this->input->post()) {
-			$data = $this->input->post();
-			return $this->db->insert('saved_searches',
-			array(
-				'keyword' => $data['term'],
-				'url_query' => $data['url_query'],
-				'is_favorite' => 0,
-				'account_id' => $this->_get_session_data()[0]['id'],
-				'date_created' => date('Y-m-d H:i:s')
-				)
-			);
+	public function post_saved_searches($data = false){
+		if ($this->_get_session_data()) {
+			if ($data) {
+				return $this->db->insert('saved_searches', $data);
+			}else{
+				$data = $this->input->post();
+				return $this->db->insert('saved_searches',
+				array(
+					'keyword' => $data['term'],
+					'url_query' => $data['url_query'],
+					'is_favorite' => 1,
+					'account_id' => $this->_get_session_data()[0]['id'],
+					'date_created' => date('Y-m-d H:i:s')
+					)
+				);
+			}
+
 		}
 	}
 
