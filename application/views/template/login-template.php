@@ -20,7 +20,8 @@
         <input type="submit" class="btn btn-success col-md-6" value="Login">
         <button type="button" name="button" class="social-facebook btn btn-primary col-md-3"><i class="fa fa-facebook-square"></i>  Facebook</button>
         <button type="button" name="button" class="social-twitter btn btn-info col-md-3"><i class="fa fa-twitter-square"></i>  Twitter</button>
-        <a href="<?php echo base_url('account/register'); ?>" class="btn btn-primary col-md-12" style="margin-top: 10px;">Register</a>
+        <a href="<?php echo base_url('account/register'); ?>" class="btn btn-primary col-md-6" style="margin-top: 10px;">Register</a>
+        <a href="<?php echo base_url('account/forgot_password'); ?>" class="btn btn-info col-md-6" style="margin-top: 10px;">Forgot Password</a>
       </div>
 
 
