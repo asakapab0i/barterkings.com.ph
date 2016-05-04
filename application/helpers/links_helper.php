@@ -55,4 +55,8 @@
 		echo base_url('home') . $url ."category=$category";
 	}
 
+	function linkify_to_dashboard($url){
+		echo base_url('dashboard/' . $url);
+	}
+
 ?>

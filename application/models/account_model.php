@@ -241,4 +241,12 @@ class Account_model extends MY_Model {
 		echo $this->db->last_query();
 	}
 
+	public function get_settings_labels(){
+			$query = $this->db->select('*')->from('settings_labels')->order_by('setting_order', 'ASC')->get();
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			}
+			return false;
+	}
+
 }

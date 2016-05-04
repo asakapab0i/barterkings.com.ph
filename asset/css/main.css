@@ -466,3 +466,8 @@ span.price-value {
   overflow: auto;
   min-height: 300px;
 }
+
+.note{
+  margin-left: 15px;
+  font-size: 13px;
+}

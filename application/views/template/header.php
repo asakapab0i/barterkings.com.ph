@@ -102,9 +102,9 @@
                             <li role="separator" class="divider"></li>
                             -->
                             <li><a title="Profile" href="<?php echo base_url('profile'); ?>"> Profile</a></li>
-                            <li><a title="Dashboard" href="<?php echo base_url('profile'); ?>"> Dashboard</a></li>
-                            <li><a title="Activity Logs" href="<?php echo base_url('profile'); ?>"> Activity Logs</a></li>
-                            <li><a title="Searches" href="<?php echo base_url('searches'); ?>"> Searches</a></li>
+                            <li><a title="Dashboard" href="<?php echo base_url('dashboard'); ?>"> Dashboard</a></li>
+                            <li><a title="Activity Logs" href="<?php echo base_url('dashboard/profile_logs'); ?>"> Activity Logs</a></li>
+                            <li><a title="Searches" href="#" data-url="item/saved_searches" class="pop-modal"> Searches</a></li>
                             <li><a title="Logout" href="<?php echo base_url('account/logout'); ?>"> Logout</a></li>
                           </ul>
 

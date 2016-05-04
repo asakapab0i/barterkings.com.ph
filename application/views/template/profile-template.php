@@ -15,7 +15,7 @@
                 <span class="btn btn-info btn-file btn-block">
                     Browse <input accept="image/x-png, image/gif, image/jpeg" type="file" id="profile-img" name="profile_image">
                 </span>
-                <button id="upload-profile-img-btn" class="form-control btn btn-success btn-sm btn-block">Upload Profile</button>
+                <button id="upload-profile-img-btn" class="form-control btn btn-success btn-block">Upload Profile</button>
             </form>
         <?php else: ?>
          <button style="margin-top: 10px;" data-url="message/create" data-options="from-profile" data-accountid="<?php echo $user[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button>

@@ -14,7 +14,7 @@ class Account extends MY_Controller {
 	}
 
 	public function login($account_id = NULL){
-		$this->_data['title'] = 'BarterKings PH - Login account';
+		$this->_data['title'] = 'BarterKings PH - Login Account';
 
 		if ($this->_session_data == false && ($this->input->post() !== FALSE || $account_id != NULL) ) {
 
@@ -60,7 +60,7 @@ class Account extends MY_Controller {
 	}
 
 	public function register(){
-		$this->_data['title'] = 'BarterKings PH - Register account';
+		$this->_data['title'] = 'BarterKings PH - Register Account';
 
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[accounts.email]');
@@ -121,7 +121,7 @@ class Account extends MY_Controller {
 	}
 
 	public function profile($username = NULL){
-		$this->_data['title'] = 'BarterKings PH - My profile';
+		$this->_data['title'] = 'BarterKings PH - My Profile';
 
 		if ($username != NULL) {
 			$account_id = $this->account_model->get_account_id_by_username($username);
