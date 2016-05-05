@@ -496,11 +496,9 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_total_items(){
-
 		$this->_input_data['get_total_rows'] = true;
 		$total_rows = $this->get_items();
 		return $total_rows;
-
 	}
 
 	public function get_total_items_search(){
@@ -510,7 +508,6 @@ class Item_model extends MY_Model {
 	}
 
 	public function get_items($limit = 10, $offset = '', $price_range = 100, $ad_age = 1, $sort = ''){
-
 		$operator = '<=';
 		$order = "desc";
 
@@ -574,7 +571,7 @@ class Item_model extends MY_Model {
 				->join('accounts', 'accounts.id = items.account_id', 'left')
 				->join('category_labels', 'category_labels.category_id = items.category')
 				->join('offers', 'offer_item_id = items.id', 'left')
-				->where("value $operator", $price_range)
+				// ->where("value $operator", $price_range)
 				->where($cat_prefix, $cat_value)
 				->group_by('items.id')
 				->order_by('value', $order)
@@ -589,7 +586,7 @@ class Item_model extends MY_Model {
 				->join('accounts', 'accounts.id = items.account_id', 'left')
 				->join('category_labels', 'category_labels.category_id = items.category')
 				->join('offers', 'offer_item_id = items.id', 'left')
-				->where("value $operator", $price_range)
+				// ->where("value $operator", $price_range)
 				->where($cat_prefix, $cat_value)
 				->where('accounts.id', $this->_input_data['account_id'])
 				->limit($this->_input_data['limit'])
@@ -604,7 +601,7 @@ class Item_model extends MY_Model {
 				->join('accounts', 'accounts.id = items.account_id', 'left')
 				->join('category_labels', 'category_labels.category_id = items.category')
 				->join('offers', 'offer_item_id = items.id', 'left')
-				->where("value $operator", $price_range)
+				// ->where("value $operator", $price_range)
 				->where($cat_prefix, $cat_value)
 				->limit($limit, $offset)
 				->group_by('items.id')
@@ -717,7 +714,7 @@ class Item_model extends MY_Model {
 				->join('category_labels', 'category_labels.category_id = items.category')
 				->join('offers', 'offer_item_id = items.id', 'left')
 				->like('name', $term)
-				->where("value $operator", $price_range)
+				// ->where("value $operator", $price_range)
 				->where($cat_prefix, $cat_value)
 				->group_by('items.id')
 				->order_by('value', $order)
@@ -733,7 +730,7 @@ class Item_model extends MY_Model {
 				->join('category_labels', 'category_labels.category_id = items.category')
 				->join('offers', 'offer_item_id = items.id', 'left')
 				->like('name', $term)
-				->where("value $operator", $price_range)
+				// ->where("value $operator", $price_range)
 				->where($cat_prefix, $cat_value)
 				->limit($limit, $offset)
 				->group_by('items.id')
@@ -1003,7 +1000,6 @@ class Item_model extends MY_Model {
 					)
 				);
 			}
-
 		}
 	}
 

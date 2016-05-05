@@ -30,10 +30,10 @@
 
 				<input class="slider" name="price_range"
 				data-slider-id='ex1Slider' type="hidden"
-				data-slider-ticks="[100, 100000]"
-				data-slider-ticks-labels='["₱ 100", "100000"]'
+				data-slider-ticks="[0, 100000]"
+				data-slider-ticks-labels='["0", "100000"]'
 				data-slider-min="0"
-				data-slider-max="20"
+				data-slider-max="100"
 				data-slider-step="1"
 				data-slider-value="<?php echo $this->input->get('price_range') ? $this->input->get('price_range') : 0; ?>" />
 
