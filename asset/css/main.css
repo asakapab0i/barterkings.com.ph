@@ -471,3 +471,13 @@ span.price-value {
   margin-left: 15px;
   font-size: 13px;
 }
+
+.pagination > .active > a {
+    background-color: #28b62c;
+    border-color: #28b62c;
+}
+
+.pagination > .active > a:hover{
+  background-color: #28b62c;
+  border-color: #28b62c;
+}
