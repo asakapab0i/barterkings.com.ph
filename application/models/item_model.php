@@ -269,7 +269,7 @@ class Item_model extends MY_Model {
 		if ($this->_input_data['sort'] == 'most_recent') {
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -304,7 +304,7 @@ class Item_model extends MY_Model {
 		}else if ($this->_input_data['sort'] == 'most_offers'){
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('COUNT(offers.offer_item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -343,7 +343,7 @@ class Item_model extends MY_Model {
 		}else if ($this->_input_data['sort'] == 'all'){
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select("COUNT('items.id') as id")
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -384,7 +384,7 @@ class Item_model extends MY_Model {
 		if ($this->_input_data['sort'] == 'most_recent') {
 
 			if ($this->_input_data['get_total_rows']) {
-				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -420,7 +420,7 @@ class Item_model extends MY_Model {
 		}else if ($this->_input_data['sort'] == 'most_offers') {
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -457,7 +457,7 @@ class Item_model extends MY_Model {
 		}else if ($this->_input_data['sort'] == 'all') {
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id')
@@ -565,7 +565,7 @@ class Item_model extends MY_Model {
 		}else{
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id', 'left')
@@ -707,7 +707,7 @@ class Item_model extends MY_Model {
 			// ->get();
 
 			if (isset($this->_input_data['get_total_rows'])) {
-				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+				$itemsdb = $this->db->select('COUNT(items.id) as id')
 				->from('items')
 				->join('items_images', 'item_id = items.id', 'left')
 				->join('accounts', 'accounts.id = items.account_id', 'left')
