@@ -5,6 +5,7 @@ class Account_model extends MY_Model {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('string');
+		$this->load->helper('links');
 	}
 
 	public function _upload_create_thumbnail($filename, $account_id){
@@ -193,7 +194,8 @@ class Account_model extends MY_Model {
 				$this->email->from('no-reply@pvp5.com', 'PVP5');
 				$this->email->to($this->input->post('email'));
 				$this->email->subject('Forgot password verification');
-				$this->email->message('Your verification key is '. $hash);
+
+				$this->email->message('Your verification key is '. linkify_to_verification($hash, $this->input->post('email')));
 				$this->email->send();
 
 				return true;

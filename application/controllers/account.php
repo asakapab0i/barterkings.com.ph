@@ -64,7 +64,7 @@ class Account extends MY_Controller {
 
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[accounts.email]');
-			$this->form_validation->set_rules('username', 'Nickname', 'required|is_unique[accounts.username]');
+			$this->form_validation->set_rules('username', 'Nickname', 'required|is_unique[accounts.username]|min_length[6]|max_length[10]');
 			$this->form_validation->set_rules('contact_number', 'Contact Number', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required|matches[confirm_password]');
 			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
