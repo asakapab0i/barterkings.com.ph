@@ -238,7 +238,6 @@ class Account_model extends MY_Model {
 				$this->db->update('accounts', $update);
 			}
 		}
-		echo $this->db->last_query();
 	}
 
 	public function get_settings_labels(){
