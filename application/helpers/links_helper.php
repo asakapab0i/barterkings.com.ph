@@ -60,7 +60,7 @@ function linkify_to_dashboard($url){
 }
 
 function linkify_to_verification($hash, $email){
-	return base_url('account/verification') . '?hash=' . $hash . '&email=' . $email ;
+	return anchor('account/verification' . '?hash=' . $hash . '&email=' . $email, $hash);
 }
 
 ?>

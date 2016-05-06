@@ -191,7 +191,7 @@ class Account_model extends MY_Model {
 				$this->db->where('id', $data[0]['id']);
 				$this->db->update('accounts', array('forgot_password_hash' => $hash));
 
-				$this->email->from('no-reply@pvp5.com', 'PVP5');
+				$this->email->from('no-reply@pvp5.com', 'PVP5 Email Responder');
 				$this->email->to($this->input->post('email'));
 				$this->email->subject('Forgot password verification');
 
