@@ -73,20 +73,24 @@
 <script>
 	var base_url = "<?php echo base_url()?>";
 </script>
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-<script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap-select.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap3-wysihtml5.all.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap-tagsinput.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/bootstrap-image-gallery.main.min.js')?>"></script>
-<script src="<?php echo base_url('asset/js/vendor/typehead.min.js')?>"></script>
-<script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
-<script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
-<script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
-<script src="<?php echo base_url('asset/js'); ?>/items-functionalities.js"></script>
+
+<?php if(ENVIRONMENT == 'production'): ?>
+  <script src="<?php echo base_url('asset/dist/js/production.js')?>"></script>
+<?php else: ?>
+  <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap-select.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap3-wysihtml5.all.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap-tagsinput.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/bootstrap-image-gallery.main.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/js/vendor/typehead.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/js'); ?>/plugins.js"></script>
+  <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
+  <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
+  <script src="<?php echo base_url('asset/js'); ?>/items-functionalities.js"></script>
+<?php endif;?>
 
 <script>
 (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
