@@ -1,18 +1,5 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4>Profile Image</h4>
-  </div>
-  <div class="panel-body">
-    <div class="container-fluid">
-      <div class="row">
-        <?php $this->load->view('template/profile-template'); ?>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
     <h4>Profile Details</h4>
   </div>
   <div class="panel-body">
