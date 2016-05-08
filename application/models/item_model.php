@@ -595,20 +595,39 @@ class Item_model extends MY_Model {
 				->order_by('date_posted', 'desc')
 				->get();
 			}else{
-				$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
-				->from('items')
-				->join('items_images', 'item_id = items.id', 'left')
-				->join('accounts', 'accounts.id = items.account_id', 'left')
-				->join('category_labels', 'category_labels.category_id = items.category')
-				->join('offers', 'offer_item_id = items.id', 'left')
-				// ->where("value $operator", $price_range)
-				->where($cat_prefix, $cat_value)
-				->limit($limit, $offset)
-				->group_by('items.id')
-				// ->order_by('value', $order)
-				->order_by('date_posted', 'desc')
-				->order_by('items.account_id', 'RANDOM')
-				->get();
+
+				if (isset($this->_input_data['order'])) {
+					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+					->from('items')
+					->join('items_images', 'item_id = items.id', 'left')
+					->join('accounts', 'accounts.id = items.account_id', 'left')
+					->join('category_labels', 'category_labels.category_id = items.category')
+					->join('offers', 'offer_item_id = items.id', 'left')
+					// ->where("value $operator", $price_range)
+					->where($cat_prefix, $cat_value)
+					->limit($limit, $offset)
+					->group_by('items.id')
+					->order_by('value', $order)
+					->order_by('date_posted', 'desc')
+					->get();
+				}else{
+					$itemsdb = $this->db->select('category_labels.*, COUNT(offers.item_id) as offers, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
+					->from('items')
+					->join('items_images', 'item_id = items.id', 'left')
+					->join('accounts', 'accounts.id = items.account_id', 'left')
+					->join('category_labels', 'category_labels.category_id = items.category')
+					->join('offers', 'offer_item_id = items.id', 'left')
+					// ->where("value $operator", $price_range)
+					->where($cat_prefix, $cat_value)
+					->limit($limit, $offset)
+					->group_by('items.id')
+					// ->order_by('value', $order)
+					->order_by('date_posted', 'desc')
+					->order_by('items.account_id', 'RANDOM')
+					->get();
+				}
+
+
 			}
 
 			// $itemsdb = $this->db->select('category_labels.*, username, items.id as item_id, name, type, status, value, description, category, size, location, items_images.id as item_imagesid, image, image_thumb')
