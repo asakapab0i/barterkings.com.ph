@@ -18,9 +18,8 @@ class Item extends MY_Controller {
 		$this->item($itemid);
 	}
 
-	public function item($itemid, $get_data = false){
+	public function item($itemid = false, $get_data = false){
 		$item_info = $this->item_model->get_item($itemid);
-
 		$user = $this->account_model->get_session();
 		$to_offer = $this->item_model->get_items_by_account_id_v2($user[0]['id'], $itemid);
 		$item_images = $this->item_model->get_item_images($itemid);
@@ -34,7 +33,8 @@ class Item extends MY_Controller {
 		$data['editable'] = false;
 		$data['item_owner'] = false;
 
-		if ($item_info !== false) {
+		if ($itemid !== false) {
+
 			if ($user !== false) {
 				if ($user[0]['id'] == $item_info[0]['account_id']) {
 					$data['editable'] = true;
