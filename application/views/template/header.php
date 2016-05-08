@@ -9,6 +9,36 @@
   <title><?php echo (isset($title)) ? $title : ''; ?></title>
   <meta name="description" content="Relevant advertisement aggregator in the philippines. Search and deal on your favorite item in your favorite website!">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <?php if($social_meta): ?>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="<?php echo $social_meta['name']?>">
+    <meta itemprop="description" content="<?php echo $social_meta['description']; ?>">
+    <meta itemprop="image" content="<?php linkify_to_images($social_meta['image_thumb']); ?>">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@barterkings.co">
+    <meta name="twitter:title" content="<?php echo $social_meta['name']; ?>">
+    <meta name="twitter:description" content="<?php echo $social_meta['description']; ?>">
+    <meta name="twitter:creator" content="@BarterKingsPH">
+    <meta name="twitter:image" content="<?php linkify_to_images($social_meta['image_thumb']); ?>">
+    <meta name="twitter:data1" content="PHP <?php echo $social_meta['value']?>">
+    <meta name="twitter:label1" content="Price">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="<?php echo $social_meta['name']?>" />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="<?php linkify_to_item($social_meta['id'], $social_meta['name']); ?>" />
+    <meta property="og:image" content="<?php linkify_to_images($social_meta['image_thumb']); ?>" />
+    <meta property="og:description" content="<?php echo $social_meta['description']?>" />
+    <meta property="og:site_name" content="<?php echo $title; ?>" />
+    <meta property="og:price:amount" content="<?php echo $social_meta['value']; ?>" />
+    <meta property="og:price:currency" content="PHP" />
+
+  <?php endif;?>
+
   <?php if(ENVIRONMENT == 'production'): ?>
   	<link async rel="stylesheet" href="<?php echo base_url('asset/dist/css/production.css'); ?>">
   <?php endif;?>
