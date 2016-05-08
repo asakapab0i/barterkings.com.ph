@@ -908,7 +908,7 @@ class Item_model extends MY_Model {
 
 			$images = $img->result_array();
 			for ($i=0; $i < 3; $i++) {
-				if (count($images) == 4) {
+				if (count($images) >= 4) {
 					return $images;
 				}
 				array_push($images, array('itemid' => $itemid, 'image' => 'default.png', 'image_thumb' => 'default_thumb.png'));
