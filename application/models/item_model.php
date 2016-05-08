@@ -605,8 +605,9 @@ class Item_model extends MY_Model {
 				->where($cat_prefix, $cat_value)
 				->limit($limit, $offset)
 				->group_by('items.id')
-				->order_by('value', $order)
+				// ->order_by('value', $order)
 				->order_by('date_posted', 'desc')
+				->order_by('items.account_id', 'RANDOM')
 				->get();
 			}
 
