@@ -9,26 +9,9 @@
   <title><?php echo (isset($title)) ? $title : ''; ?></title>
   <meta name="description" content="Relevant advertisement aggregator in the philippines. Search and deal on your favorite item in your favorite website!">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <?php if (ENVIRONMENT == 'production'): ?>
-    <link rel="stylesheet" href="<?php echo base_url('asset/dist/css/production.css'); ?>">
-  <?php else: ?>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/typehead.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/slider.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-select.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap3-wysihtml5.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-tagsinput.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
-    <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/style.css">
-    <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
-  <?php endif; ?>
-
+  <?php if(ENVIRONMENT == 'production'): ?>
+  	<link async rel="stylesheet" href="<?php echo base_url('asset/dist/css/production.css'); ?>">
+  <?php endif;?>
 </head>
 <body>
      <!--[if lt IE 7]>

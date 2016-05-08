@@ -77,7 +77,23 @@
 <?php if(ENVIRONMENT == 'production'): ?>
   <script src="<?php echo base_url('asset/dist/js/production.js')?>"></script>
 <?php else: ?>
+
   <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+  
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/typehead.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/slider.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-select.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/bootstrap-image-gallery.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/main.css">
+  <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/style.css">
+
   <script src="<?php echo base_url('asset/js/vendor/bootstrap.min.js')?>"></script>
   <script src="<?php echo base_url('asset/js/vendor/jasny-bootstrap.min.js')?>"></script>
   <script src="<?php echo base_url('asset/js/vendor/bootstrap-slider.js')?>"></script>
@@ -90,6 +106,8 @@
   <script src="<?php echo base_url('asset/js'); ?>/main.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/items-functionalities.js"></script>
+  <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
+
 <?php endif;?>
 
 <script>
