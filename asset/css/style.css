@@ -705,9 +705,9 @@ body {
 		width: 350px;
 	}
 
-	#nav-search:focus {
+	/*#nav-search:focus {
 		width: 370px;
-	}
+	}*/
 
 	.item-card-parent{
 		width: 25%;
@@ -732,9 +732,9 @@ body {
 		width: 200px;
 	}
 
-	#nav-search:focus {
+	/*#nav-search:focus {
 		width: 220px;
-	}
+	}*/
 
 	.item-card-parent{
 		width: 25%;
