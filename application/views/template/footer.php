@@ -15,11 +15,9 @@
         <a href="#">About</a>
         ·
         <a href="#">Faq</a>
-        ·
-        <a href="#">API</a>
         .
         <a href="#">Contact</a>
-        <a href="#"><span class="pull-right footer-company-name">BarterKings &copy; 2015</span></a>
+        <a href="#"><span class="pull-right footer-company-name">&copy; 2015</span></a>
       </p>
 
 
@@ -78,6 +76,7 @@
 </script>
 
 <?php if(ENVIRONMENT == 'production'): ?>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
   <script src="<?php echo base_url('asset/dist/js/production.js')?>"></script>
 <?php else: ?>
 
@@ -110,7 +109,8 @@
   <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/items-functionalities.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
+  <script src="<?php base_url('asset/js'); ?>/google-locations.js">
 <?php endif;?>
 
 <script>
