@@ -1,5 +1,3 @@
-<div class="container">
-
 	<div class="col-md-3">
 		<?php $this->load->view('template/advance-search-template'); ?>
 	</div>
@@ -29,5 +27,3 @@
 			</div>
 		</div>
 	</div>
-
-</div>

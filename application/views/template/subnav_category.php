@@ -3,7 +3,7 @@
   <button type="button" class="nav-sub-category navbar-toggle collapsed" data-toggle="collapse" data-target="#subnav-category">
     <span class="sr-only">Toggle navigation</span>
 
-    <div id="navbar-open"> 
+    <div id="navbar-open">
       <span class="nav-down-icon glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
     </div>
 
@@ -17,13 +17,13 @@
     <span class="navbar-brand pull-right" href="#">Categories</span>
   </div>
 
-  
+
 
 </div>
 
 <div class="collapse navbar-collapse" id="subnav-category">
 
-  <div class="container">
+  <div class="container-fluid">
 
     <ul class="nav navbar-nav category-list">
 
@@ -40,7 +40,7 @@
                 <li><a href="#"><?php echo $subname; ?></a></li>
               <?php endforeach; ?>
           </ul> -->
-          
+
           <?php endif; ?>
         </div>
 
@@ -53,7 +53,7 @@
 </div>
 
 
-<!-- 
+<!--
    <li class="">
 
         <div class="dropdown">

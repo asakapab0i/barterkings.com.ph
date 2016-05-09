@@ -1,3 +1,6 @@
+<!-- Content End -->
+</div>
+
   <!-- FOOTER -->
   <footer class="footer-basic-centered">
 
@@ -79,7 +82,7 @@
 <?php else: ?>
 
   <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-  
+
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/typehead.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/normalize.css">
