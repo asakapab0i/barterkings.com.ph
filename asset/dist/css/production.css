@@ -59,7 +59,8 @@
 .tt-menu {
   /*width: 422px;*/
   /*margin: 12px 0;*/
-  width: 420px;
+  /*width: 420px;*/
+  width: 100%;
   padding: 8px 0;
   background-color: #fff;
   border: 1px solid #ccc;
