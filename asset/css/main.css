@@ -481,3 +481,7 @@ span.price-value {
   background-color: #28b62c;
   border-color: #28b62c;
 }
+
+.form-control{
+  border: 1px solid rgba(132, 140, 133, 0.45);
+}

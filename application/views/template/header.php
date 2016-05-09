@@ -29,7 +29,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <?php if($social_meta): ?>
+  <?php if(isset($social_meta) && $social_meta != false): ?>
 
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="<?php echo $social_meta['name']?>">
