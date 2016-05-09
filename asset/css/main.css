@@ -425,6 +425,9 @@ p {
 
 .list-group-item.active, .list-group-item:hover{
   background-color: #28b62c;
+}
+
+.list-group-item:hover a{
   color: white;
 }
 
