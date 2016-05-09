@@ -1163,6 +1163,7 @@ p {
 
 .list-group-item.active, .list-group-item:hover{
   background-color: #28b62c;
+  color: white;
 }
 
 
