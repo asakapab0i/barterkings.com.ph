@@ -2117,9 +2117,9 @@ body {
 		width: 600px;
 	}
 
-	#nav-search:focus{
+	/*#nav-search:focus{
 		width: 420px;
-	}
+	}*/
 
 	.item-card-parent{
 		width: 20%;
