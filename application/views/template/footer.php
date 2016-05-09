@@ -4,7 +4,7 @@
   <!-- FOOTER -->
   <footer class="footer-basic-centered">
 
-    <div class="container">
+    <div class="">
       <p class="footer-links">
         <a href="#">Home</a>
         ·
