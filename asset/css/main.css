@@ -485,3 +485,8 @@ span.price-value {
 .form-control{
   border: 1px solid rgba(132, 140, 133, 0.45);
 }
+
+.img-product{
+  height: 200px;
+  width: 200px;
+}
