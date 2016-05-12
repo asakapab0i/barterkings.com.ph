@@ -8,7 +8,7 @@
 
 
         <span class="profile-picture">
-            <img src="<?php echo base_url('asset/img/profiles_thumbs'); ?>/<?php echo $user[0]['profile_img_thumb']; ?>" alt="" class="img-responsive" />
+            <img src="<?php echo base_url('asset/img/profiles_thumbs'); ?>/<?php echo $profile[0]['profile_img_thumb']; ?>" alt="" class="img-responsive" />
         </span>
         <?php if(isset($is_logged_in) && $is_logged_in === true): ?>
             <form id="upload-profile-img-form" action="account/upload" method="POST" accept-charset="utf-8">
@@ -18,13 +18,13 @@
                 <button id="upload-profile-img-btn" class="form-control btn btn-success btn-block">Upload Profile</button>
             </form>
         <?php else: ?>
-         <button style="margin-top: 10px;" data-url="message/create" data-options="from-profile" data-accountid="<?php echo $user[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button>
+         <button style="margin-top: 10px;" data-url="message/create" data-options="from-profile" data-accountid="<?php echo $profile[0]['id']?>" class="pop-modal form-control btn btn-success btn-sm btn-block">Send Message</button>
         <?php endif; ?>
 
     </div>
 
     <div class="col-md-9">
-        <h3><?php echo $user[0]['username']; ?></h3><hr>
+        <h3><?php echo $profile[0]['username']; ?></h3><hr>
         <small>
             <cite title="San Francisco, USA">San Francisco, USA
                 <i class="glyphicon glyphicon-map-marker">

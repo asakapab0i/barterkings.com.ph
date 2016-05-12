@@ -44,6 +44,7 @@ class Item extends MY_Controller {
 			$this->_data['title'] = "BarterKings PH - " . $item_info[0]['name'];
 			$this->_data['social_meta'] = $item_info[0];
 
+			$data['profile'] = $item_info;
 			$data['user'] = $user;
 			$data['data'] = $item_info;
 			$data['to_offer'] = $to_offer;
