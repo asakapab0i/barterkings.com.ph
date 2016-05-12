@@ -116,6 +116,7 @@ class Item extends MY_Controller {
 		if ($this->input->post()) {
 			$data = $this->input->post();
 			$item_id = $data['id'];
+
 			$name = url_title($data['name']);
 			$tags = (isset($data['tags'])) ? $data['tags'] : false;
 			unset($data['tags']); unset($data['id']); unset($data['_wysihtml5_mode']);
@@ -141,8 +142,14 @@ class Item extends MY_Controller {
 			}
 
 		}else{
-			if ($this->account_model->get_session()) {
-				$data['item'] = $this->item_model->get_item($id);
+
+			//item owner validation
+			$item = $this->item_model->get_item($id);
+			$user = $this->_get_session_data();
+
+			if ( ($this->account_model->get_session() && $item[0]['account_id'] == $user[0]['id']) || isset($user[0]['privileges_id']) && $user[0]['privileges_id'] == 3 ) {
+
+				$data['item'] = $item;
 				$data['images'] = $this->item_model->get_item_images($id);
 				$data['categories'] = $this->item_model->get_categories();
 				$data['categories_v2'] = $this->item_model->get_categories_v2();
