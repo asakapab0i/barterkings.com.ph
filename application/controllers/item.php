@@ -44,7 +44,7 @@ class Item extends MY_Controller {
 			$this->_data['title'] = "BarterKings PH - " . $item_info[0]['name'];
 			$this->_data['social_meta'] = $item_info[0];
 
-			$data['user'] = $item_info;
+			$data['user'] = $user;
 			$data['data'] = $item_info;
 			$data['to_offer'] = $to_offer;
 			$data['tags'] = $item_tags;
@@ -152,6 +152,17 @@ class Item extends MY_Controller {
 				redirect('home');
 			}
 		}
+	}
+
+	public function delete($id = NULL){
+			if ($id !== NULL) {
+				$result = $this->item_model->delete($id);
+				if ($result) {
+					redirect('home');
+				}
+			}else{
+				redirect('home');
+			}
 	}
 
 	public function compare($item_id, $item_offer_id){
