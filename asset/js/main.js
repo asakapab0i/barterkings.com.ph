@@ -366,7 +366,7 @@ $(document).on('click', '.show-tab', function (e) {
 
 // Javascript to enable link to tab
 var url = document.location.toString();
-if (url.match('#')) {
+if (url.search('/message') == -1 && url.match('#')) {
 	$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
 
 	var href = url.split('#')[1]
