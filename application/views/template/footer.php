@@ -76,11 +76,84 @@
 </script>
 
 <?php if(ENVIRONMENT == 'production'): ?>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
+	<script>
+
+  // This example displays an address form, using the autocomplete feature
+  // of the Google Places API to help users fill in the information.
+
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+  var placeSearch, autocomplete;
+  var componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    country: 'long_name',
+    postal_code: 'short_name'
+  };
+
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('location')),
+      {types: ['geocode']});
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+      // Get the place details from the autocomplete object.
+      var place = autocomplete.getPlace();
+
+      for (var component in componentForm) {
+        document.getElementById(component).value = '';
+        document.getElementById(component).disabled = false;
+      }
+
+      // Get each component of the address from the place details
+      // and fill the corresponding field on the form.
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          document.getElementById(addressType).value = val;
+        }
+      }
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var geolocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var circle = new google.maps.Circle({
+            center: geolocation,
+            radius: position.coords.accuracy
+          });
+          autocomplete.setBounds(circle.getBounds());
+        });
+      }
+    }
+
+</script>
   <script src="<?php echo base_url('asset/dist/js/production.js')?>"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-573353641a43b50a"></script>
 <?php else: ?>
 
   <script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>asset/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <link rel="stylesheet" href="<?php echo base_url('asset/css'); ?>/typehead.css">
@@ -109,8 +182,8 @@
   <script src="<?php echo base_url('asset/js'); ?>/add-item.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/items-functionalities.js"></script>
   <script src="<?php echo base_url('asset/js'); ?>/vendor/modernizr-2.6.2.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg4wlVCRSetZ8v8L9EGtetzCDrTshFMOY&libraries=places&callback=initAutocomplete" async defer></script>
-  <script src="<?php base_url('asset/js'); ?>/google-locations.js">
+  <script src="<?php echo base_url('asset/js'); ?>/google-locations.js">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-573353641a43b50a"></script>
 <?php endif;?>
 
 <script>

@@ -8,7 +8,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title><?php echo (isset($title)) ? $title : ''; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="<?php echo base_url(); ?>" rel="canonical" />
 
   <!-- Favicons-->
   <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url('asset/img/favicons'); ?>/apple-icon-57x57.png">

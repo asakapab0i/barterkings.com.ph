@@ -130,7 +130,7 @@
 				<div class="col-md-11">
 					<h4>Add Location</h4>
 					<label>Location</label><br/>
-					<input class="form-control" name="location" value="<?php echo_if_not_empty($item[0]['location']); ?>" />
+					<input class="form-control" id="location" name="location" value="<?php echo_if_not_empty($item[0]['location']); ?>" />
 					<!-- <input id="tags-input" class="form-control" type="text" name="tags" value=""> -->
 				</div>
 			</div>
