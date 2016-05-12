@@ -1023,4 +1023,15 @@ class Item_model extends MY_Model {
 		}
 	}
 
+	public function delete($id){
+		$session = $this->_get_session_data();
+		if ($session[0]['privileges_id'] == 3) {
+			$this->db->where('id', $id);
+			$this->db->delete('items');
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

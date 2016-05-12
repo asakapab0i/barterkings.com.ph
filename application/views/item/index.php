@@ -3,13 +3,29 @@
 
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h4><?php echo $data[0]['name']; ?>
-					<?php if ($editable === TRUE):?>
-					<?php endif;?>
-				</h4>
-				<h5>
-					<?php echo $data[0]['location'] ?>
-				</h5><hr>
+				<div class="">
+					<?php if($user[0]['privileges_id'] == 3): ?>
+						<!-- Single button -->
+						<div class="btn-group pull-right">
+							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="fa fa-cog fa-fw"></span>
+							</button>
+							<ul class="dropdown-menu" style="min-width: 100px">
+								<li><a href="<?php linkify_to_remove($data[0]['itemid']); ?>" class="">Remove</a></li>
+								<li><a href="<?php linkify_to_edit($data[0]['itemid']); ?>">Edit</a></li>
+								<li><a href="<?php linkify_to_deactivate($data[0]['itemid']); ?>">Deactivate</a></li>
+							</ul>
+						</div>
+					<?php endif; ?>
+					<h4><?php echo $data[0]['name']; ?>
+						<?php if ($editable === TRUE):?>
+						<?php endif;?>
+					</h4>
+					<h5>
+						<?php echo $data[0]['location'] ?>
+					</h5>
+				</div>
+				<hr>
 				<div class="item-images">
 					<h4><small class="pull-right"><span data-itemid="<?php echo $data[0]['itemid']; ?>" class="reload-images-count"><?php echo $images_count; ?></span> images</small> Images
 						<?php if ($editable === TRUE):?>

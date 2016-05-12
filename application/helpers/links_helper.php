@@ -43,6 +43,14 @@ function linkify_to_edit($id){
 	echo base_url('item/edit/' . $id);
 }
 
+function linkify_to_remove($id){
+	echo base_url('item/delete/' . $id);
+}
+
+function linkify_to_deactivate($id){
+	echo base_url('item/deactivate/' . $id);
+}
+
 function linkify_to_category($category, $_get = NULL){
 
 	if ($_get !== NULL && is_array($_get)) {
